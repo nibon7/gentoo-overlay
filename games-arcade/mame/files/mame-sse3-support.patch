@@ -1,0 +1,13 @@
+--- a/makefile	2024-06-18 12:22:26.851363388 +0800
++++ b/makefile	2024-06-18 12:22:46.194696267 +0800
+@@ -859,6 +859,10 @@ ifdef SSE2
+ PARAMS += --SSE2='$(SSE2)'
+ endif
+
++ifdef SSE3
++PARAMS += --SSE3='$(SSE3)'
++endif
++
+ ifdef OPENMP
+ PARAMS += --OPENMP='$(OPENMP)'
+ endif

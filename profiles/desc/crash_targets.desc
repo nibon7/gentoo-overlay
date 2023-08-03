@@ -1,0 +1,10 @@
+# This file contains descriptions of CRASH_TARGETS USE_EXPAND flags.
+
+arm - arm target
+arm64 - arm64 target
+mips - mips target
+mips64 - mips64 target
+ppc64 - ppc64 target
+riscv64 - riscv64 target
+x86 - x86 target
+x86_64 - x86_64 target

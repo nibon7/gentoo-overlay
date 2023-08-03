@@ -1,0 +1,31 @@
+name: pkgcheck
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.ebuild'
+      - '**.xml'
+      - '**Manifest'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.ebuild'
+      - '**.xml'
+      - '**Manifest'
+  schedule:
+    - cron: "00 04 * * *"
+
+jobs:
+  pkgcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run pkgcheck
+      uses: pkgcore/pkgcheck-action@v1
+      with:
+        args: --profiles stable
