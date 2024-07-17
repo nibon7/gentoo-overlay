@@ -6,13 +6,13 @@ EAPI=8
 CRATES="
 	addr2line@0.21.0
 	adler@1.0.2
+	adler32@1.2.0
 	aes@0.8.4
 	ahash@0.7.8
 	ahash@0.8.8
 	aho-corasick@1.1.1
 	alacritty_terminal@0.23.0
 	aliasable@0.1.3
-	aligned-vec@0.5.0
 	allocator-api2@0.2.16
 	alsa@0.7.1
 	alsa-sys@0.3.1
@@ -29,13 +29,13 @@ CRATES="
 	anyhow@1.0.83
 	approx@0.5.1
 	arbitrary@1.3.2
-	arg_enum_proc_macro@0.3.4
 	arrayref@0.3.7
 	arrayvec@0.7.4
 	as-raw-xcb-connection@1.0.1
 	ascii@1.1.0
 	ash@0.38.0+1.3.281
 	ash-window@0.13.0
+	ashpd@0.8.1
 	async-attributes@1.1.2
 	async-broadcast@0.7.0
 	async-channel@1.9.0
@@ -67,7 +67,6 @@ CRATES="
 	async-task@4.7.0
 	async-trait@0.1.77
 	async-tungstenite@0.16.1
-	async-watch@0.3.1
 	async_zip@0.0.17
 	asynchronous-codec@0.7.0
 	atoi@2.0.0
@@ -75,8 +74,6 @@ CRATES="
 	atomic-waker@1.1.1
 	atty@0.2.14
 	autocfg@1.1.0
-	av1-grain@0.2.3
-	avif-serialize@0.8.1
 	aws-config@1.1.5
 	aws-credential-types@1.1.5
 	aws-runtime@1.1.5
@@ -112,10 +109,8 @@ CRATES="
 	bindgen@0.65.1
 	bit-set@0.5.3
 	bit-vec@0.6.3
-	bit_field@0.10.2
 	bitflags@1.3.2
 	bitflags@2.4.2
-	bitstream-io@2.4.2
 	bitvec@1.0.1
 	block@0.1.6
 	block-buffer@0.9.0
@@ -127,14 +122,12 @@ CRATES="
 	borsh-derive-internal@0.10.3
 	borsh-schema-derive-internal@0.10.3
 	bstr@1.6.2
-	built@0.7.3
 	bumpalo@3.14.0
 	bytecheck@0.6.11
 	bytecheck_derive@0.6.11
 	bytemuck@1.14.0
 	bytemuck_derive@1.5.0
 	byteorder@1.4.3
-	byteorder-lite@0.1.0
 	bytes@0.4.12
 	bytes@1.5.0
 	bytes-utils@0.1.4
@@ -154,7 +147,6 @@ CRATES="
 	cc@1.0.90
 	cesu8@1.1.0
 	cexpr@0.6.0
-	cfg-expr@0.15.8
 	cfg-if@1.0.0
 	cfg_aliases@0.1.1
 	chrono@0.4.38
@@ -231,12 +223,13 @@ CRATES="
 	ctor@0.2.6
 	ctrlc@3.4.4
 	curl@0.4.44
-	curl-sys-0.4.67+curl@8.3.0
+	curl-sys@0.4.67+curl-8.3.0
 	cursor-icon@1.1.0
 	dashmap@5.5.3
 	dasp_sample@0.11.0
 	data-encoding@2.5.0
 	data-url@0.3.1
+	deflate@0.8.6
 	deflate64@0.1.8
 	der@0.6.1
 	der@0.7.8
@@ -285,7 +278,6 @@ CRATES="
 	event-listener-strategy@0.4.0
 	event-listener-strategy@0.5.0
 	exec@0.3.1
-	exr@1.72.0
 	fallible-iterator@0.3.0
 	fancy-regex@0.12.0
 	fast-srgb8@1.0.0
@@ -340,7 +332,7 @@ CRATES="
 	gethostname@0.4.3
 	getrandom@0.1.16
 	getrandom@0.2.10
-	gif@0.13.1
+	gif@0.11.4
 	gimli@0.28.0
 	git2@0.19.0
 	glob@0.3.1
@@ -362,12 +354,11 @@ CRATES="
 	headers-core@0.2.0
 	heck@0.3.3
 	heck@0.4.1
-	heck@0.5.0
 	heed@0.20.1
 	heed-traits@0.20.0
 	heed-types@0.20.0
 	hermit-abi@0.1.19
-	hermit-abi@0.3.9
+	hermit-abi@0.3.3
 	hex@0.4.3
 	hexf-parse@0.2.1
 	hidden-trait@0.1.2
@@ -377,7 +368,6 @@ CRATES="
 	home@0.5.9
 	hound@3.5.0
 	html5ever@0.27.0
-	html_to_markdown@0.1.0
 	http@0.2.9
 	http@1.0.0
 	http-body@0.4.5
@@ -394,10 +384,8 @@ CRATES="
 	id-arena@2.2.1
 	idna@0.5.0
 	ignore@0.4.22
-	image@0.25.1
-	image-webp@0.1.2
+	image@0.23.14
 	imagesize@0.12.0
-	imgref@1.10.1
 	indexmap@1.9.3
 	indexmap@2.2.6
 	indoc@1.0.9
@@ -406,13 +394,14 @@ CRATES="
 	inotify-sys@0.1.5
 	inout@0.1.3
 	instant@0.1.12
-	interpolate_name@0.2.4
 	io-extras@0.18.1
 	io-lifetimes@1.0.11
 	io-lifetimes@2.0.3
 	iovec@0.1.4
 	ipc-channel@0.18.0
 	ipnet@2.8.0
+	is-docker@0.2.0
+	is-wsl@0.4.0
 	isahc@1.7.2
 	itertools@0.10.5
 	itertools@0.11.0
@@ -422,7 +411,7 @@ CRATES="
 	jni@0.20.0
 	jni-sys@0.3.0
 	jobserver@0.1.28
-	jpeg-decoder@0.3.1
+	jpeg-decoder@0.1.22
 	js-sys@0.3.64
 	jwt@0.16.0
 	khronos-egl@5.0.0
@@ -434,9 +423,7 @@ CRATES="
 	lazy_static@1.4.0
 	lazycell@1.3.0
 	leb128@0.2.5
-	lebe@0.5.2
 	libc@0.2.153
-	libfuzzer-sys@0.4.7
 	libgit2-sys@0.17.0+1.8.1
 	libloading@0.7.4
 	libloading@0.8.0
@@ -453,7 +440,6 @@ CRATES="
 	lmdb-master-sys@0.2.0
 	lock_api@0.4.10
 	log@0.4.21
-	loop9@0.1.5
 	lz4@1.24.0
 	lz4-sys@1.9.4
 	mac@0.1.1
@@ -465,7 +451,6 @@ CRATES="
 	matchers@0.1.0
 	matchit@0.7.3
 	maybe-owned@0.3.4
-	maybe-rayon@0.1.1
 	md-5@0.10.5
 	memchr@2.7.2
 	memfd@0.6.4
@@ -476,6 +461,8 @@ CRATES="
 	mimalloc@0.1.41
 	mime@0.3.17
 	minimal-lexical@0.2.1
+	miniz_oxide@0.3.7
+	miniz_oxide@0.4.4
 	miniz_oxide@0.7.1
 	mint@0.5.9
 	mio@0.8.11
@@ -493,7 +480,6 @@ CRATES="
 	nix@0.27.1
 	nix@0.28.0
 	nom@7.1.3
-	noop_proc_macro@0.3.0
 	notify@6.1.1
 	ntapi@0.4.1
 	nu-ansi-term@0.46.0
@@ -504,10 +490,10 @@ CRATES="
 	num-complex@0.4.4
 	num-conv@0.1.0
 	num-derive@0.3.3
-	num-derive@0.4.2
 	num-format@0.4.4
 	num-integer@0.1.45
 	num-iter@0.1.43
+	num-rational@0.3.2
 	num-rational@0.4.1
 	num-traits@0.2.16
 	num_cpus@1.16.0
@@ -522,10 +508,11 @@ CRATES="
 	oo7@0.3.0
 	oorandom@11.1.3
 	opaque-debug@0.3.0
+	open@5.1.2
 	openssl@0.10.57
 	openssl-macros@0.1.1
 	openssl-probe@0.1.5
-	openssl-src@300.3.0+3.3.0
+	openssl-src@300.2.3+3.2.1
 	openssl-sys@0.9.93
 	option-ext@0.2.0
 	ordered-float@2.10.0
@@ -576,6 +563,7 @@ CRATES="
 	plotters@0.3.5
 	plotters-backend@0.3.5
 	plotters-svg@0.3.5
+	png@0.16.8
 	png@0.17.13
 	polling@2.8.0
 	polling@3.3.2
@@ -604,8 +592,6 @@ CRATES="
 	ptr_meta@0.1.4
 	ptr_meta_derive@0.1.4
 	pulldown-cmark@0.10.0
-	qoi@0.4.1
-	quick-error@2.0.1
 	quick-xml@0.30.0
 	quick-xml@0.31.0
 	quote@1.0.35
@@ -618,8 +604,6 @@ CRATES="
 	rand_core@0.6.4
 	rand_hc@0.2.0
 	rangemap@1.4.0
-	rav1e@0.7.1
-	ravif@0.11.5
 	raw-window-handle@0.5.2
 	raw-window-handle@0.6.0
 	raw-window-metal@0.4.0
@@ -678,6 +662,7 @@ CRATES="
 	schemars@0.8.15
 	schemars_derive@0.8.15
 	scoped-tls@1.0.1
+	scoped_threadpool@0.1.9
 	scopeguard@1.2.0
 	scrypt@0.7.0
 	sct@0.7.1
@@ -718,7 +703,6 @@ CRATES="
 	signature@1.6.4
 	signature@2.1.0
 	simd-adler32@0.3.7
-	simd_helpers@0.1.0
 	simdutf8@0.1.4
 	similar@1.3.0
 	simple_asn1@0.5.4
@@ -777,7 +761,6 @@ CRATES="
 	synchronoise@1.0.1
 	sys-locale@0.3.1
 	sysinfo@0.30.7
-	system-deps@6.2.2
 	system-interface@0.27.1
 	taffy@0.4.3
 	take-until@0.2.0
@@ -790,7 +773,7 @@ CRATES="
 	thiserror@1.0.60
 	thiserror-impl@1.0.60
 	thread_local@1.1.7
-	tiff@0.9.1
+	tiff@0.6.1
 	tiktoken-rs@0.5.9
 	time@0.3.36
 	time-core@0.1.2
@@ -872,13 +855,11 @@ CRATES="
 	utf-8@0.7.6
 	utf8parse@0.2.1
 	uuid@1.8.0
-	v_frame@0.3.8
 	valuable@0.1.0
 	value-bag@1.9.0
 	value-bag-serde1@1.9.0
 	value-bag-sval2@1.9.0
 	vcpkg@0.2.15
-	version-compare@0.2.0
 	version_check@0.9.4
 	vscode_theme@0.2.0
 	vsimd@0.8.0
@@ -1023,26 +1004,22 @@ CRATES="
 	zstd@0.11.2+zstd.1.5.2
 	zstd-safe@5.0.2+zstd.1.5.2
 	zstd-sys@2.0.8+zstd.1.5.5
-	zune-core@0.4.12
-	zune-inflate@0.2.54
-	zune-jpeg@0.4.11
 	zvariant@4.0.2
 	zvariant_derive@4.0.2
 	zvariant_utils@1.1.0
 "
 
-PF_COMMIT="4968e819c0d9b015437ffc694511e175801a17c7"
+PF_COMMIT="30419d07660dc11a21e42ef4a7fa329600cff152"
 TS_COMMIT="7b4894ba2ae81b988846676f54c0988d4027ef4f"
-BLADE_COMMIT="21a56f780e21e4cb42c70a1dcf4b59842d1ad7f7"
+BLADE_COMMIT="33fd51359d113c03b785e28f4a6cf75bacb0b26d"
 XIM_COMMIT="27132caffc5b9bc9c432ca4afad184ab6e7c16af"
 
 declare -A GIT_CRATES=(
 	[alacritty_terminal]="https://github.com/alacritty/alacritty;cacdb5bb3b72bad2c729227537979d95af75978f;alacritty-%commit%/alacritty_terminal"
-	[ashpd]="https://github.com/bilelmoussaoui/ashpd;29f2e1a6f4b0911f504658f5f4630c02e01b13f2"
 	[async-pipe]="https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%"
-	[blade-graphics]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-graphics"
-	[blade-macros]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-macros"
-	[blade-util]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-util"
+	[blade-graphics]="https://github.com/zed-industries/blade;${BLADE_COMMIT};blade-%commit%/blade-graphics"
+	[blade-macros]="https://github.com/zed-industries/blade;${BLADE_COMMIT};blade-%commit%/blade-macros"
+	[blade-util]="https://github.com/zed-industries/blade;${BLADE_COMMIT};blade-%commit%/blade-util"
 	[cosmic-text]="https://github.com/pop-os/cosmic-text;542b20ca4376a3b5de5fa629db1a4ace44e18e0c"
 	[font-kit]="https://github.com/zed-industries/font-kit;5a5c4d4ca395c74eb0abde38508e170ce0fd761a"
 	[lsp-types]="https://github.com/zed-industries/lsp-types;72357d6f6d212bdffba3b5ef4b31d8ca856058e7"
@@ -1084,10 +1061,14 @@ DEPEND="
 RDEPEND="${DEPEND}"
 BDEPEND="sys-devel/gettext
 	dev-util/vulkan-headers
-	>=virtual/rust-1.79
+	>=dev-util/cargo-about-0.6.2
 "
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
+
+PATCHES=(
+	"${FILESDIR}"/zed-license.patch
+)
 
 src_configure() {
 	default
@@ -1102,6 +1083,8 @@ src_configure() {
 	sed -e "s#${PF_GIT}#${PF_PATH}#" \
 		-e "s#${TS_GIT}#${TS_PATH}#" \
 		-i "${S}/Cargo.toml" || die "Cargo fetch workaround failed"
+
+	./script/generate-licenses || die "Failed to generate licenses"
 }
 
 src_compile() {
