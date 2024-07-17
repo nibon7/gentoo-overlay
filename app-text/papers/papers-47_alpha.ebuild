@@ -1,0 +1,291 @@
+# Copyright 1999-2024 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+CRATES="
+	ahash@0.8.11
+	aho-corasick@1.1.3
+	allocator-api2@0.2.18
+	async-broadcast@0.7.1
+	async-channel@2.3.1
+	async-executor@1.12.0
+	async-fs@2.1.2
+	async-io@2.3.3
+	async-lock@3.4.0
+	async-process@2.2.3
+	async-recursion@1.1.1
+	async-signal@0.2.8
+	async-task@4.7.1
+	async-trait@0.1.80
+	atomic-waker@1.1.2
+	autocfg@1.3.0
+	bitflags@2.6.0
+	block@0.1.6
+	block-buffer@0.10.4
+	blocking@1.6.1
+	cairo-rs@0.19.4
+	cairo-sys-rs@0.19.2
+	cc@1.0.101
+	cfg-expr@0.15.8
+	cfg-if@1.0.0
+	cfg_aliases@0.1.1
+	concurrent-queue@2.5.0
+	cpufeatures@0.2.12
+	crossbeam-utils@0.8.20
+	crypto-common@0.1.6
+	digest@0.10.7
+	endi@1.1.0
+	enumflags2@0.7.10
+	enumflags2_derive@0.7.10
+	env_logger@0.10.2
+	equivalent@1.0.1
+	errno@0.3.9
+	event-listener@5.3.1
+	event-listener-strategy@0.5.2
+	fastrand@2.1.0
+	field-offset@0.3.6
+	futures-channel@0.3.30
+	futures-core@0.3.30
+	futures-executor@0.3.30
+	futures-io@0.3.30
+	futures-lite@2.3.0
+	futures-macro@0.3.30
+	futures-sink@0.3.30
+	futures-task@0.3.30
+	futures-util@0.3.30
+	gdk-pixbuf@0.19.8
+	gdk-pixbuf-sys@0.19.8
+	gdk4@0.8.2
+	gdk4-sys@0.8.2
+	generic-array@0.14.7
+	getrandom@0.2.15
+	gettext-rs@0.7.0
+	gettext-sys@0.21.3
+	gio@0.19.8
+	gio-sys@0.19.8
+	glib@0.19.9
+	glib-macros@0.19.9
+	glib-sys@0.19.8
+	gobject-sys@0.19.8
+	graphene-rs@0.19.8
+	graphene-sys@0.19.8
+	gsk4@0.8.2
+	gsk4-sys@0.8.2
+	gtk4@0.8.2
+	gtk4-macros@0.8.2
+	gtk4-sys@0.8.2
+	hashbrown@0.14.5
+	heck@0.5.0
+	hermit-abi@0.3.9
+	hermit-abi@0.4.0
+	hex@0.4.3
+	humantime@2.1.0
+	indexmap@2.2.6
+	is-terminal@0.4.12
+	lazy_static@1.5.0
+	libadwaita@0.6.0
+	libadwaita-sys@0.6.0
+	libc@0.2.155
+	linux-raw-sys@0.4.14
+	locale_config@0.3.0
+	log@0.4.21
+	lru@0.12.3
+	malloc_buf@0.0.6
+	memchr@2.7.4
+	memoffset@0.9.1
+	nix@0.28.0
+	objc@0.2.7
+	objc-foundation@0.1.1
+	objc_id@0.1.1
+	once_cell@1.19.0
+	ordered-stream@0.2.0
+	pango@0.19.8
+	pango-sys@0.19.8
+	parking@2.2.0
+	pin-project-lite@0.2.14
+	pin-utils@0.1.0
+	piper@0.2.3
+	pkg-config@0.3.30
+	polling@3.7.2
+	ppv-lite86@0.2.17
+	proc-macro-crate@3.1.0
+	proc-macro2@1.0.86
+	quote@1.0.36
+	rand@0.8.5
+	rand_chacha@0.3.1
+	rand_core@0.6.4
+	regex@1.10.5
+	regex-automata@0.4.7
+	regex-syntax@0.8.4
+	rustc_version@0.4.0
+	rustix@0.38.34
+	semver@1.0.23
+	serde@1.0.203
+	serde_derive@1.0.203
+	serde_repr@0.1.19
+	serde_spanned@0.6.6
+	sha1@0.10.6
+	shell-words@1.1.0
+	signal-hook-registry@1.4.2
+	slab@0.4.9
+	smallvec@1.13.2
+	static_assertions@1.1.0
+	syn@2.0.68
+	system-deps@6.2.2
+	target-lexicon@0.12.14
+	temp-dir@0.1.13
+	tempfile@3.10.1
+	termcolor@1.4.1
+	thiserror@1.0.61
+	thiserror-impl@1.0.61
+	toml@0.8.14
+	toml_datetime@0.6.6
+	toml_edit@0.21.1
+	toml_edit@0.22.14
+	tracing@0.1.40
+	tracing-attributes@0.1.27
+	tracing-core@0.1.32
+	typenum@1.17.0
+	uds_windows@1.1.0
+	unicode-ident@1.0.12
+	version-compare@0.2.0
+	version_check@0.9.4
+	wasi@0.11.0+wasi-snapshot-preview1
+	winapi@0.3.9
+	winapi-i686-pc-windows-gnu@0.4.0
+	winapi-util@0.1.8
+	winapi-x86_64-pc-windows-gnu@0.4.0
+	windows-sys@0.52.0
+	windows-targets@0.52.5
+	windows_aarch64_gnullvm@0.52.5
+	windows_aarch64_msvc@0.52.5
+	windows_i686_gnu@0.52.5
+	windows_i686_gnullvm@0.52.5
+	windows_i686_msvc@0.52.5
+	windows_x86_64_gnu@0.52.5
+	windows_x86_64_gnullvm@0.52.5
+	windows_x86_64_msvc@0.52.5
+	winnow@0.5.40
+	winnow@0.6.13
+	xdg-home@1.2.0
+	zbus@4.3.0
+	zbus_macros@4.3.0
+	zbus_names@3.0.0
+	zerocopy@0.7.34
+	zerocopy-derive@0.7.34
+	zvariant@4.1.1
+	zvariant_derive@4.1.1
+	zvariant_utils@2.0.0
+"
+
+inherit cargo gnome.org gnome2-utils meson xdg
+
+DESCRIPTION="A document viewer for GNOME"
+HOMEPAGE="https://apps.gnome.org/Papers"
+
+# subslot = ppsd4.(suffix of libppsdocument-4.0)-ppsv4.(suffix of libppsview-4.0)
+LICENSE="GPL-2+"
+# Dependent crate licenses
+LICENSE+="
+	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 GPL-2 MIT
+	Unicode-DFS-2016 Unlicense
+"
+SLOT="0/ppsd4.5-ppsv4.4"
+KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~x86 ~amd64-linux ~x86-linux"
+IUSE="cups djvu gnome keyring gtk-doc +introspection nautilus postscript tiff xps"
+REQUIRED_USE="gtk-doc? ( introspection )"
+
+# atk used in libview
+# bundles unarr
+DEPEND="
+	>=app-accessibility/at-spi2-core-2.46.0:2
+	>=dev-libs/glib-2.75.0:2
+	>=gui-libs/libhandy-1.5.0:1
+	>=media-libs/exempi-2.0
+	sys-libs/zlib:=
+	>=x11-libs/gdk-pixbuf-2.40:2
+	>=gui-libs/gtk-4.15.1:4[cups?,introspection?]
+	>=gui-libs/libadwaita-1.5.0
+	>=x11-libs/cairo-1.14.0
+	>=app-text/poppler-22.05.0:=[cairo]
+	>=app-arch/libarchive-3.6.0:=
+	djvu? ( >=app-text/djvu-3.5.22:= )
+	gnome? ( gnome-base/gnome-desktop:3= )
+	keyring? ( >=app-crypt/libsecret-0.5 )
+	introspection? ( >=dev-libs/gobject-introspection-1:= )
+	nautilus? ( >=gnome-base/nautilus-43.0 )
+	postscript? ( >=app-text/libspectre-0.2:= )
+	tiff? ( >=media-libs/tiff-4.0:= )
+	xps? ( >=app-text/libgxps-0.2.1:= )
+"
+RDEPEND="${DEPEND}
+	gnome-base/gvfs
+	gnome-base/librsvg
+"
+BDEPEND="
+	gtk-doc? (
+		>=dev-util/gi-docgen-2023.1-r1
+		app-text/docbook-xml-dtd:4.3
+	)
+	dev-libs/appstream-glib
+	dev-util/gdbus-codegen
+	dev-util/glib-utils
+	dev-util/itstool
+	>=sys-devel/gettext-0.19.8
+	virtual/pkgconfig
+	>=virtual/rust-1.70
+"
+
+src_prepare() {
+	default
+	xdg_environment_reset
+
+	sed "s#\('CARGO_HOME'\), .*#\1, '${CARGO_HOME}')#" -i shell-rs/src/meson.build || die
+}
+
+src_configure() {
+	local emesonargs=(
+		-Dprofile=default
+		-Dplatform=gnome
+
+		-Dviewer=true
+		-Dpreviewer=true
+		-Dthumbnailer=true
+		$(meson_use nautilus)
+
+		-Dcomics=enabled
+		$(meson_feature djvu)
+		-Dpdf=enabled
+		$(meson_feature postscript ps)
+		$(meson_feature tiff)
+		$(meson_feature xps)
+
+		$(meson_use gtk-doc gtk_doc)
+		-Duser_doc=true
+		$(meson_use introspection)
+		-Ddbus=true
+		$(meson_feature keyring)
+		$(meson_feature cups gtk_unix_print)
+	)
+	meson_src_configure
+}
+
+src_install() {
+	meson_src_install
+
+	if use gtk-doc; then
+	   mkdir -p "${ED}"/usr/share/gtk-doc/html/ || die
+	   mv "${ED}"/usr/share/doc/{libppsdocument,libppsview} "${ED}"/usr/share/gtk-doc/html/ || die
+	fi
+}
+
+pkg_postinst() {
+	xdg_pkg_postinst
+	gnome2_schemas_update
+}
+
+pkg_postrm() {
+	xdg_pkg_postrm
+	gnome2_schemas_update
+}
