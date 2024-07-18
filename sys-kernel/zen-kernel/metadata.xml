@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<upstream>
+		<remote-id type="cpe">cpe:/o:linux:linux_kernel</remote-id>
+		<remote-id type="github">zen-kernel/zen-kernel</remote-id>
+	</upstream>
+	<use>
+		<flag name="generic-uki">
+			Build and install a generic initramfs and Unified Kernel Image,
+			this is intended for building binpkgs with a pre-generated UKI
+			included (EXPERIMENTAL).
+		</flag>
+		<flag name="initramfs">
+			Build initramfs along with the kernel.
+		</flag>
+	</use>
+</pkgmetadata>
