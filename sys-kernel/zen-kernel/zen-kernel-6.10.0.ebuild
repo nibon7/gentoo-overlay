@@ -9,19 +9,17 @@ KERNEL_IUSE_MODULES_SIGN=0
 inherit kernel-build unpacker
 
 MY_P=linux-${PV%.*}
-GENPATCHES_VER="12"
-GENPATCHES_P=genpatches-${PV%.*}-${GENPATCHES_VER}
+MY_PV=${PV%.0}
 
-DESCRIPTION="Zen Kernel built with Gentoo patches"
+DESCRIPTION="Zen patched kernel"
 HOMEPAGE="
 	https://wiki.gentoo.org/wiki/Project:Distribution_Kernel
+	https://www.kernel.org
 	https://github.com/zen-kernel
 "
 SRC_URI+="
 	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/${MY_P}.tar.xz
-	https://dev.gentoo.org/~mpagano/dist/genpatches/${GENPATCHES_P}.base.tar.xz
-	https://dev.gentoo.org/~mpagano/dist/genpatches/${GENPATCHES_P}.extras.tar.xz
-	https://github.com/zen-kernel/zen-kernel/releases/download/v${PV}-zen1/linux-v${PV}-zen1.patch.zst
+	https://github.com/zen-kernel/zen-kernel/releases/download/v${MY_PV}-zen1/linux-v${MY_PV}-zen1.patch.zst
 "
 S=${WORKDIR}/${MY_P}
 
@@ -42,7 +40,7 @@ QA_FLAGS_IGNORED="
 "
 
 src_unpack() {
-	unpacker "linux-v${PV}-zen1.patch.zst"
+	unpacker "linux-v${MY_PV}-zen1.patch.zst"
 	default
 }
 
