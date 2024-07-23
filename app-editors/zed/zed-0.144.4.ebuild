@@ -36,6 +36,7 @@ CRATES="
 	ascii@1.1.0
 	ash@0.38.0+1.3.281
 	ash-window@0.13.0
+	ashpd@0.9.1
 	async-attributes@1.1.2
 	async-broadcast@0.7.0
 	async-channel@1.9.0
@@ -111,10 +112,12 @@ CRATES="
 	bindgen@0.64.0
 	bindgen@0.65.1
 	bit-set@0.5.3
+	bit-set@0.6.0
 	bit-vec@0.6.3
+	bit-vec@0.7.0
 	bit_field@0.10.2
 	bitflags@1.3.2
-	bitflags@2.4.2
+	bitflags@2.6.0
 	bitstream-io@2.4.2
 	bitvec@1.0.1
 	block@0.1.6
@@ -231,7 +234,7 @@ CRATES="
 	ctor@0.2.6
 	ctrlc@3.4.4
 	curl@0.4.44
-	curl-sys-0.4.67+curl@8.3.0
+	curl-sys@0.4.67+curl-8.3.0
 	cursor-icon@1.1.0
 	dashmap@5.5.3
 	dasp_sample@0.11.0
@@ -413,6 +416,8 @@ CRATES="
 	iovec@0.1.4
 	ipc-channel@0.18.0
 	ipnet@2.8.0
+	is-docker@0.2.0
+	is-wsl@0.4.0
 	isahc@1.7.2
 	itertools@0.10.5
 	itertools@0.11.0
@@ -469,7 +474,6 @@ CRATES="
 	md-5@0.10.5
 	memchr@2.7.2
 	memfd@0.6.4
-	memmap2@0.8.0
 	memmap2@0.9.4
 	memoffset@0.9.0
 	metal@0.25.0
@@ -481,7 +485,6 @@ CRATES="
 	mio@0.8.11
 	miow@0.6.0
 	multimap@0.8.3
-	naga@0.14.2
 	nanoid@0.4.0
 	nanorand@0.7.0
 	native-tls@0.2.11
@@ -513,6 +516,7 @@ CRATES="
 	num_cpus@1.16.0
 	num_enum@0.5.11
 	num_enum_derive@0.5.11
+	num_threads@0.1.7
 	objc@0.2.7
 	objc_exception@0.1.2
 	object@0.32.1
@@ -522,6 +526,7 @@ CRATES="
 	oo7@0.3.0
 	oorandom@11.1.3
 	opaque-debug@0.3.0
+	open@5.3.0
 	openssl@0.10.57
 	openssl-macros@0.1.1
 	openssl-probe@0.1.5
@@ -723,7 +728,7 @@ CRATES="
 	similar@1.3.0
 	simple_asn1@0.5.4
 	simplecss@0.2.1
-	simplelog@0.9.0
+	simplelog@0.12.2
 	siphasher@0.3.11
 	siphasher@1.0.1
 	skrifa@0.19.3
@@ -738,7 +743,7 @@ CRATES="
 	spdx@0.10.4
 	spin@0.5.2
 	spin@0.9.8
-	spirv@0.2.0+1.5.4
+	spirv@0.3.0+sdk-1.3.268.0
 	spki@0.6.0
 	spki@0.7.2
 	sptr@0.3.2
@@ -785,10 +790,10 @@ CRATES="
 	target-lexicon@0.12.13
 	tempfile@3.9.0
 	tendril@0.4.3
-	termcolor@1.1.3
+	termcolor@1.4.1
 	textwrap@0.16.0
-	thiserror@1.0.60
-	thiserror-impl@1.0.60
+	thiserror@1.0.61
+	thiserror-impl@1.0.61
 	thread_local@1.1.7
 	tiff@0.9.1
 	tiktoken-rs@0.5.9
@@ -1001,7 +1006,6 @@ CRATES="
 	xattr@0.2.3
 	xcursor@0.3.5
 	xdg-home@1.1.0
-	xkbcommon@0.7.0
 	xkeysym@0.2.0
 	xml5ever@0.18.0
 	xmlparser@0.13.5
@@ -1033,19 +1037,19 @@ CRATES="
 
 PF_COMMIT="4968e819c0d9b015437ffc694511e175801a17c7"
 TS_COMMIT="7b4894ba2ae81b988846676f54c0988d4027ef4f"
-BLADE_COMMIT="21a56f780e21e4cb42c70a1dcf4b59842d1ad7f7"
+BLADE_COMMIT="a477c2008db27db0b9f745715e119b3ee7ab7818"
 XIM_COMMIT="27132caffc5b9bc9c432ca4afad184ab6e7c16af"
 
 declare -A GIT_CRATES=(
 	[alacritty_terminal]="https://github.com/alacritty/alacritty;cacdb5bb3b72bad2c729227537979d95af75978f;alacritty-%commit%/alacritty_terminal"
-	[ashpd]="https://github.com/bilelmoussaoui/ashpd;29f2e1a6f4b0911f504658f5f4630c02e01b13f2"
 	[async-pipe]="https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%"
-	[blade-graphics]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-graphics"
-	[blade-macros]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-macros"
-	[blade-util]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-util"
+	[blade-graphics]="https://github.com/zed-industries/blade;${BLADE_COMMIT};blade-%commit%/blade-graphics"
+	[blade-macros]="https://github.com/zed-industries/blade;${BLADE_COMMIT};blade-%commit%/blade-macros"
+	[blade-util]="https://github.com/zed-industries/blade;${BLADE_COMMIT};blade-%commit%/blade-util"
 	[cosmic-text]="https://github.com/pop-os/cosmic-text;542b20ca4376a3b5de5fa629db1a4ace44e18e0c"
 	[font-kit]="https://github.com/zed-industries/font-kit;5a5c4d4ca395c74eb0abde38508e170ce0fd761a"
 	[lsp-types]="https://github.com/zed-industries/lsp-types;72357d6f6d212bdffba3b5ef4b31d8ca856058e7"
+	[naga]="https://github.com/gfx-rs/wgpu;425526828f738c95ec50b016c6a761bc00d2fb25;wgpu-%commit%/naga"
 	[nvim-rs]="https://github.com/KillTheMule/nvim-rs;0d2b1c884f3c39a76b5b7aac0b429f4624843954"
 	[pathfinder_simd]="https://github.com/servo/pathfinder;${PF_COMMIT};pathfinder-%commit%/simd"
 	[tree-sitter]="https://github.com/tree-sitter/tree-sitter;${TS_COMMIT};tree-sitter-%commit%/lib"
@@ -1058,6 +1062,7 @@ declare -A GIT_CRATES=(
 	[xim]="https://github.com/npmania/xim-rs;${XIM_COMMIT};xim-rs-%commit%"
 	[xim-ctext]="https://github.com/npmania/xim-rs;${XIM_COMMIT};xim-rs-%commit%/xim-ctext"
 	[xim-parser]="https://github.com/npmania/xim-rs;${XIM_COMMIT};xim-rs-%commit%/xim-parser"
+	[xkbcommon]="https://github.com/ConradIrwin/xkbcommon-rs;fcbb4612185cc129ceeff51d22f7fb51810a03b2;xkbcommon-rs-%commit%"
 )
 
 inherit cargo desktop xdg
