@@ -177,7 +177,6 @@ CRATES="
 	clickhouse@0.11.6
 	clickhouse-derive@0.1.1
 	clickhouse-rs-cityhash-sys@0.1.2
-	clipboard-win@3.1.1
 	cmake@0.1.50
 	cocoa@0.25.0
 	cocoa-foundation@0.1.2
@@ -435,7 +434,6 @@ CRATES="
 	kqueue-sys@1.0.4
 	kurbo@0.11.0
 	kv-log-macro@1.0.7
-	lazy-bytes-cast@5.0.1
 	lazy_static@1.4.0
 	lazycell@1.3.0
 	leb128@0.2.5
