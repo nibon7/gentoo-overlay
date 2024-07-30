@@ -3,8 +3,8 @@
 
 EAPI=8
 
-KERNEL_IUSE_GENERIC_UKI=0
-KERNEL_IUSE_MODULES_SIGN=0
+KERNEL_IUSE_GENERIC_UKI=1
+KERNEL_IUSE_MODULES_SIGN=1
 
 inherit kernel-build unpacker
 
@@ -19,6 +19,7 @@ HOMEPAGE="
 "
 SRC_URI+="
 	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/${MY_P}.tar.xz
+	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/patch-${PV}.xz
 	https://github.com/zen-kernel/zen-kernel/releases/download/v${MY_PV}-zen1/linux-v${MY_PV}-zen1.patch.zst
 "
 S=${WORKDIR}/${MY_P}
@@ -39,14 +40,10 @@ QA_FLAGS_IGNORED="
 	usr/src/linux-.*/vmlinux
 "
 
-src_unpack() {
-	unpacker "linux-v${MY_PV}-zen1.patch.zst"
-	default
-}
-
 src_prepare() {
 	local PATCHES=(
 		# meh, genpatches have no directory
+		"${WORKDIR}"/patch-${PV}
 		"${WORKDIR}"/*.patch
 	)
 	default
