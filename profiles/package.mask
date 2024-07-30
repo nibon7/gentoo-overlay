@@ -1,2 +1,0 @@
-# papers-47_alpha depends on >=gui-libs/gtk-4.15.1
-=app-text/papers-47_alpha
