@@ -184,6 +184,7 @@ inherit cargo gnome.org gnome2-utils meson xdg
 DESCRIPTION="A document viewer for GNOME"
 HOMEPAGE="https://apps.gnome.org/Papers"
 
+SRC_URI+=" ${CARGO_CRATE_URIS}"
 # subslot = ppsd4.(suffix of libppsdocument-4.0)-ppsv4.(suffix of libppsview-4.0)
 LICENSE="GPL-2+"
 # Dependent crate licenses
