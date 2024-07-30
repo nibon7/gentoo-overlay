@@ -7,4 +7,11 @@ DESCRIPTION="Virtual to depend on any Distribution Kernel"
 SLOT="0/${PVR}"
 KEYWORDS="~amd64"
 
-RDEPEND="~sys-kernel/zen-kernel-${PV}"
+RDEPEND="
+	|| (
+		~sys-kernel/zen-kernel-${PV}
+		~sys-kernel/gentoo-kernel-${PV}
+		~sys-kernel/gentoo-kernel-bin-${PV}
+		~sys-kernel/vanilla-kernel-${PV}
+	)
+"
