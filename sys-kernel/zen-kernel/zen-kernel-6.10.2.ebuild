@@ -9,7 +9,7 @@ KERNEL_IUSE_MODULES_SIGN=1
 inherit kernel-build unpacker
 
 MY_P=linux-${PV%.*}
-MY_PV=${PV%.0}
+ZEN_VER=${PV%.0}
 
 DESCRIPTION="Zen patched kernel"
 HOMEPAGE="
@@ -17,11 +17,15 @@ HOMEPAGE="
 	https://www.kernel.org
 	https://github.com/zen-kernel
 "
-SRC_URI+="
+SRC_URI="
 	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/${MY_P}.tar.xz
-	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/patch-${PV}.xz
-	https://github.com/zen-kernel/zen-kernel/releases/download/v${MY_PV}-zen1/linux-v${MY_PV}-zen1.patch.zst
+	https://github.com/zen-kernel/zen-kernel/releases/download/v${ZEN_VER}-zen1/linux-v${ZEN_VER}-zen1.patch.zst
 "
+
+if ver_test "$(ver_cut 3)" -gt 0; then
+	SRC_URI+=" https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/patch-${PV}.xz"
+fi
+
 S=${WORKDIR}/${MY_P}
 
 KEYWORDS="~amd64"
@@ -41,10 +45,12 @@ QA_FLAGS_IGNORED="
 "
 
 src_prepare() {
-	local PATCHES=(
-		# meh, genpatches have no directory
-		"${WORKDIR}"/patch-${PV}
-		"${WORKDIR}"/*.patch
-	)
+	local PATCHES=()
+	if ver_test "$(ver_cut 3)" -gt 0; then
+		PATCHES+=( "${WORKDIR}"/patch-${PV} )
+	fi
+
+	PATCHES+=( "${WORKDIR}"/linux-v${ZEN_VER}-zen1.patch )
+
 	default
 }
