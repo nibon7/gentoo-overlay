@@ -1058,6 +1058,7 @@ KEYWORDS="~amd64"
 
 DEPEND="
 	app-arch/zstd
+	>=dev-libs/libgit2-1.8.1
 	dev-libs/openssl
 	dev-libs/wayland
 	media-libs/alsa-lib
