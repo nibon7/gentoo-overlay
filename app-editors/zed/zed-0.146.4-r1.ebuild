@@ -1084,14 +1084,10 @@ src_configure() {
 	default
 
 	# Cargo offline fetch workaround
-	local PF_GIT="git = \"https://github.com/servo/pathfinder.git\", rev = \"${PF_COMMIT}\""
-	local PF_PATH="path = \"${WORKDIR}/pathfinder-${PF_COMMIT}/simd\""
-
 	local TS_GIT="git = \"https://github.com/tree-sitter/tree-sitter\", rev = \"${TS_COMMIT}\""
 	local TS_PATH="path = \"${WORKDIR}/tree-sitter-${TS_COMMIT}/lib\""
 
-	sed -e "s#${PF_GIT}#${PF_PATH}#" \
-		-e "s#${TS_GIT}#${TS_PATH}#" \
+	sed -e "s#${TS_GIT}#${TS_PATH}#" \
 		-i "${S}/Cargo.toml" || die "Cargo fetch workaround failed"
 
 	./script/generate-licenses || die "Failed to generate licenses"
