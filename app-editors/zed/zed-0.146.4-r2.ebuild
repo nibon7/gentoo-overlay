@@ -1045,7 +1045,7 @@ declare -A GIT_CRATES=(
 	[xkbcommon]="https://github.com/ConradIrwin/xkbcommon-rs;fcbb4612185cc129ceeff51d22f7fb51810a03b2;xkbcommon-rs-%commit%"
 )
 
-inherit cargo desktop xdg
+inherit cargo desktop font xdg
 
 DESCRIPTION="A high-performance, multiplayer code editor"
 HOMEPAGE="https://zed.dev"
@@ -1054,6 +1054,7 @@ SRC_URI="https://github.com/zed-industries/${PN}/archive/refs/tags/v${PV}.tar.gz
 "
 LICENSE="0BSD AGPL-3+ Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 Boost-1.0 CC0-1.0 GPL-3+ ISC LGPL-3 MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
 SLOT="0"
+IUSE="+fonts"
 KEYWORDS="~amd64"
 
 DEPEND="
@@ -1118,6 +1119,12 @@ src_install() {
 		> "${T}"/${APPID}.desktop || die
 
 	domenu "${T}"/${APPID}.desktop
+
+	if use fonts; then
+		for f in plex-mono plex-sans; do
+			FONT_SUFFIX="ttf" FONT_S="assets/fonts/${f}" font_src_install
+		done
+	fi
 }
 
 pkg_postinst() {
