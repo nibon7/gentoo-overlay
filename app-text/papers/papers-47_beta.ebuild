@@ -7,6 +7,11 @@ CRATES="
 	ahash@0.8.11
 	aho-corasick@1.1.3
 	allocator-api2@0.2.18
+	anstream@0.6.14
+	anstyle@1.0.7
+	anstyle-parse@0.2.4
+	anstyle-query@1.1.0
+	anstyle-wincon@3.0.3
 	async-broadcast@0.7.1
 	async-channel@2.3.1
 	async-executor@1.12.0
@@ -17,19 +22,20 @@ CRATES="
 	async-recursion@1.1.1
 	async-signal@0.2.8
 	async-task@4.7.1
-	async-trait@0.1.80
+	async-trait@0.1.81
 	atomic-waker@1.1.2
 	autocfg@1.3.0
 	bitflags@2.6.0
 	block@0.1.6
 	block-buffer@0.10.4
 	blocking@1.6.1
-	cairo-rs@0.19.4
-	cairo-sys-rs@0.19.2
-	cc@1.0.101
+	cairo-rs@0.20.0
+	cairo-sys-rs@0.20.0
+	cc@1.1.0
 	cfg-expr@0.15.8
 	cfg-if@1.0.0
-	cfg_aliases@0.1.1
+	cfg_aliases@0.2.1
+	colorchoice@1.0.1
 	concurrent-queue@2.5.0
 	cpufeatures@0.2.12
 	crossbeam-utils@0.8.20
@@ -38,13 +44,15 @@ CRATES="
 	endi@1.1.0
 	enumflags2@0.7.10
 	enumflags2_derive@0.7.10
-	env_logger@0.10.2
+	env_filter@0.1.0
+	env_logger@0.11.3
 	equivalent@1.0.1
 	errno@0.3.9
 	event-listener@5.3.1
 	event-listener-strategy@0.5.2
 	fastrand@2.1.0
 	field-offset@0.3.6
+	futures@0.3.30
 	futures-channel@0.3.30
 	futures-core@0.3.30
 	futures-executor@0.3.30
@@ -54,54 +62,53 @@ CRATES="
 	futures-sink@0.3.30
 	futures-task@0.3.30
 	futures-util@0.3.30
-	gdk-pixbuf@0.19.8
-	gdk-pixbuf-sys@0.19.8
-	gdk4@0.8.2
-	gdk4-sys@0.8.2
+	gdk-pixbuf@0.20.0
+	gdk-pixbuf-sys@0.20.0
+	gdk4@0.9.0
+	gdk4-sys@0.9.0
 	generic-array@0.14.7
 	getrandom@0.2.15
 	gettext-rs@0.7.0
 	gettext-sys@0.21.3
-	gio@0.19.8
-	gio-sys@0.19.8
-	glib@0.19.9
-	glib-macros@0.19.9
-	glib-sys@0.19.8
-	gobject-sys@0.19.8
-	graphene-rs@0.19.8
-	graphene-sys@0.19.8
-	gsk4@0.8.2
-	gsk4-sys@0.8.2
-	gtk4@0.8.2
-	gtk4-macros@0.8.2
-	gtk4-sys@0.8.2
+	gio@0.20.0
+	gio-sys@0.20.0
+	glib@0.20.0
+	glib-macros@0.20.0
+	glib-sys@0.20.0
+	gobject-sys@0.20.0
+	graphene-rs@0.20.0
+	graphene-sys@0.20.0
+	gsk4@0.9.0
+	gsk4-sys@0.9.0
+	gtk4@0.9.0
+	gtk4-macros@0.9.0
+	gtk4-sys@0.9.0
 	hashbrown@0.14.5
 	heck@0.5.0
-	hermit-abi@0.3.9
 	hermit-abi@0.4.0
 	hex@0.4.3
 	humantime@2.1.0
 	indexmap@2.2.6
-	is-terminal@0.4.12
+	is_terminal_polyfill@1.70.0
 	lazy_static@1.5.0
-	libadwaita@0.6.0
-	libadwaita-sys@0.6.0
+	libadwaita@0.7.0
+	libadwaita-sys@0.7.0
 	libc@0.2.155
 	linux-raw-sys@0.4.14
 	locale_config@0.3.0
-	log@0.4.21
+	log@0.4.22
 	lru@0.12.3
 	malloc_buf@0.0.6
 	memchr@2.7.4
 	memoffset@0.9.1
-	nix@0.28.0
+	nix@0.29.0
 	objc@0.2.7
 	objc-foundation@0.1.1
 	objc_id@0.1.1
 	once_cell@1.19.0
 	ordered-stream@0.2.0
-	pango@0.19.8
-	pango-sys@0.19.8
+	pango@0.20.0
+	pango-sys@0.20.0
 	parking@2.2.0
 	pin-project-lite@0.2.14
 	pin-utils@0.1.0
@@ -121,8 +128,8 @@ CRATES="
 	rustc_version@0.4.0
 	rustix@0.38.34
 	semver@1.0.23
-	serde@1.0.203
-	serde_derive@1.0.203
+	serde@1.0.204
+	serde_derive@1.0.204
 	serde_repr@0.1.19
 	serde_spanned@0.6.6
 	sha1@0.10.6
@@ -131,51 +138,50 @@ CRATES="
 	slab@0.4.9
 	smallvec@1.13.2
 	static_assertions@1.1.0
-	syn@2.0.68
-	system-deps@6.2.2
-	target-lexicon@0.12.14
+	syn@2.0.70
+	system-deps@7.0.1
+	target-lexicon@0.12.15
 	temp-dir@0.1.13
 	tempfile@3.10.1
-	termcolor@1.4.1
 	thiserror@1.0.61
 	thiserror-impl@1.0.61
 	toml@0.8.14
 	toml_datetime@0.6.6
 	toml_edit@0.21.1
-	toml_edit@0.22.14
+	toml_edit@0.22.15
 	tracing@0.1.40
 	tracing-attributes@0.1.27
 	tracing-core@0.1.32
 	typenum@1.17.0
 	uds_windows@1.1.0
 	unicode-ident@1.0.12
+	utf8parse@0.2.2
 	version-compare@0.2.0
 	version_check@0.9.4
 	wasi@0.11.0+wasi-snapshot-preview1
 	winapi@0.3.9
 	winapi-i686-pc-windows-gnu@0.4.0
-	winapi-util@0.1.8
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	windows-sys@0.52.0
-	windows-targets@0.52.5
-	windows_aarch64_gnullvm@0.52.5
-	windows_aarch64_msvc@0.52.5
-	windows_i686_gnu@0.52.5
-	windows_i686_gnullvm@0.52.5
-	windows_i686_msvc@0.52.5
-	windows_x86_64_gnu@0.52.5
-	windows_x86_64_gnullvm@0.52.5
-	windows_x86_64_msvc@0.52.5
+	windows-targets@0.52.6
+	windows_aarch64_gnullvm@0.52.6
+	windows_aarch64_msvc@0.52.6
+	windows_i686_gnu@0.52.6
+	windows_i686_gnullvm@0.52.6
+	windows_i686_msvc@0.52.6
+	windows_x86_64_gnu@0.52.6
+	windows_x86_64_gnullvm@0.52.6
+	windows_x86_64_msvc@0.52.6
 	winnow@0.5.40
 	winnow@0.6.13
 	xdg-home@1.2.0
-	zbus@4.3.0
-	zbus_macros@4.3.0
+	zbus@4.3.1
+	zbus_macros@4.3.1
 	zbus_names@3.0.0
-	zerocopy@0.7.34
-	zerocopy-derive@0.7.34
-	zvariant@4.1.1
-	zvariant_derive@4.1.1
+	zerocopy@0.7.35
+	zerocopy-derive@0.7.35
+	zvariant@4.1.2
+	zvariant_derive@4.1.2
 	zvariant_utils@2.0.0
 "
 
@@ -206,8 +212,8 @@ DEPEND="
 	>=media-libs/exempi-2.0
 	sys-libs/zlib:=
 	>=x11-libs/gdk-pixbuf-2.40:2
-	>=gui-libs/gtk-4.15.1:4[cups?,introspection?]
-	>=gui-libs/libadwaita-1.5.0
+	>=gui-libs/gtk-4.15.2:4[cups?,introspection?]
+	>=gui-libs/libadwaita-1.6_beta
 	>=x11-libs/cairo-1.14.0
 	>=app-text/poppler-22.05.0:=[cairo]
 	>=app-arch/libarchive-3.6.0:=
@@ -262,9 +268,9 @@ src_configure() {
 		$(meson_feature tiff)
 		$(meson_feature xps)
 
-		$(meson_use gtk-doc gtk_doc)
+		$(meson_use gtk-doc documentation)
 		-Duser_doc=true
-		$(meson_use introspection)
+		$(meson_feature introspection)
 		-Ddbus=true
 		$(meson_feature keyring)
 		$(meson_feature cups gtk_unix_print)
