@@ -244,6 +244,8 @@ BDEPEND="
 	>=virtual/rust-1.70
 "
 
+QA_FLAGS_IGNORED="usr/bin/${PN}"
+
 src_prepare() {
 	default
 	xdg_environment_reset
