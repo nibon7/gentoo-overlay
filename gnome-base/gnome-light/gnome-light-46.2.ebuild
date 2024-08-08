@@ -8,10 +8,10 @@ P_RELEASE="$(ver_cut 1).0"
 DESCRIPTION="Meta package for GNOME-Light, merge this package to install"
 HOMEPAGE="https://www.gnome.org/"
 LICENSE="metapackage"
-SLOT="3.0"
+SLOT="0"
 IUSE="cups +gnome-shell"
 
-KEYWORDS="amd64 ~arm ~arm64 ~ppc64 ~riscv x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86"
 
 # XXX: Note to developers:
 # This is a wrapper for the 'light' GNOME 3 desktop, and should only consist of
@@ -21,14 +21,16 @@ KEYWORDS="amd64 ~arm ~arm64 ~ppc64 ~riscv x86"
 RDEPEND="
 	>=gnome-base/gnome-core-libs-${PV}[cups?]
 
-	>=gnome-base/gnome-session-45.0
-	>=gnome-base/gnome-settings-daemon-45.0[cups?]
-	>=gnome-base/gnome-control-center-45.1[cups?]
+	>=gnome-base/gnome-session-46.0
+	>=gnome-base/gnome-settings-daemon-46.0[cups?]
+	>=gnome-base/gnome-control-center-46.1[cups?]
+
+	>=gnome-base/nautilus-46.2
 
 	gnome-shell? (
-		>=x11-wm/mutter-45.2
+		>=x11-wm/mutter-46.2
 		>=dev-libs/gjs-1.78.1
-		>=gnome-base/gnome-shell-45.2
+		>=gnome-base/gnome-shell-46.2
 		|| (
 			>=media-fonts/cantarell-0.303.1
 			>=media-fonts/dejavu-2.37
@@ -42,7 +44,7 @@ RDEPEND="
 
 	|| (
 		>=x11-terms/gnome-terminal-3.50.1
-		>=gui-apps/gnome-console-45.0
+		>=gui-apps/gnome-console-46.0
 		>=x11-terms/alacritty-0.12.3
 	)
 "
