@@ -36,6 +36,8 @@ BDEPEND="
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
 
+PATCHES=( "${FILESDIR}"/loupe-47-fix-sandbox-selecting.patch )
+
 src_prepare() {
 	default
 	xdg_environment_reset
