@@ -200,8 +200,9 @@ LICENSE+="
 "
 SLOT="0/ppsd4.5-ppsv4.4"
 KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~x86 ~amd64-linux ~x86-linux"
-IUSE="cups djvu gnome keyring gtk-doc +introspection nautilus postscript tiff xps"
+IUSE+=" cups djvu gnome keyring gtk-doc +introspection nautilus postscript test tiff xps"
 REQUIRED_USE="gtk-doc? ( introspection )"
+RESTRICT="!test? ( test )"
 
 # atk used in libview
 # bundles unarr
@@ -276,6 +277,7 @@ src_configure() {
 		-Ddbus=true
 		$(meson_feature keyring)
 		$(meson_feature cups gtk_unix_print)
+		$(meson_use test tests)
 	)
 	meson_src_configure
 }
