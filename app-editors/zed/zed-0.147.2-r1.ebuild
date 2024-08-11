@@ -1070,6 +1070,7 @@ IUSE+=" +fonts"
 
 DEPEND="
 	app-arch/zstd
+	>=dev-db/sqlite-3.14.0:3
 	>=dev-libs/libgit2-1.8.1
 	dev-libs/openssl
 	dev-libs/wayland
@@ -1084,17 +1085,27 @@ BDEPEND="sys-devel/gettext
 	dev-util/vulkan-headers
 	>=dev-util/cargo-about-0.6.2
 	>=virtual/rust-1.79
+	virtual/pkgconfig
 "
 
-QA_FLAGS_IGNORED="usr/bin/${PN}"
+QA_FLAGS_IGNORED="
+	usr/bin/${PN}
+	usr/libexec/${PN}-editor
+"
 
 PATCHES=(
 	"${FILESDIR}"/zed-license.patch
 	"${FILESDIR}"/zed-0.147-Revert-chore-Bump-Rust-version-to-1.80-15186.patch
+	"${FILESDIR}"/zed-system-sqlite.patch
+	"${FILESDIR}"/zed-system-openssl.patch
 )
 
 src_configure() {
-	default
+	export PKG_CONFIG_ALLOW_CROSS=1
+	export LIBGIT2_NO_VENDOR=1
+	export ZSTD_SYS_USE_PKG_CONFIG=1
+
+	cargo_src_configure
 
 	# Cargo offline fetch workaround
 	local TS_GIT="git = \"https://github.com/tree-sitter/tree-sitter\", rev = \"${TS_COMMIT}\""

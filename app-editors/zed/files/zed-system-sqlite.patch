@@ -1,0 +1,13 @@
+diff --git a/crates/sqlez/Cargo.toml b/crates/sqlez/Cargo.toml
+index 98b05a06e..d19e988d1 100644
+--- a/crates/sqlez/Cargo.toml
++++ b/crates/sqlez/Cargo.toml
+@@ -14,7 +14,7 @@ collections.workspace = true
+ futures.workspace = true
+ indoc.workspace = true
+ lazy_static.workspace = true
+-libsqlite3-sys = { version = "0.26", features = ["bundled"] }
++libsqlite3-sys = { version = "0.26", features = ["buildtime_bindgen"] }
+ parking_lot.workspace = true
+ smol.workspace = true
+ thread_local = "1.1.4"
