@@ -25,7 +25,6 @@ DEPEND="
 		<=media-libs/libjxl-0.11.0
 	)
 	svg? (
-		gnome-base/librsvg:2
 		>=x11-libs/cairo-1.17.0
 	)
 	sys-apps/bubblewrap
