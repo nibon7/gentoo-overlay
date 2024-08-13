@@ -5,7 +5,7 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{10..13} )
 
-inherit desktop flag-o-matic linux-info python-any-r1 xdg
+inherit desktop flag-o-matic linux-info python-any-r1 toolchain-funcs xdg
 
 MY_PV=${PV/./}
 
@@ -16,7 +16,7 @@ S="${WORKDIR}/${PN}-${PN}${MY_PV}"
 
 LICENSE="BSD BSD-2 Boost-1.0 CC0-1.0 GPL-2 LGPL-2.1 MIT ZLIB"
 SLOT="0"
-KEYWORDS="amd64 ~x86"
+KEYWORDS="amd64 x86"
 
 IUSE="X alsa debug lto opengl openmp pcap pulseaudio qt6 +taptun tools wayland"
 IUSE_CPU_FLAGS=" sse2 sse3"
@@ -49,7 +49,7 @@ RDEPEND="
 	system-expat? ( dev-libs/expat )
 	system-flac? ( media-libs/flac )
 	system-glm? ( media-libs/glm )
-	system-jpeg? ( virtual/jpeg:0 )
+	system-jpeg? ( media-libs/libjpeg-turbo:= )
 	system-portaudio? ( media-libs/portaudio )
 	system-portmidi? ( media-libs/portmidi )
 	system-pugixml? ( dev-libs/pugixml )
