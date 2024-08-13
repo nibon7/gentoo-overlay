@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit fcaps flag-o-matic systemd
+inherit fcaps flag-o-matic systemd toolchain-funcs
 DESCRIPTION="A Tunnel which Turns UDP Traffic into Encrypted UDP/FakeTCP/ICMP Traffic"
 HOMEPAGE="https://github.com/wangyu-/udp2raw"
 SRC_URI="https://github.com/wangyu-/udp2raw/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
@@ -13,7 +13,6 @@ SLOT="0"
 KEYWORDS="amd64 arm x86"
 IUSE="cpu_flags_x86_aes"
 
-DEPEND=""
 RDEPEND="net-firewall/iptables"
 BDEPEND="net-libs/libpcap"
 
