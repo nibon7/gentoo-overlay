@@ -205,7 +205,6 @@ LICENSE+="
 "
 SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~x86 ~amd64-linux ~x86-linux"
-IUSE+=" gnome kde"
 
 DEPEND="
 	>=dev-libs/glib-2.79:2
@@ -218,9 +217,14 @@ DEPEND="
 	>=media-plugins/gst-plugins-lame-1.22
 	media-video/pipewire[gstreamer]
 	sys-apps/xdg-desktop-portal
-	sys-apps/xdg-desktop-portal-gtk
-	gnome? ( sys-apps/xdg-desktop-portal-gnome )
-	kde? ( kde-plasma/xdg-desktop-portal-kde )
+	|| (
+		gui-libs/xdg-desktop-portal-lxqt
+		gui-libs/xdg-desktop-portal-wlr
+		kde-plasma/xdg-desktop-portal-kde
+		sys-apps/xdg-desktop-portal-gnome
+		sys-apps/xdg-desktop-portal-gtk
+		sys-apps/xdg-desktop-portal-xapp
+	)
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
