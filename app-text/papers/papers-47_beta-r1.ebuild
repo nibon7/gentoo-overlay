@@ -251,7 +251,7 @@ src_prepare() {
 	default
 	xdg_environment_reset
 
-	sed "s#\('CARGO_HOME'\), .*#\1, '${CARGO_HOME}')#" -i shell-rs/src/meson.build || die
+	sed '/CARGO_HOME/d' -i shell-rs/src/meson.build || die
 }
 
 src_configure() {
