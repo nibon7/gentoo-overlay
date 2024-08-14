@@ -13,6 +13,7 @@ SRC_URI="
 	l10n_zh-CN? ( msyhbd.ttc msyhl.ttc msyh.ttc simsunb.ttf simsun.ttc )
 	l10n_zh-TW? ( mingliub.ttc msjhbd.ttc msjhl.ttc msjh.ttc )
 "
+S="${DISTDIR}"
 
 LICENSE="microsoft"
 SLOT="0"
@@ -21,7 +22,6 @@ IUSE="l10n_ja l10n_ko +l10n_zh-CN l10n_zh-TW"
 REQUIRED_USE="|| ( l10n_ja l10n_ko l10n_zh-CN l10n_zh-TW )"
 RESTRICT="binchecks strip fetch"
 
-S="${DISTDIR}"
 FONT_SUFFIX="ttc"
 FONT_CONF=( "${FILESDIR}"/66-${PN}.conf )
 
