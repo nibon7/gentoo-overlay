@@ -251,7 +251,9 @@ pkg_postinst() {
 
 	optfeature_header "Optional programs for extra features:"
 	optfeature "hardware acceleration support" ">=media-plugins/gst-plugins-vaapi-1.22"
-	optfeature "MP4 support" "media-libs/x264 >=media-libs/gst-plugins-ugly-1.22"
+	optfeature "MP4 support" ">=media-plugins/gst-plugins-x264-1.22"
+	optfeature "WebM support" ">=media-plugins/gst-plugins-vpx-1.22"
+	optfeature "experimental WebM (AV1) support" ">=media-plugins/gst-plugins-aom-1.22"
 }
 
 pkg_postrm() {
