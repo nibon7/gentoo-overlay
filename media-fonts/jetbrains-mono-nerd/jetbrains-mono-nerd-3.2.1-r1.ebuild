@@ -8,6 +8,7 @@ inherit font
 DESCRIPTION="Patched font JetBrains Mono from nerd fonts library"
 HOMEPAGE="https://github.com/ryanoasis/nerd-fonts"
 SRC_URI="https://github.com/ryanoasis/nerd-fonts/releases/download/v${PV}/JetBrainsMono.zip -> ${P}.zip"
+S="${WORKDIR}"
 
 LICENSE="OFL-1.1"
 SLOT="0"
@@ -15,5 +16,4 @@ KEYWORDS="amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 
 BDEPEND="app-arch/unzip"
 
-S="${WORKDIR}"
 FONT_SUFFIX="ttf"
