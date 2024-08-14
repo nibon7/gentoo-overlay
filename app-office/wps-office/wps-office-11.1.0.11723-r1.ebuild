@@ -8,18 +8,17 @@ MY_PV="$(ver_cut 4)"
 
 DESCRIPTION="WPS Office is an office productivity suite"
 HOMEPAGE="https://linux.wps.cn"
+SRC_URI="amd64? ( https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/${MY_PV}/${PN}_${PV}_amd64.deb )"
+S="${WORKDIR}"
+
+LICENSE="WPS-EULA"
+SLOT="1"
 
 KEYWORDS="~amd64"
+IUSE="systemd"
 
-SRC_URI="
-	amd64?	( https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/${MY_PV}/${PN}_${PV}_amd64.deb )
-"
-
-SLOT="1"
 RESTRICT="bindist strip mirror" # mirror as explained at bug #547372
 QA_PREBUILT="*"
-LICENSE="WPS-EULA"
-IUSE="systemd"
 
 # Deps got from this (listed in order):
 # rpm -qpR wps-office-10.1.0.5707-1.a21.x86_64.rpm
@@ -66,8 +65,6 @@ RDEPEND="
 	systemd? ( sys-apps/systemd )
 	!${CATEGORY}/${PN}:0
 "
-
-S="${WORKDIR}"
 
 pkg_nofetch() {
 	elog "Please visit https://linux.wps.cn and download ${PN}_${PV}_amd64.deb"
