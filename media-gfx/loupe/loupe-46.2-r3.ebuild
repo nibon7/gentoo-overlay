@@ -16,7 +16,8 @@ LICENSE+="
 "
 SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~x86 ~amd64-linux ~x86-linux"
-IUSE="X"
+IUSE="X test"
+RESTRICT="!test? ( test )"
 
 DEPEND="
 	>=gui-libs/gtk-4.13.6:4[X?]
