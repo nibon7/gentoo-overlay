@@ -211,10 +211,10 @@ DEPEND="
 	>=gui-libs/gtk-4.14:4
 	>=gui-libs/libadwaita-1.5
 	>=media-libs/gstreamer-1.22
-	>=media-libs/gst-plugins-base-1.22
-	>=media-libs/gst-plugins-bad-1.22
-	>=media-plugins/gst-plugins-opus-1.22
-	>=media-plugins/gst-plugins-lame-1.22
+	|| (
+		>=media-libs/gst-plugins-base-1.22[gles2,wayland]
+		>=media-libs/gst-plugins-base-1.22[opengl,wayland]
+	)
 	media-video/pipewire[gstreamer]
 	sys-apps/xdg-desktop-portal
 	|| (
@@ -250,10 +250,10 @@ pkg_postinst() {
 	gnome2_schemas_update
 
 	optfeature_header "Optional programs for extra features:"
-	optfeature "hardware acceleration support" ">=media-plugins/gst-plugins-vaapi-1.22"
-	optfeature "MP4 support" ">=media-plugins/gst-plugins-x264-1.22"
-	optfeature "WebM support" ">=media-plugins/gst-plugins-vpx-1.22"
-	optfeature "experimental WebM (AV1) support" ">=media-plugins/gst-plugins-aom-1.22"
+	optfeature "Matroska support" ">=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-x264-1.22"
+	optfeature "MP4 support" ">=media-plugins/gst-plugins-lame-1.22 >=media-plugins/gst-plugins-x264-1.22"
+	optfeature "WebM support" ">=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-vpx-1.22"
+	optfeature "VA-API support" ">=media-plugins/gst-plugins-lame-1.22 >=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-vaapi-1.22"
 }
 
 pkg_postrm() {
