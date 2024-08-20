@@ -20,12 +20,12 @@ KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~x86 ~amd64-linux ~x86-linux"
 
 DEPEND="
 	>=dev-libs/glib-2.79:2
-	>=gui-libs/gtk-4.14:4
+	>=gui-libs/gtk-4.14:4[X,wayland]
 	>=gui-libs/libadwaita-1.5
 	>=media-libs/gstreamer-1.22
 	|| (
-		>=media-libs/gst-plugins-base-1.22[gles2,wayland]
-		>=media-libs/gst-plugins-base-1.22[opengl,wayland]
+		>=media-libs/gst-plugins-base-1.22[X,gles2,wayland]
+		>=media-libs/gst-plugins-base-1.22[X,opengl,wayland]
 	)
 	media-video/pipewire[gstreamer]
 	sys-apps/xdg-desktop-portal
@@ -66,7 +66,7 @@ pkg_postinst() {
 	optfeature "Matroska support" ">=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-x264-1.22"
 	optfeature "MP4 support" ">=media-plugins/gst-plugins-lame-1.22 >=media-plugins/gst-plugins-x264-1.22"
 	optfeature "WebM support" ">=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-vpx-1.22"
-	optfeature "VA-API support" ">=media-plugins/gst-plugins-lame-1.22 >=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-vaapi-1.22"
+	optfeature "VA-API support" ">=media-plugins/gst-plugins-opus-1.22 >=media-plugins/gst-plugins-vaapi-1.22"
 }
 
 pkg_postrm() {
