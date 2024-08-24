@@ -247,6 +247,11 @@ BDEPEND="
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
 
+PATCHES=(
+	"${FILESDIR}"/papers-47-shell-rs-Fix-loading-encrypted-pdf.patch
+	"${FILESDIR}"/papers-47-shell-rs-Don-t-reset-password-preference-to-never-wh.patch
+)
+
 src_prepare() {
 	default
 	xdg_environment_reset
