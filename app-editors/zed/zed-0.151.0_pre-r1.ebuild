@@ -16,6 +16,7 @@ CRATES="
 	alsa-sys@0.3.1
 	alsa@0.9.0
 	ambient-authority@0.0.2
+	ammonia@4.0.0
 	android-tzdata@0.1.1
 	android_system_properties@0.1.5
 	anes@0.1.6
@@ -30,7 +31,7 @@ CRATES="
 	arbitrary@1.3.2
 	arg_enum_proc_macro@0.3.4
 	arrayref@0.3.8
-	arrayvec@0.7.4
+	arrayvec@0.7.6
 	as-raw-xcb-connection@1.0.1
 	ascii@1.1.0
 	ash-window@0.13.0
@@ -79,7 +80,7 @@ CRATES="
 	aws-config@1.5.5
 	aws-credential-types@1.2.0
 	aws-runtime@1.4.0
-	aws-sdk-s3@1.43.0
+	aws-sdk-s3@1.46.0
 	aws-sdk-sso@1.37.0
 	aws-sdk-ssooidc@1.38.0
 	aws-sdk-sts@1.37.0
@@ -91,8 +92,8 @@ CRATES="
 	aws-smithy-json@0.60.7
 	aws-smithy-query@0.60.7
 	aws-smithy-runtime-api@1.7.2
-	aws-smithy-runtime@1.6.2
-	aws-smithy-types@1.2.0
+	aws-smithy-runtime@1.6.3
+	aws-smithy-types@1.2.2
 	aws-smithy-xml@0.60.8
 	aws-types@1.3.3
 	axum-core@0.3.4
@@ -168,8 +169,9 @@ CRATES="
 	ciborium@0.2.2
 	cipher@0.4.4
 	clang-sys@1.8.1
-	clap@4.5.15
+	clap@4.5.16
 	clap_builder@4.5.15
+	clap_complete@4.5.23
 	clap_derive@4.5.13
 	clap_lex@0.7.2
 	clickhouse-derive@0.1.1
@@ -235,6 +237,7 @@ CRATES="
 	dasp_sample@0.11.0
 	data-encoding@2.6.0
 	data-url@0.3.1
+	dbus@0.9.7
 	deflate64@0.1.9
 	der@0.6.1
 	der@0.7.9
@@ -256,6 +259,7 @@ CRATES="
 	dyn-clone@1.0.17
 	ecdsa@0.14.8
 	either@1.13.0
+	elasticlunr-rs@3.0.2
 	elliptic-curve@0.12.3
 	embed-resource@2.4.3
 	embedded-io@0.4.0
@@ -350,6 +354,7 @@ CRATES="
 	h2@0.3.26
 	half@2.4.1
 	handlebars@4.5.0
+	handlebars@5.1.2
 	hashbrown@0.12.3
 	hashbrown@0.13.2
 	hashbrown@0.14.5
@@ -427,7 +432,7 @@ CRATES="
 	jpeg-decoder@0.3.1
 	js-sys@0.3.69
 	jsonwebtoken@9.3.0
-	khronos-egl@5.0.0
+	khronos-egl@6.0.0
 	kqueue-sys@1.0.4
 	kqueue@1.0.8
 	kurbo@0.11.0
@@ -436,7 +441,8 @@ CRATES="
 	lazycell@1.3.0
 	leb128@0.2.5
 	lebe@0.5.2
-	libc@0.2.155
+	libc@0.2.158
+	libdbus-sys@0.2.5
 	libfuzzer-sys@0.4.7
 	libgit2-sys@0.17.0+1.8.1
 	libloading@0.8.5
@@ -460,6 +466,7 @@ CRATES="
 	mac@0.1.1
 	mach2@0.4.2
 	malloc_buf@0.0.6
+	maplit@1.0.2
 	markup5ever@0.12.1
 	markup5ever_rcdom@0.3.0
 	matchers@0.1.0
@@ -467,6 +474,7 @@ CRATES="
 	maybe-owned@0.3.4
 	maybe-rayon@0.1.1
 	md-5@0.10.6
+	mdbook@0.4.40
 	memchr@2.7.4
 	memfd@0.6.4
 	memmap2@0.9.4
@@ -474,6 +482,7 @@ CRATES="
 	metal@0.29.0
 	mimalloc@0.1.43
 	mime@0.3.17
+	mime_guess@2.0.5
 	minimal-lexical@0.2.1
 	miniz_oxide@0.7.4
 	mint@0.5.9
@@ -493,6 +502,8 @@ CRATES="
 	nix@0.29.0
 	nom@7.1.3
 	noop_proc_macro@0.3.0
+	normpath@1.3.0
+	notify-debouncer-mini@0.4.1
 	notify@6.1.1
 	ntapi@0.4.1
 	nu-ansi-term@0.46.0
@@ -520,6 +531,7 @@ CRATES="
 	oo7@0.3.3
 	oorandom@11.1.4
 	open@5.3.0
+	opener@0.7.2
 	openssl-macros@0.1.1
 	openssl-probe@0.1.5
 	openssl-sys@0.9.103
@@ -603,6 +615,7 @@ CRATES="
 	psm@0.1.21
 	ptr_meta@0.1.4
 	ptr_meta_derive@0.1.4
+	pulldown-cmark-escape@0.10.1
 	pulldown-cmark@0.10.3
 	qoi@0.4.1
 	quick-error@2.0.1
@@ -650,7 +663,7 @@ CRATES="
 	roxmltree@0.19.0
 	roxmltree@0.20.0
 	rsa@0.9.6
-	runtimelib@0.14.0
+	runtimelib@0.15.0
 	rust-embed-impl@8.5.0
 	rust-embed-utils@8.5.0
 	rust-embed@8.5.0
@@ -689,8 +702,8 @@ CRATES="
 	security-framework@2.11.1
 	self_cell@1.0.4
 	semver@1.0.23
-	serde@1.0.207
-	serde_derive@1.0.207
+	serde@1.0.208
+	serde_derive@1.0.208
 	serde_derive_internals@0.26.0
 	serde_derive_internals@0.29.1
 	serde_fmt@1.0.3
@@ -787,6 +800,7 @@ CRATES="
 	tempfile@3.12.0
 	tendril@0.4.3
 	termcolor@1.4.1
+	terminal_size@0.3.0
 	thiserror-impl@1.0.63
 	thiserror@1.0.63
 	thread_local@1.1.8
@@ -806,10 +820,12 @@ CRATES="
 	tokio-macros@2.4.0
 	tokio-native-tls@0.3.1
 	tokio-rustls@0.24.1
+	tokio-socks@0.5.2
 	tokio-stream@0.1.15
 	tokio-tungstenite@0.20.1
+	tokio-tungstenite@0.21.0
 	tokio-util@0.7.11
-	tokio@1.39.2
+	tokio@1.39.3
 	toml@0.5.11
 	toml@0.7.8
 	toml@0.8.19
@@ -817,6 +833,7 @@ CRATES="
 	toml_edit@0.19.15
 	toml_edit@0.21.1
 	toml_edit@0.22.20
+	topological-sort@0.2.2
 	tower-http@0.3.5
 	tower-http@0.4.4
 	tower-layer@0.3.2
@@ -832,11 +849,11 @@ CRATES="
 	tree-sitter-bash@0.21.0
 	tree-sitter-c@0.21.4
 	tree-sitter-cpp@0.22.3
-	tree-sitter-css@0.21.0
+	tree-sitter-css@0.21.1
 	tree-sitter-elixir@0.2.0
 	tree-sitter-embedded-template@0.20.0
-	tree-sitter-go@0.21.0
-	tree-sitter-html@0.20.3
+	tree-sitter-go@0.21.2
+	tree-sitter-html@0.20.4
 	tree-sitter-jsdoc@0.21.0
 	tree-sitter-json@0.21.0
 	tree-sitter-python@0.21.0
@@ -848,6 +865,7 @@ CRATES="
 	try-lock@0.2.5
 	ttf-parser@0.21.1
 	tungstenite@0.20.1
+	tungstenite@0.21.0
 	typeid@1.0.0
 	typenum@1.17.0
 	ucd-trie@0.1.6
@@ -890,6 +908,7 @@ CRATES="
 	waker-fn@1.2.0
 	walkdir@2.5.0
 	want@0.3.1
+	warp@0.3.7
 	wasi@0.11.0+wasi-snapshot-preview1
 	wasi@0.9.0+wasi-snapshot-preview1
 	wasite@0.1.0
@@ -933,7 +952,7 @@ CRATES="
 	webpki-roots@0.24.0
 	weezl@0.1.8
 	which@4.4.2
-	which@6.0.2
+	which@6.0.3
 	whoami@1.5.1
 	wiggle-generate@21.0.1
 	wiggle-macro@21.0.1
@@ -1018,7 +1037,6 @@ CRATES="
 	zbus@4.4.0
 	zbus_macros@4.4.0
 	zbus_names@3.0.0
-	zed_extension_api@0.0.6
 	zed_extension_api@0.1.0
 	zeno@0.2.3
 	zerocopy-derive@0.7.35
@@ -1037,12 +1055,12 @@ CRATES="
 	zvariant_utils@2.1.0
 "
 
-BLADE_COMMIT="ac25c77ed8d86c386a541c935ffe0a0f6024e701"
+BLADE_COMMIT="b37a9a994709d256f4634efd29281c78ba89071a"
 TS_COMMIT="7f4a57817d58a2f134fe863674acad6bbf007228"
 XIM_COMMIT="27132caffc5b9bc9c432ca4afad184ab6e7c16af"
 
 declare -A GIT_CRATES=(
-	[alacritty_terminal]="https://github.com/alacritty/alacritty;cacdb5bb3b72bad2c729227537979d95af75978f;alacritty-%commit%/alacritty_terminal"
+	[alacritty_terminal]="https://github.com/alacritty/alacritty;91d034ff8b53867143c005acfaa14609147c9a2c;alacritty-%commit%/alacritty_terminal"
 	[async-pipe]="https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%"
 	[blade-graphics]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-graphics"
 	[blade-macros]="https://github.com/kvark/blade;${BLADE_COMMIT};blade-%commit%/blade-macros"
@@ -1065,17 +1083,20 @@ declare -A GIT_CRATES=(
 
 inherit cargo desktop font xdg
 
+MY_PV=${PV/_/-}
+
 DESCRIPTION="The fast, collaborative code editor."
 HOMEPAGE="https://zed.dev"
-SRC_URI="https://github.com/zed-industries/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+SRC_URI="https://github.com/zed-industries/${PN}/archive/refs/tags/v${MY_PV}.tar.gz -> ${P}.tar.gz
 	${CARGO_CRATE_URIS}
 "
+S="${WORKDIR}/${PN}-${MY_PV}"
 
 LICENSE="GPL-3+"
 # Dependent crate licenses
 LICENSE+="
-	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD CC0-1.0 ISC MIT
-	MPL-2.0 Unicode-DFS-2016 ZLIB
+	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD CC0-1.0 ISC
+	LGPL-3 MIT MPL-2.0 Unicode-DFS-2016 ZLIB
 "
 SLOT="0"
 KEYWORDS="~amd64"
@@ -1110,6 +1131,7 @@ PATCHES=(
 	"${FILESDIR}"/zed-license.patch
 	"${FILESDIR}"/zed-system-sqlite.patch
 	"${FILESDIR}"/zed-system-openssl.patch
+	"${FILESDIR}"/zed-add-ebuild-to-bash-path_suffixes.patch
 )
 
 src_configure() {
@@ -1145,15 +1167,36 @@ src_install() {
 	newicon -s 512 crates/${PN}/resources/app-icon.png ${PN}.png
 	newicon -s 1024 crates/${PN}/resources/app-icon@2x.png ${PN}.png
 
-	local APPID="dev.${PN}.${PN^}"
+	local suffix=""
+	local channel=$(cat crates/zed/RELEASE_CHANNEL 2>/dev/null || echo "stable")
+	case "${channel}" in
+		stable)
+			suffix=""
+			;;
+		nightly)
+			suffix="-Nightly"
+			;;
+		preview)
+			suffix="-Preview"
+			;;
+		dev)
+			suffix="-Dev"
+			;;
+		*)
+			suffix=""
+			;;
+	esac
+
+	local appid="dev.${PN}.${PN^}${suffix}"
+
 	DO_STARTUP_NOTIFY="true" \
 		APP_CLI="${PN}" \
 		APP_ICON="${PN}" \
 		APP_NAME="${PN^}" \
 		envsubst < crates/${PN}/resources/${PN}.desktop.in \
-		> "${T}"/${APPID}.desktop || die
+		> "${T}"/${appid}.desktop || die
 
-	domenu "${T}"/${APPID}.desktop
+	domenu "${T}"/${appid}.desktop
 
 	if use fonts; then
 		for f in plex-mono plex-sans; do
