@@ -199,7 +199,7 @@ LICENSE+="
 	Unicode-DFS-2016 Unlicense
 "
 SLOT="0/ppsd4.5-ppsv4.4"
-KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~amd64-linux ~x86-linux"
 IUSE+=" cups djvu gnome keyring gtk-doc +introspection nautilus postscript test tiff xps"
 REQUIRED_USE="gtk-doc? ( introspection )"
 RESTRICT="!test? ( test )"
