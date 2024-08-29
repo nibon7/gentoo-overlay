@@ -138,6 +138,7 @@ BDEPEND="
 PATCHES=(
 	# Change favorites defaults, bug #479918
 	"${FILESDIR}"/46.4-defaults.patch
+	"${FILESDIR}"/47-st-theme-node-drawing-Fix-corner-pipeline-leak.patch
 )
 
 src_prepare() {
