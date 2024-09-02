@@ -26,7 +26,7 @@ DEPEND="
 	>=dev-libs/gobject-introspection-1.49.1:=
 	>=dev-libs/gjs-1.73.1[cairo]
 	>=gui-libs/gtk-4:4[introspection]
-	>=x11-wm/mutter-47_beta:0/15[introspection,test?]
+	>=x11-wm/mutter-47_rc:0/15[introspection,test?]
 	>=sys-auth/polkit-0.120_p20220509[introspection]
 	>=gnome-base/gsettings-desktop-schemas-47_alpha[introspection]
 	>=app-i18n/ibus-1.5.19
@@ -122,6 +122,7 @@ BDEPEND="
 	dev-libs/libxslt
 	>=dev-util/gdbus-codegen-2.45.3
 	dev-util/glib-utils
+	dev-python/docutils
 	gtk-doc? ( >=dev-util/gtk-doc-1.17
 		app-text/docbook-xml-dtd:4.5 )
 	>=sys-devel/gettext-0.19.8
@@ -138,7 +139,6 @@ BDEPEND="
 PATCHES=(
 	# Change favorites defaults, bug #479918
 	"${FILESDIR}"/46.4-defaults.patch
-	"${FILESDIR}"/47-st-theme-node-drawing-Fix-corner-pipeline-leak.patch
 )
 
 src_prepare() {
