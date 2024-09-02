@@ -52,5 +52,8 @@ src_prepare() {
 
 	PATCHES+=( "${WORKDIR}"/linux-v${ZEN_VER}-zen1.patch )
 
+	touch .config || die
+	kernel-build_merge_configs
+
 	default
 }
