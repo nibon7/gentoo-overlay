@@ -1,0 +1,32 @@
+From 4c3d2283cc32e4fcc8863ac45a2eb24acb54457f Mon Sep 17 00:00:00 2001
+From: nibon7 <nibon7@163.com>
+Date: Mon, 2 Sep 2024 17:01:14 +0800
+Subject: [PATCH] Fix build when libwacom is disabled
+
+---
+ src/backends/x11/meta-input-device-x11.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/backends/x11/meta-input-device-x11.c b/src/backends/x11/meta-input-device-x11.c
+index cc73a0c33..32aa9b4a3 100644
+--- a/src/backends/x11/meta-input-device-x11.c
++++ b/src/backends/x11/meta-input-device-x11.c
+@@ -195,6 +195,7 @@ meta_input_device_x11_get_property (GObject    *object,
+     }
+ }
+ 
++#ifdef HAVE_LIBWACOM
+ #ifndef HAVE_LIBWACOM_GET_NUM_RINGS
+ static int
+ libwacom_get_num_rings (WacomDevice *device)
+@@ -208,6 +209,7 @@ libwacom_get_num_rings (WacomDevice *device)
+   return 0;
+ }
+ #endif
++#endif
+ 
+ static int
+ meta_input_device_x11_get_group_n_modes (ClutterInputDevice *device,
+-- 
+2.44.2
+

@@ -38,10 +38,11 @@ DEPEND="
 	>=media-libs/graphene-1.10.2[introspection?]
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/pango-1.46[introspection?]
+	media-libs/libdisplay-info
 	>=x11-libs/cairo-1.14[X]
 	>=dev-libs/fribidi-1.0.0
 	>=gnome-base/gsettings-desktop-schemas-47_beta[introspection?]
-	>=dev-libs/glib-2.75.1:2
+	>=dev-libs/glib-2.81.1:2
 	gnome-base/gnome-settings-daemon
 	>=x11-libs/libxkbcommon-0.4.3
 	>=x11-libs/pixman-0.42
@@ -78,7 +79,7 @@ DEPEND="
 	x11-libs/libSM
 	input_devices_wacom? ( >=dev-libs/libwacom-0.13:= )
 	>=x11-libs/startup-notification-0.7
-	screencast? ( >=media-video/pipewire-0.3.33:= )
+	screencast? ( >=media-video/pipewire-1.2.0:= )
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 	sysprof? ( >=dev-util/sysprof-capture-3.40.1:4 )
 	X? (
@@ -139,6 +140,7 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-43.0-Disable-anonymous-file-test.patch
+	"${FILESDIR}"/${PN}-47_rc-Fix-build-when-libwacom-is-disabled.patch
 )
 
 python_check_deps() {
@@ -179,9 +181,9 @@ src_configure() {
 		-Dudev_dir=$(get_udevdir)
 		$(meson_use input_devices_wacom libwacom)
 		-Dsound_player=true
-		-Dpango_ft2=true
 		-Dstartup_notification=true
 		-Dsm=true
+		-Dlibdisplay_info=enabled
 		$(meson_use introspection)
 		$(meson_use gtk-doc docs)
 		$(meson_use test cogl_tests)
