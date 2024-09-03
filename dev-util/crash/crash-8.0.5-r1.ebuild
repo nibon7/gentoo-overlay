@@ -24,7 +24,7 @@ else
 	SRC_URI="https://github.com/crash-utility/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz
 		${UPSTREAM_PATCHSET_URI} ${EXTRA_PATCHSET_URI}
 		mirror://gnu/gdb/gdb-${GDB_VERSION}.tar.gz"
-	KEYWORDS="-* ~alpha amd64 ~arm ~ia64 ~ppc64 ~riscv ~s390 ~x86"
+	KEYWORDS="~amd64"
 fi
 
 DESCRIPTION="Red Hat crash utility; used for analyzing kernel core dumps"
@@ -32,23 +32,32 @@ HOMEPAGE="https://crash-utility.github.io/"
 
 LICENSE="GPL-3"
 SLOT="1"
-IUSE=""
+IUSE="lzo snappy valgrind zstd"
 IUSE_CRASH_TARGETS="
-	arm
 	arm64
-	mips
-	mips64
+	loongarch64
 	ppc64
 	riscv64
-	x86
 	x86_64
 "
-IUSE+=" $(printf ' crash_targets_%s' ${IUSE_CRASH_TARGETS})"
+use_crash_targets="$(printf ' crash_targets_%s' ${IUSE_CRASH_TARGETS})"
+IUSE+=" ${use_crash_targets}"
+REQUIRED_USE="|| ( ${use_crash_targets} )"
 # there is no "make test" target, but there is a test.c so the automatic
 # make rules catch it and tests fail
 RESTRICT="test"
 
-RDEPEND="!${CATEGORY}/${PN}:0"
+DEPEND="
+	lzo? ( dev-libs/lzo )
+	snappy? ( app-arch/snappy )
+	valgrind? ( dev-debug/valgrind )
+	zstd? ( app-arch/zstd )
+"
+
+RDEPEND="
+	${DEPEND}
+	!${CATEGORY}/${PN}:0
+"
 
 src_prepare() {
 	default
@@ -75,11 +84,16 @@ src_configure() {
 }
 
 src_compile() {
-	local target
+	local goals
+	for i in lzo snappy valgrind zstd; do
+		use $i && goals+=" $i"
+	done
 
+	local target
 	for target in ${IUSE_CRASH_TARGETS}; do
 		if use "crash_targets_${target}"; then
 			emake \
+				MAKECMDGOALS="${goals}" \
 				CC="$(tc-getCC)" \
 				AR="$(tc-getAR)" \
 				target="${target^^}"
