@@ -8,8 +8,8 @@ inherit font
 DESCRIPTION="Microsoft Windows 11 CJK TrueType fonts"
 HOMEPAGE="https://www.microsoft.com/typography/fonts/product.aspx?PID=164"
 SRC_URI="
-	l10n_ja? ( msyhbd.ttc msyhl.ttc msyh.ttc simsunb.ttf simsun.ttc )
-	l10n_ko? ( msgothic.ttc YuGothB.ttc YuGothL.ttc YuGothM.ttc YuGothR.ttc )
+	l10n_ja? ( msgothic.ttc YuGothB.ttc YuGothL.ttc YuGothM.ttc YuGothR.ttc )
+	l10n_ko? ( malgun.ttf malgunbd.ttf malgunsl.ttf )
 	l10n_zh-CN? ( msyhbd.ttc msyhl.ttc msyh.ttc simsunb.ttf simsun.ttc )
 	l10n_zh-TW? ( mingliub.ttc msjhbd.ttc msjhl.ttc msjh.ttc )
 "
@@ -22,8 +22,8 @@ IUSE="l10n_ja l10n_ko +l10n_zh-CN l10n_zh-TW"
 REQUIRED_USE="|| ( l10n_ja l10n_ko l10n_zh-CN l10n_zh-TW )"
 RESTRICT="binchecks strip fetch"
 
-FONT_SUFFIX="ttc"
-FONT_CONF=( "${FILESDIR}"/66-${PN}.conf )
+FONT_SUFFIX=""
+FONT_CONF=()
 
 pkg_nofetch() {
 	einfo "Please note that usage of Microsoft fonts outside running Windows"
@@ -34,8 +34,17 @@ pkg_nofetch() {
 }
 
 src_install() {
-	if use l10n_ja || use l10n_zh-CN; then
+	if use l10n_ja || use l10n_zh-TW; then
+		FONT_SUFFIX+=" ttc"
+	fi
+
+	if use l10n_ko; then
 		FONT_SUFFIX+=" ttf"
+	fi
+
+	if use l10n_zh-CN; then
+		FONT_SUFFIX+=" ttc ttf"
+		FONT_CONF+=( "${FILESDIR}"/66-${PN}.conf )
 	fi
 
 	font_src_install
