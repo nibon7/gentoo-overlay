@@ -1,0 +1,54 @@
+From 9403d8e4a911999fba4fbd153e4b1ce33100a00a Mon Sep 17 00:00:00 2001
+From: Danilo Leal <67129314+danilo-leal@users.noreply.github.com>
+Date: Wed, 4 Sep 2024 19:52:03 -0300
+Subject: [PATCH 2/3] Adjust code actions menu spacing (#17378)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+A slight design touch up on this component.
+
+| Before | After |
+|--------|--------|
+| <img width="252" alt="Screenshot 2024-09-04 at 7 35 47 PM"
+src="https://github.com/user-attachments/assets/a40c1c63-cb6c-4e82-b841-1be98e7528a0">
+| <img width="252" alt="Screenshot 2024-09-04 at 7 36 53 PM"
+src="https://github.com/user-attachments/assets/4656ee85-b1fc-449d-93d2-eebcce8a38d8">
+|
+
+---
+
+Release Notes:
+
+- N/A
+---
+ crates/editor/src/editor.rs | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/crates/editor/src/editor.rs b/crates/editor/src/editor.rs
+index 57cd570ea3..b9a8988d0e 100644
+--- a/crates/editor/src/editor.rs
++++ b/crates/editor/src/editor.rs
+@@ -1488,7 +1488,8 @@ impl CodeActionsMenu {
+                         let selected = selected_item == item_ix;
+                         let colors = cx.theme().colors();
+                         div()
+-                            .px_2()
++                            .px_1()
++                            .rounded_md()
+                             .text_color(colors.text)
+                             .when(selected, |style| {
+                                 style
+@@ -1541,8 +1542,7 @@ impl CodeActionsMenu {
+             },
+         )
+         .elevation_1(cx)
+-        .px_2()
+-        .py_1()
++        .p_1()
+         .max_h(max_height)
+         .occlude()
+         .track_scroll(self.scroll_handle.clone())
+-- 
+2.44.2
+

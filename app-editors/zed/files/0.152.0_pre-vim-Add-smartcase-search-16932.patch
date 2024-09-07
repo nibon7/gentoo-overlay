@@ -1,0 +1,221 @@
+From c0478e29afd7d0d5b6a7c0dfa66046cd09e78e1c Mon Sep 17 00:00:00 2001
+From: 0x2CA <2478557459@qq.com>
+Date: Thu, 5 Sep 2024 03:26:25 +0800
+Subject: [PATCH 1/3] vim: Add smartcase search (#16932)
+
+Closes #16878
+
+Release Notes:
+
+- Added a vim-style smart case option for search patterns
+
+---------
+
+Co-authored-by: Conrad Irwin <conrad.irwin@gmail.com>
+---
+ assets/settings/default.json         |  1 +
+ crates/editor/src/editor_settings.rs |  2 ++
+ crates/search/src/buffer_search.rs   | 32 +++++++++++++++++++++++++++-
+ crates/search/src/project_search.rs  | 30 +++++++++++++++++++++++++-
+ crates/vim/src/normal/search.rs      | 21 ++++++++++++------
+ 5 files changed, 78 insertions(+), 8 deletions(-)
+
+diff --git a/assets/settings/default.json b/assets/settings/default.json
+index de8951ae6d..2bf4611b90 100644
+--- a/assets/settings/default.json
++++ b/assets/settings/default.json
+@@ -289,6 +289,7 @@
+   // 3. Never populate the search query
+   //    "never"
+   "seed_search_query_from_cursor": "always",
++  "use_smartcase_search": false,
+   // Inlay hint related settings
+   "inlay_hints": {
+     // Global switch to toggle hints on and off, switched off by default.
+diff --git a/crates/editor/src/editor_settings.rs b/crates/editor/src/editor_settings.rs
+index 9a63fb0c04..04403b1547 100644
+--- a/crates/editor/src/editor_settings.rs
++++ b/crates/editor/src/editor_settings.rs
+@@ -20,6 +20,7 @@ pub struct EditorSettings {
+     pub scroll_sensitivity: f32,
+     pub relative_line_numbers: bool,
+     pub seed_search_query_from_cursor: SeedQuerySetting,
++    pub use_smartcase_search: bool,
+     pub multi_cursor_modifier: MultiCursorModifier,
+     pub redact_private_values: bool,
+     pub expand_excerpt_lines: u32,
+@@ -218,6 +219,7 @@ pub struct EditorSettingsContent {
+     ///
+     /// Default: always
+     pub seed_search_query_from_cursor: Option<SeedQuerySetting>,
++    pub use_smartcase_search: Option<bool>,
+     /// The key to use for adding multiple cursors
+     ///
+     /// Default: alt
+diff --git a/crates/search/src/buffer_search.rs b/crates/search/src/buffer_search.rs
+index f6af87733e..74ab282019 100644
+--- a/crates/search/src/buffer_search.rs
++++ b/crates/search/src/buffer_search.rs
+@@ -567,6 +567,7 @@ impl BufferSearchBar {
+                 active_item.toggle_filtered_search_ranges(deploy.selection_search_enabled, cx);
+             }
+             self.search_suggested(cx);
++            self.smartcase(cx);
+             self.replace_enabled = deploy.replace_enabled;
+             self.selection_search_enabled = deploy.selection_search_enabled;
+             if deploy.focus {
+@@ -718,13 +719,21 @@ impl BufferSearchBar {
+         }
+     }
+ 
+-    fn toggle_search_option(&mut self, search_option: SearchOptions, cx: &mut ViewContext<Self>) {
++    pub fn toggle_search_option(
++        &mut self,
++        search_option: SearchOptions,
++        cx: &mut ViewContext<Self>,
++    ) {
+         self.search_options.toggle(search_option);
+         self.default_options = self.search_options;
+         drop(self.update_matches(cx));
+         cx.notify();
+     }
+ 
++    pub fn has_search_option(&mut self, search_option: SearchOptions) -> bool {
++        self.search_options.contains(search_option)
++    }
++
+     pub fn enable_search_option(
+         &mut self,
+         search_option: SearchOptions,
+@@ -819,6 +828,7 @@ impl BufferSearchBar {
+             editor::EditorEvent::Focused => self.query_editor_focused = true,
+             editor::EditorEvent::Blurred => self.query_editor_focused = false,
+             editor::EditorEvent::Edited { .. } => {
++                self.smartcase(cx);
+                 self.clear_matches(cx);
+                 let search = self.update_matches(cx);
+ 
+@@ -1151,6 +1161,26 @@ impl BufferSearchBar {
+         self.update_match_index(cx);
+         self.active_match_index.is_some()
+     }
++
++    pub fn should_use_smartcase_search(&mut self, cx: &mut ViewContext<Self>) -> bool {
++        EditorSettings::get_global(cx).use_smartcase_search
++    }
++
++    pub fn is_contains_uppercase(&mut self, str: &String) -> bool {
++        str.chars().any(|c| c.is_uppercase())
++    }
++
++    fn smartcase(&mut self, cx: &mut ViewContext<Self>) {
++        if self.should_use_smartcase_search(cx) {
++            let query = self.query(cx);
++            if !query.is_empty() {
++                let is_case = self.is_contains_uppercase(&query);
++                if self.has_search_option(SearchOptions::CASE_SENSITIVE) != is_case {
++                    self.toggle_search_option(SearchOptions::CASE_SENSITIVE, cx);
++                }
++            }
++        }
++    }
+ }
+ 
+ #[cfg(test)]
+diff --git a/crates/search/src/project_search.rs b/crates/search/src/project_search.rs
+index 008a4c32a0..25b0c00013 100644
+--- a/crates/search/src/project_search.rs
++++ b/crates/search/src/project_search.rs
+@@ -114,6 +114,10 @@ pub fn init(cx: &mut AppContext) {
+     .detach();
+ }
+ 
++fn is_contains_uppercase(str: &str) -> bool {
++    str.chars().any(|c| c.is_uppercase())
++}
++
+ pub struct ProjectSearch {
+     project: Model<Project>,
+     excerpts: Model<MultiBuffer>,
+@@ -651,7 +655,22 @@ impl ProjectSearchView {
+         });
+         // Subscribe to query_editor in order to reraise editor events for workspace item activation purposes
+         subscriptions.push(
+-            cx.subscribe(&query_editor, |_, _, event: &EditorEvent, cx| {
++            cx.subscribe(&query_editor, |this, _, event: &EditorEvent, cx| {
++                match event {
++                    EditorEvent::Edited { .. } => {
++                        if EditorSettings::get_global(cx).use_smartcase_search {
++                            let query = this.search_query_text(cx);
++                            if !query.is_empty() {
++                                if this.search_options.contains(SearchOptions::CASE_SENSITIVE)
++                                    != is_contains_uppercase(&query)
++                                {
++                                    this.toggle_search_option(SearchOptions::CASE_SENSITIVE, cx);
++                                }
++                            }
++                        }
++                    }
++                    _ => {}
++                }
+                 cx.emit(ViewEvent::EditorEvent(event.clone()))
+             }),
+         );
+@@ -1055,6 +1074,15 @@ impl ProjectSearchView {
+     fn set_query(&mut self, query: &str, cx: &mut ViewContext<Self>) {
+         self.query_editor
+             .update(cx, |query_editor, cx| query_editor.set_text(query, cx));
++        if EditorSettings::get_global(cx).use_smartcase_search {
++            if !query.is_empty() {
++                if self.search_options.contains(SearchOptions::CASE_SENSITIVE)
++                    != is_contains_uppercase(query)
++                {
++                    self.toggle_search_option(SearchOptions::CASE_SENSITIVE, cx)
++                }
++            }
++        }
+     }
+ 
+     fn focus_results_editor(&mut self, cx: &mut ViewContext<Self>) {
+diff --git a/crates/vim/src/normal/search.rs b/crates/vim/src/normal/search.rs
+index b9cd53217c..6aa3483b2e 100644
+--- a/crates/vim/src/normal/search.rs
++++ b/crates/vim/src/normal/search.rs
+@@ -302,11 +302,15 @@ impl Vim {
+                         query = search_bar.query(cx);
+                     };
+ 
+-                    Some(search_bar.search(
+-                        &query,
+-                        Some(SearchOptions::CASE_SENSITIVE | SearchOptions::REGEX),
+-                        cx,
+-                    ))
++                    let mut options = SearchOptions::REGEX | SearchOptions::CASE_SENSITIVE;
++                    if search_bar.should_use_smartcase_search(cx) {
++                        options.set(
++                            SearchOptions::CASE_SENSITIVE,
++                            search_bar.is_contains_uppercase(&query),
++                        );
++                    }
++
++                    Some(search_bar.search(&query, Some(options), cx))
+                 });
+                 let Some(search) = search else { return };
+                 let search_bar = search_bar.downgrade();
+@@ -368,7 +372,12 @@ impl Vim {
+                 } else {
+                     replacement.search
+                 };
+-
++                if search_bar.should_use_smartcase_search(cx) {
++                    options.set(
++                        SearchOptions::CASE_SENSITIVE,
++                        search_bar.is_contains_uppercase(&search),
++                    );
++                }
+                 search_bar.set_replacement(Some(&replacement.replacement), cx);
+                 Some(search_bar.search(&search, Some(options), cx))
+             });
+-- 
+2.44.2
+

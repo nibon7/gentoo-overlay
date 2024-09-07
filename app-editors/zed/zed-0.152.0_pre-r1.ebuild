@@ -1141,6 +1141,9 @@ PATCHES=(
 	"${FILESDIR}"/zed-system-sqlite.patch
 	"${FILESDIR}"/zed-system-openssl.patch
 	"${FILESDIR}"/zed-add-ebuild-to-bash-path_suffixes.patch
+	"${FILESDIR}"/0.152.0_pre-vim-Add-smartcase-search-16932.patch
+	"${FILESDIR}"/0.152.0_pre-Adjust-code-actions-menu-spacing-17378.patch
+	"${FILESDIR}"/0.152.0_pre--search-Fix-keybindings-display-on-project-search-lan.patch
 )
 
 src_configure() {
