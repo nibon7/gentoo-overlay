@@ -64,7 +64,7 @@ CRATES="
 	async-std@1.12.0
 	async-stream-impl@0.3.5
 	async-stream@0.3.5
-	async-stripe@0.38.1
+	async-stripe@0.39.1
 	async-tar@0.5.0
 	async-task@4.7.1
 	async-trait@0.1.81
@@ -354,7 +354,7 @@ CRATES="
 	glob@0.3.1
 	globset@0.4.14
 	gloo-timers@0.2.6
-	glow@0.13.1
+	glow@0.14.0
 	gpu-alloc-ash@0.7.0
 	gpu-alloc-types@0.3.0
 	gpu-alloc@0.6.0
@@ -508,7 +508,6 @@ CRATES="
 	ndk-sys@0.5.0+25.2.9519653
 	ndk@0.8.0
 	new_debug_unreachable@1.0.6
-	nix@0.28.0
 	nix@0.29.0
 	nom@7.1.3
 	noop_proc_macro@0.3.0
@@ -626,6 +625,7 @@ CRATES="
 	ptr_meta_derive@0.1.4
 	pulldown-cmark-escape@0.10.1
 	pulldown-cmark@0.10.3
+	pulldown-cmark@0.12.1
 	qoi@0.4.1
 	quick-error@2.0.1
 	quick-xml@0.32.0
@@ -1064,7 +1064,7 @@ CRATES="
 	zvariant_utils@2.1.0
 "
 
-BLADE_COMMIT="fee06c42f658b36dd9ac85444a9ee2a481383695"
+BLADE_COMMIT="e142a3a5e678eb6a13e642ad8401b1f3aa38e969"
 TS_COMMIT="7f4a57817d58a2f134fe863674acad6bbf007228"
 XIM_COMMIT="27132caffc5b9bc9c432ca4afad184ab6e7c16af"
 
@@ -1141,9 +1141,6 @@ PATCHES=(
 	"${FILESDIR}"/zed-system-sqlite.patch
 	"${FILESDIR}"/zed-system-openssl.patch
 	"${FILESDIR}"/zed-add-ebuild-to-bash-path_suffixes.patch
-	"${FILESDIR}"/0.152.0_pre-vim-Add-smartcase-search-16932.patch
-	"${FILESDIR}"/0.152.0_pre-Adjust-code-actions-menu-spacing-17378.patch
-	"${FILESDIR}"/0.152.0_pre--search-Fix-keybindings-display-on-project-search-lan.patch
 )
 
 src_configure() {
