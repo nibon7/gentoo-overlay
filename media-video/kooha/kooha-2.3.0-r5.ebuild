@@ -16,7 +16,7 @@ LICENSE+="
 	Unicode-DFS-2016
 "
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~arm64 ~loong ~riscv ~amd64-linux ~x86-linux"
 
 DEPEND="
 	>=dev-libs/glib-2.79:2

@@ -15,7 +15,7 @@ LICENSE+="
 	CC0-1.0 ISC LGPL-2.1+ MIT MIT-0 MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB
 "
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~arm64 ~loong ~riscv ~amd64-linux ~x86-linux"
 IUSE="X test"
 RESTRICT="!test? ( test )"
 

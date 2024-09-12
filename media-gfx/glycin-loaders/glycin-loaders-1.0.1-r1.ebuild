@@ -10,7 +10,7 @@ HOMEPAGE="https://gitlab.gnome.org/sophie-h/glycin"
 
 LICENSE="MPL-2.0 LGPL-2+"
 SLOT="1"
-KEYWORDS="~amd64 ~arm64 ~loong ~mips ~riscv ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~arm64 ~loong ~riscv ~amd64-linux ~x86-linux"
 IUSE="heif jpegxl svg test"
 RESTRICT="!test? ( test )"
 
