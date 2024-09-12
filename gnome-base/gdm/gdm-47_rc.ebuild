@@ -21,10 +21,14 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc64 ~riscv ~x86"
 
-IUSE="accessibility audit bluetooth-sound branding elogind fprint plymouth selinux systemd tcpd test wayland"
+IUSE="X accessibility audit bluetooth-sound branding elogind fprint plymouth selinux systemd tcpd test wayland"
 
 RESTRICT="!test? ( test )"
-REQUIRED_USE="^^ ( elogind systemd )"
+REQUIRED_USE="
+	^^ ( elogind systemd )
+	|| ( X wayland )
+	tcpd? ( X )
+"
 
 # dconf, dbus and g-s-d are needed at install time for dconf update
 # keyutils is automagic dep that makes autologin unlock login keyring
@@ -34,19 +38,20 @@ COMMON_DEPEND="
 	virtual/udev
 	>=dev-libs/libgudev-232:=
 	>=dev-libs/glib-2.68:2
-	>=x11-libs/gtk+-2.91.1:3
 	>=dev-libs/json-glib-1.2.0
-	>=media-libs/libcanberra-0.4[gtk3]
 	>=sys-apps/accountsservice-0.6.35
-	x11-libs/libxcb
 	sys-apps/keyutils:=
 	selinux? ( sys-libs/libselinux )
 
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-base/xorg-server[-minimal]
-	x11-libs/libXdmcp
-	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
+	X? (
+		x11-libs/libxcb
+		x11-libs/libX11
+		x11-libs/libXau
+		>=x11-base/xorg-server-1.17[-minimal]
+		>=x11-libs/gtk+-2.91.1:3
+		x11-libs/libXdmcp
+		tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
+	)
 
 	systemd? ( >=sys-apps/systemd-186:0=[pam] )
 	elogind? ( >=sys-auth/elogind-239.3[pam] )
@@ -143,7 +148,8 @@ src_configure() {
 		-Duser=gdm
 		-Duser-display-server=true
 		$(meson_use wayland wayland-support)
-		-Dxdmcp=enabled
+		$(meson_use X x11-support)
+		$(meson_feature X xdmcp)
 	)
 
 	if use elogind; then
