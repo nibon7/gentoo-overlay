@@ -80,6 +80,9 @@ src_configure() {
 	# bug #858344
 	filter-lto
 
+	echo "${CFLAGS}" > CFLAGS.extra || die
+	echo "${LDFLAGS}" > LDFLAGS.extra || die
+
 	default
 }
 
