@@ -8,7 +8,7 @@ MY_PV="$(ver_cut 4)"
 
 DESCRIPTION="WPS Office is an office productivity suite"
 HOMEPAGE="https://linux.wps.cn"
-SRC_URI="amd64? ( https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/${MY_PV}/${PN}_${PV}_amd64.deb )"
+SRC_URI="amd64? ( https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2023/${MY_PV}/${PN}_${PV}_amd64.deb )"
 S="${WORKDIR}"
 
 LICENSE="WPS-EULA"
