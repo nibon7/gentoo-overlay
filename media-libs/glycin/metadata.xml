@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="bindings">Build C bindings for the glycin crate</flag>
+		<flag name="loaders">Build glycin loaders</flag>
+	</use>
+	<upstream>
+		<remote-id type="gnome-gitlab">sophie-h/glycin</remote-id>
+	</upstream>
+</pkgmetadata>
