@@ -239,7 +239,7 @@ DEPEND="
 	>=gui-libs/gtk-4.15.2:4[cups?,introspection?]
 	>=gui-libs/libadwaita-1.6_beta
 	>=x11-libs/cairo-1.14.0
-	>=app-text/poppler-22.05.0:=[cairo]
+	>=app-text/poppler-23.07.0:=[cairo]
 	>=app-arch/libarchive-3.6.0:=
 	djvu? ( >=app-text/djvu-3.5.22:= )
 	gnome? ( gnome-base/gnome-desktop:3= )
@@ -259,7 +259,6 @@ BDEPEND="
 		app-text/docbook-xml-dtd:4.3
 	)
 	dev-libs/appstream-glib
-	dev-util/gdbus-codegen
 	dev-util/glib-utils
 	dev-util/itstool
 	>=sys-devel/gettext-0.19.8
@@ -295,7 +294,6 @@ src_configure() {
 		$(meson_use gtk-doc documentation)
 		-Duser_doc=true
 		$(meson_feature introspection)
-		-Ddbus=true
 		$(meson_feature keyring)
 		$(meson_feature cups gtk_unix_print)
 		$(meson_use test tests)
