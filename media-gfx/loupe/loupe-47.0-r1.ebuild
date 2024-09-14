@@ -26,7 +26,7 @@ DEPEND="
 	>=media-libs/lcms-2.12.0
 	>=sys-libs/libseccomp-2.5.0
 	>=x11-libs/cairo-1.14.0
-	media-gfx/glycin-loaders
+	media-libs/glycin[loaders]
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
