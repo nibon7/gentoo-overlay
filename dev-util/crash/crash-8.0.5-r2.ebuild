@@ -87,16 +87,17 @@ src_configure() {
 }
 
 src_compile() {
-	local goals
-	for i in lzo snappy valgrind zstd; do
-		use $i && goals+=" $i"
-	done
+	local goals=(
+		$(usev lzo)
+		$(usev snappy)
+		$(usev valgrind)
+		$(usev zstd)
+	)
 
-	local target
 	for target in ${IUSE_CRASH_TARGETS}; do
 		if use "crash_targets_${target}"; then
 			emake \
-				MAKECMDGOALS="${goals}" \
+				MAKECMDGOALS="${goals[*]}" \
 				CC="$(tc-getCC)" \
 				AR="$(tc-getAR)" \
 				target="${target^^}"
