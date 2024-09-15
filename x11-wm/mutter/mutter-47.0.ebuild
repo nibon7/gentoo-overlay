@@ -19,7 +19,7 @@ else
 	SLOT="0/$(($(ver_cut 1) - 32))" # 0/libmutter_api_version - ONLY gnome-shell (or anything using mutter-clutter-<api_version>.pc) should use the subslot
 fi
 
-IUSE="debug elogind gnome gtk-doc input_devices_wacom +introspection screencast sysprof systemd test udev wayland video_cards_nvidia"
+IUSE="X debug elogind gnome gtk-doc input_devices_wacom +introspection screencast sysprof systemd test udev wayland video_cards_nvidia"
 # native backend requires gles3 for hybrid graphics blitting support, udev and a logind provider
 REQUIRED_USE="
 	gtk-doc? ( introspection )
@@ -38,16 +38,16 @@ DEPEND="
 	>=media-libs/graphene-1.10.2[introspection?]
 	x11-libs/gdk-pixbuf:2
 	>=x11-libs/pango-1.46[introspection?]
+	media-libs/libdisplay-info
 	>=x11-libs/cairo-1.14[X]
 	>=dev-libs/fribidi-1.0.0
-	>=gnome-base/gsettings-desktop-schemas-42.0[introspection?]
-	>=dev-libs/glib-2.75.1:2
+	>=gnome-base/gsettings-desktop-schemas-47_beta[introspection?]
+	>=dev-libs/glib-2.81.1:2
 	gnome-base/gnome-settings-daemon
 	>=x11-libs/libxkbcommon-0.4.3
 	>=x11-libs/pixman-0.42
 	x11-libs/libICE
 	>=app-accessibility/at-spi2-core-2.46:2[introspection?]
-	sys-apps/dbus
 	>=x11-misc/colord-1.4.5:=
 	>=media-libs/lcms-2.6:2
 	>=media-libs/harfbuzz-2.6.0:=
@@ -60,12 +60,12 @@ DEPEND="
 	media-libs/libglvnd[X]
 
 	wayland? (
-		>=dev-libs/wayland-protocols-1.33
-		>=dev-libs/wayland-1.22
+		>=dev-libs/wayland-protocols-1.36
+		>=dev-libs/wayland-1.23
 
 		>=x11-libs/libdrm-2.4.118
 		media-libs/mesa[gbm(+)]
-		>=dev-libs/libinput-1.19.0:=
+		>=dev-libs/libinput-1.26.0:=
 
 		elogind? ( sys-auth/elogind )
 		>=x11-base/xwayland-23.2.1[libei(+)]
@@ -79,13 +79,10 @@ DEPEND="
 	x11-libs/libSM
 	input_devices_wacom? ( >=dev-libs/libwacom-0.13:= )
 	>=x11-libs/startup-notification-0.7
-	screencast? ( >=media-video/pipewire-0.3.33:= )
+	screencast? ( >=media-video/pipewire-1.2.0:= )
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 	sysprof? ( >=dev-util/sysprof-capture-3.40.1:4 )
-"
-# for now upstream has "have_x11 = true" in the meson.build, but sooner or later upstream is going to make X optional.
-#	X? (
-DEPEND+="
+	X? (
 		>=gui-libs/gtk-4.0.0:4[X,introspection?]
 		>=x11-libs/libX11-1.7.0
 		>=x11-libs/libXcomposite-0.4
@@ -102,8 +99,8 @@ DEPEND+="
 		x11-libs/libxcb:=
 		x11-libs/libXinerama
 		x11-libs/libXau
+	)
 "
-#	)"
 
 RDEPEND="${DEPEND}
 	!<gui-libs/gtk-4.6.4:4
@@ -179,19 +176,19 @@ src_configure() {
 		$(meson_use screencast remote_desktop)
 		$(meson_use gnome libgnome_desktop)
 		$(meson_use udev)
+		$(meson_use X x11)
 		-Dudev_dir=$(get_udevdir)
 		$(meson_use input_devices_wacom libwacom)
 		-Dsound_player=true
-		-Dpango_ft2=true
 		-Dstartup_notification=true
 		-Dsm=true
+		-Dlibdisplay_info=enabled
 		$(meson_use introspection)
 		$(meson_use gtk-doc docs)
 		$(meson_use test cogl_tests)
-		$(meson_use wayland core_tests) # core tests require wayland; overall -Dtests option is honored on top, so no extra conditional needed
-		-Dnative_tests=false
+		$(meson_use wayland mutter_tests) # core tests require wayland; overall -Dtests option is honored on top, so no extra conditional needed
 		$(meson_use test clutter_tests)
-		$(meson_use test tests)
+		$(meson_feature test tests)
 		-Dkvm_tests=false
 		-Dtty_tests=false
 		$(meson_use sysprof profiler)
