@@ -84,7 +84,6 @@ BDEPEND="
 PATCHES=(
 	"${FILESDIR}"/42.1-build-Make-wacom-optional-and-controllable-via-meson.patch
 	"${FILESDIR}"/${PN}-3.38.1-build-Allow-NM-optional-on-Linux.patch
-	"${FILESDIR}"/47_rc-Make-backlight-backend-explicit.patch
 )
 
 python_check_deps() {
