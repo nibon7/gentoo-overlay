@@ -16,12 +16,12 @@ KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc64 ~riscv ~x86"
 # Note to developers:
 # This is a wrapper for the core libraries used by GNOME
 RDEPEND="
-	>=dev-libs/glib-2.79.2:2
+	>=dev-libs/glib-2.81.1:2
 	>=x11-libs/gdk-pixbuf-2.42.10:2
 	>=x11-libs/pango-1.51.0
 	>=x11-libs/gtk+-3.24.38:3[cups?]
-	>=gui-libs/gtk-4.13.6:4[cups?]
-	>=gui-libs/libadwaita-1.4.2:1
+	>=gui-libs/gtk-4.15.2:4[cups?]
+	>=gui-libs/libadwaita-1.6_beta:1
 	>=app-accessibility/at-spi2-core-2.50.0:2
 	>=gnome-base/librsvg-2.57.0
 	>=gnome-base/gnome-desktop-44.0:4
