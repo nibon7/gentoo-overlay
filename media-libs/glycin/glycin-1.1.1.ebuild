@@ -28,10 +28,10 @@ DEPEND="
 	>=gui-libs/gtk-4.12.0:4
 	>=media-libs/lcms-2.14
 	>=sys-libs/libseccomp-2.5.0
+	sys-apps/bubblewrap
 	heif? ( >=media-libs/libheif-1.17.0 )
 	introspection? ( dev-libs/gobject-introspection )
 	jpegxl? ( >=media-libs/libjxl-0.10.0 )
-	loaders? ( sys-apps/bubblewrap )
 	svg? (
 		>=gnome-base/librsvg-2.52.0
 		>=x11-libs/cairo-1.17.0
