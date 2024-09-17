@@ -19,7 +19,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm64 ~loong ~riscv ~amd64-linux ~x86-linux"
 
 DEPEND="
-	>=dev-libs/glib-2.79:2
+	>=dev-libs/glib-2.80:2
 	>=gui-libs/gtk-4.14:4[X,wayland]
 	>=gui-libs/libadwaita-1.5
 	>=media-libs/gstreamer-1.22
