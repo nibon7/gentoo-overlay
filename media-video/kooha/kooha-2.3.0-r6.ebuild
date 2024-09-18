@@ -49,8 +49,6 @@ BDEPEND="
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
 
-PATCHES=( "${FILESDIR}"/kooha-glib-2.79.patch )
-
 src_prepare() {
 	default
 	xdg_environment_reset
