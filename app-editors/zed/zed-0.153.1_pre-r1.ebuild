@@ -1141,6 +1141,9 @@ PATCHES=(
 	"${FILESDIR}"/zed-system-sqlite.patch
 	"${FILESDIR}"/zed-system-openssl.patch
 	"${FILESDIR}"/zed-add-ebuild-to-bash-path_suffixes.patch
+	"${FILESDIR}"/0.153.1_pre-Use-a-bigger-prefix-for-numeric-sorting-cherry-pick-.patch
+	"${FILESDIR}"/0.153.1_pre-project-Use-login-shell-to-get-environment-per-proje.patch
+	"${FILESDIR}"/0.153.1_pre-Fix-keystroke-observer-leak-in-vim-crate-17913.patch
 )
 
 src_configure() {

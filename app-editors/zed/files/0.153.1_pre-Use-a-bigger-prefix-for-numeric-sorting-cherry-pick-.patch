@@ -1,0 +1,34 @@
+From 4c81907cc2eb64c7715454ef0a2124699f6e3eb5 Mon Sep 17 00:00:00 2001
+From: "gcp-cherry-pick-bot[bot]"
+ <98988430+gcp-cherry-pick-bot[bot]@users.noreply.github.com>
+Date: Thu, 12 Sep 2024 09:42:50 -0400
+Subject: [PATCH] Use a bigger prefix for numeric sorting (cherry-pick #17752)
+ (#17754)
+
+Cherry-picked Use a bigger prefix for numeric sorting (#17752)
+
+Release Notes:
+
+- Fixed sorting of files with YYYYmmddHHMMSS prefix
+
+Co-authored-by: Conrad Irwin <conrad.irwin@gmail.com>
+---
+ crates/util/src/util.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/crates/util/src/util.rs b/crates/util/src/util.rs
+index 40a5cf6212..a161b8bac2 100644
+--- a/crates/util/src/util.rs
++++ b/crates/util/src/util.rs
+@@ -644,7 +644,7 @@ impl<T: Ord + Clone> RangeExt<T> for RangeInclusive<T> {
+ /// This is useful for turning regular alphanumerically sorted sequences as `1-abc, 10, 11-def, .., 2, 21-abc`
+ /// into `1-abc, 2, 10, 11-def, .., 21-abc`
+ #[derive(Debug, PartialEq, Eq)]
+-pub struct NumericPrefixWithSuffix<'a>(Option<u32>, &'a str);
++pub struct NumericPrefixWithSuffix<'a>(Option<u64>, &'a str);
+ 
+ impl<'a> NumericPrefixWithSuffix<'a> {
+     pub fn from_numeric_prefixed_str(str: &'a str) -> Self {
+-- 
+2.44.2
+
