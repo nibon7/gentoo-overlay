@@ -4,7 +4,7 @@
 EAPI=8
 
 CRATES="
-	addr2line@0.22.0
+	addr2line@0.24.1
 	adler2@2.0.0
 	adler@1.0.2
 	aes@0.8.4
@@ -68,7 +68,7 @@ CRATES="
 	async-tar@0.5.0
 	async-task@4.7.1
 	async-tls@0.12.0
-	async-trait@0.1.81
+	async-trait@0.1.82
 	async-tungstenite@0.23.0
 	async-watch@0.3.1
 	async_zip@0.0.17
@@ -101,7 +101,7 @@ CRATES="
 	axum-core@0.3.4
 	axum-extra@0.4.2
 	axum@0.6.20
-	backtrace@0.3.73
+	backtrace@0.3.74
 	base16ct@0.1.1
 	base64-simd@0.8.0
 	base64@0.13.1
@@ -172,8 +172,8 @@ CRATES="
 	ciborium@0.2.2
 	cipher@0.4.4
 	clang-sys@1.8.1
-	clap@4.5.16
-	clap_builder@4.5.15
+	clap@4.5.17
+	clap_builder@4.5.17
 	clap_complete@4.5.24
 	clap_derive@4.5.13
 	clap_lex@0.7.2
@@ -353,9 +353,10 @@ CRATES="
 	getrandom@0.2.15
 	gif@0.13.1
 	gimli@0.29.0
+	gimli@0.31.0
 	git2@0.19.0
 	glob@0.3.1
-	globset@0.4.14
+	globset@0.4.15
 	gloo-timers@0.2.6
 	glow@0.14.0
 	gpu-alloc-ash@0.7.0
@@ -408,7 +409,7 @@ CRATES="
 	iana-time-zone@0.1.60
 	id-arena@2.2.1
 	idna@0.5.0
-	ignore@0.4.22
+	ignore@0.4.23
 	image-webp@0.1.3
 	image@0.25.2
 	imagesize@0.12.0
