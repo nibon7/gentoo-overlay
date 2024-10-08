@@ -139,6 +139,7 @@ if [[ ${KERNEL_IUSE_GENERIC_UKI} ]]; then
 fi
 
 if [[ ${KERNEL_IUSE_CLANG} ]]; then
+	IUSE+=" lto"
 	BDEPEND+="
 		$(llvm_gen_dep '
 			sys-devel/clang:${LLVM_SLOT}
@@ -740,6 +741,13 @@ kernel-build_merge_configs() {
 		elif [[ -n ${MODULES_SIGN_KEY} ]]; then
 			die "MODULES_SIGN_KEY=${MODULES_SIGN_KEY} not found or not readable!"
 		fi
+	fi
+
+	if [[ ${KERNEL_IUSE_CLANG} ]] && use lto; then
+		cat <<-EOF > "${WORKDIR}/lto.config" || die
+			CONFIG_LTO_CLANG_FULL=y
+		EOF
+		merge_configs+=( "${WORKDIR}/lto.config" )
 	fi
 
 	if [[ ${#user_configs[@]} -gt 0 ]]; then
