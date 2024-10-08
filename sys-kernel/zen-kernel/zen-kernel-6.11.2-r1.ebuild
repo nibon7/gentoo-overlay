@@ -5,6 +5,7 @@ EAPI=8
 
 KERNEL_IUSE_GENERIC_UKI=1
 KERNEL_IUSE_MODULES_SIGN=1
+KERNEL_IUSE_CLANG=1
 
 inherit kernel-build unpacker
 
