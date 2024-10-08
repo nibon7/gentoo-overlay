@@ -463,6 +463,11 @@ kernel-build_src_install() {
 		doins "arch/${kern_arch}/kernel/module.lds"
 	fi
 
+	if [[ ${KERNEL_IUSE_CLANG} ]] && use rust; then
+		find rust -type f -name '*.rs' \
+			-exec cp --parents -t "${ED}${kernel_dir}/" {} + || die
+	fi
+
 	# remove everything but Makefile* and Kconfig*
 	find -type f '!' '(' -name 'Makefile*' -o -name 'Kconfig*' ')' \
 		-delete || die
