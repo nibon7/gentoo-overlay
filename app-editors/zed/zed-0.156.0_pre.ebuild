@@ -68,7 +68,7 @@ CRATES="
 	async-tar@0.5.0
 	async-task@4.7.1
 	async-tls@0.12.0
-	async-trait@0.1.82
+	async-trait@0.1.83
 	async-tungstenite@0.23.0
 	async-watch@0.3.1
 	async_zip@0.0.17
@@ -153,7 +153,7 @@ CRATES="
 	cap-time-ext@3.2.0
 	cargo-platform@0.1.8
 	cargo_metadata@0.18.1
-	cargo_toml@0.20.4
+	cargo_toml@0.20.5
 	cast@0.3.0
 	castaway@0.1.2
 	cbc@0.1.2
@@ -172,10 +172,10 @@ CRATES="
 	ciborium@0.2.2
 	cipher@0.4.4
 	clang-sys@1.8.1
-	clap@4.5.17
-	clap_builder@4.5.17
+	clap@4.5.18
+	clap_builder@4.5.18
 	clap_complete@4.5.24
-	clap_derive@4.5.13
+	clap_derive@4.5.18
 	clap_lex@0.7.2
 	clickhouse-derive@0.1.1
 	clickhouse-rs-cityhash-sys@0.1.2
@@ -454,7 +454,7 @@ CRATES="
 	lazycell@1.3.0
 	leb128@0.2.5
 	lebe@0.5.2
-	libc@0.2.158
+	libc@0.2.159
 	libdbus-sys@0.2.5
 	libfuzzer-sys@0.4.7
 	libgit2-sys@0.17.0+1.8.1
@@ -1135,6 +1135,7 @@ BDEPEND="sys-devel/gettext
 	dev-util/vulkan-headers
 	>=dev-util/cargo-about-0.6.2
 	>=virtual/rust-1.80
+	sys-devel/mold
 	virtual/pkgconfig
 "
 
