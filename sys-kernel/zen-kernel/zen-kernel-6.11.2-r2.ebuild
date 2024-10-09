@@ -16,11 +16,12 @@ DESCRIPTION="Zen patched kernel"
 HOMEPAGE="
 	https://wiki.gentoo.org/wiki/Project:Distribution_Kernel
 	https://www.kernel.org
-	https://github.com/zen-kernel
+	https://github.com/zen-kernel/zen-kernel
 "
 SRC_URI="
 	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/${MY_P}.tar.xz
 	https://github.com/zen-kernel/zen-kernel/releases/download/v${ZEN_VER}-zen1/linux-v${ZEN_VER}-zen1.patch.zst
+	https://gitlab.archlinux.org/archlinux/packaging/packages/linux-zen/-/raw/${ZEN_VER}.zen1-1/config -> kernel-archlinux.config.${ZEN_VER}
 "
 
 if ver_test "$(ver_cut 3)" -gt 0; then
@@ -30,8 +31,7 @@ fi
 S=${WORKDIR}/${MY_P}
 
 KEYWORDS="~amd64"
-IUSE="debug +savedconfig"
-REQUIRED_USE="savedconfig"
+IUSE="debug savedconfig"
 
 BDEPEND="
 	debug? ( dev-util/pahole )
@@ -53,7 +53,13 @@ src_prepare() {
 
 	PATCHES+=( "${WORKDIR}"/linux-v${ZEN_VER}-zen1.patch )
 
-	touch .config || die
+	if use savedconfig; then
+		> .config || die
+	else
+		cp "${DISTDIR}/kernel-archlinux.config.${ZEN_VER}" .config || die
+		sed 's/archlinux/gentoo/g' -i .config || die
+	fi
+
 	kernel-build_merge_configs
 
 	default
