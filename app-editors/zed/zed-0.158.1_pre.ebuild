@@ -37,13 +37,13 @@ CRATES="
 	ascii@1.1.0
 	ash-window@0.13.0
 	ash@0.38.0+1.3.281
-	ashpd@0.9.1
+	ashpd@0.9.2
 	async-attributes@1.1.2
 	async-broadcast@0.7.1
 	async-channel@1.9.0
 	async-channel@2.3.1
 	async-compat@0.2.4
-	async-compression@0.4.12
+	async-compression@0.4.13
 	async-dispatcher@0.1.2
 	async-executor@1.13.0
 	async-fs@1.6.0
@@ -64,12 +64,11 @@ CRATES="
 	async-std@1.12.0
 	async-stream-impl@0.3.5
 	async-stream@0.3.5
-	async-stripe@0.39.1
 	async-tar@0.5.0
 	async-task@4.7.1
 	async-tls@0.12.0
 	async-trait@0.1.83
-	async-tungstenite@0.23.0
+	async-tungstenite@0.24.0
 	async-watch@0.3.1
 	async_zip@0.0.17
 	asynchronous-codec@0.7.0
@@ -141,7 +140,7 @@ CRATES="
 	byteorder@1.5.0
 	bytes-utils@0.1.4
 	bytes@0.4.12
-	bytes@1.7.1
+	bytes@1.7.2
 	calloop-wayland-source@0.3.0
 	calloop@0.13.0
 	camino@1.1.9
@@ -155,7 +154,6 @@ CRATES="
 	cargo_metadata@0.18.1
 	cargo_toml@0.20.5
 	cast@0.3.0
-	castaway@0.1.2
 	cbc@0.1.2
 	cbindgen@0.27.0
 	cc@1.1.15
@@ -172,8 +170,8 @@ CRATES="
 	ciborium@0.2.2
 	cipher@0.4.4
 	clang-sys@1.8.1
-	clap@4.5.18
-	clap_builder@4.5.18
+	clap@4.5.20
+	clap_builder@4.5.20
 	clap_complete@4.5.24
 	clap_derive@4.5.18
 	clap_lex@0.7.2
@@ -211,17 +209,17 @@ CRATES="
 	cpal@0.15.3
 	cpp_demangle@0.4.4
 	cpufeatures@0.2.13
-	cranelift-bforest@0.111.0
-	cranelift-bitset@0.111.0
-	cranelift-codegen-meta@0.111.0
-	cranelift-codegen-shared@0.111.0
-	cranelift-codegen@0.111.0
-	cranelift-control@0.111.0
-	cranelift-entity@0.111.0
-	cranelift-frontend@0.111.0
-	cranelift-isle@0.111.0
-	cranelift-native@0.111.0
-	cranelift-wasm@0.111.0
+	cranelift-bforest@0.111.1
+	cranelift-bitset@0.111.1
+	cranelift-codegen-meta@0.111.1
+	cranelift-codegen-shared@0.111.1
+	cranelift-codegen@0.111.1
+	cranelift-control@0.111.1
+	cranelift-entity@0.111.1
+	cranelift-frontend@0.111.1
+	cranelift-isle@0.111.1
+	cranelift-native@0.111.1
+	cranelift-wasm@0.111.1
 	crc-catalog@2.4.0
 	crc32c@0.6.8
 	crc32fast@1.4.2
@@ -239,8 +237,6 @@ CRATES="
 	crypto-common@0.1.6
 	ctor@0.2.8
 	ctrlc@3.4.5
-	curl-sys@0.4.74+curl-8.9.0
-	curl@0.4.46
 	cursor-icon@1.1.0
 	dashmap@5.5.3
 	dashmap@6.0.1
@@ -274,7 +270,7 @@ CRATES="
 	embed-resource@2.4.3
 	embedded-io@0.4.0
 	embedded-io@0.6.1
-	emojis@0.6.3
+	emojis@0.6.4
 	encode_unicode@0.3.6
 	encoding_rs@0.8.34
 	endi@1.1.0
@@ -365,6 +361,7 @@ CRATES="
 	grid@0.13.0
 	group@0.12.1
 	h2@0.3.26
+	h2@0.4.6
 	half@2.4.1
 	handlebars@4.5.0
 	handlebars@5.1.2
@@ -390,7 +387,6 @@ CRATES="
 	home@0.5.9
 	hound@3.5.1
 	html5ever@0.27.0
-	html_to_markdown@0.1.0
 	http-body-util@0.1.2
 	http-body@0.4.6
 	http-body@1.0.1
@@ -403,8 +399,11 @@ CRATES="
 	human_bytes@0.4.3
 	humantime@2.1.0
 	hyper-rustls@0.24.2
+	hyper-rustls@0.27.3
 	hyper-tls@0.5.0
+	hyper-util@0.1.9
 	hyper@0.14.30
+	hyper@1.4.1
 	iana-time-zone-haiku@0.1.2
 	iana-time-zone@0.1.60
 	id-arena@2.2.1
@@ -428,13 +427,12 @@ CRATES="
 	io-lifetimes@1.0.11
 	io-lifetimes@2.0.3
 	iovec@0.1.4
-	ipc-channel@0.18.2
+	ipc-channel@0.18.3
 	ipnet@2.9.0
 	is-docker@0.2.0
 	is-terminal@0.4.13
 	is-wsl@0.4.0
 	is_terminal_polyfill@1.70.1
-	isahc@1.7.2
 	itertools@0.10.5
 	itertools@0.12.1
 	itertools@0.13.0
@@ -561,7 +559,7 @@ CRATES="
 	palette@0.7.6
 	palette_derive@0.7.6
 	parity-tokio-ipc@0.9.0
-	parking@2.2.0
+	parking@2.2.1
 	parking_lot@0.12.3
 	parking_lot_core@0.9.10
 	password-hash@0.5.0
@@ -608,12 +606,12 @@ CRATES="
 	powerfmt@0.2.0
 	ppv-lite86@0.2.20
 	precomputed-hash@0.1.1
-	pretty_assertions@1.4.0
+	pretty_assertions@1.4.1
 	prettyplease@0.2.22
 	proc-macro-crate@3.2.0
 	proc-macro-error-attr@1.0.4
 	proc-macro-error@1.0.4
-	proc-macro2@1.0.86
+	proc-macro2@1.0.87
 	profiling-procmacros@1.0.15
 	profiling@1.0.15
 	prometheus@0.13.4
@@ -632,6 +630,9 @@ CRATES="
 	quick-error@2.0.1
 	quick-xml@0.32.0
 	quick-xml@0.34.0
+	quinn-proto@0.11.8
+	quinn-udp@0.5.5
+	quinn@0.11.5
 	quote@1.0.37
 	radium@0.7.0
 	rand@0.7.3
@@ -682,6 +683,7 @@ CRATES="
 	rust_decimal@1.36.0
 	rustc-demangle@0.1.24
 	rustc-hash@1.1.0
+	rustc-hash@2.0.0
 	rustc_version@0.4.1
 	rustix-openpty@0.1.1
 	rustix@0.37.27
@@ -692,8 +694,10 @@ CRATES="
 	rustls-pemfile@2.1.3
 	rustls-pki-types@1.8.0
 	rustls-webpki@0.101.7
+	rustls-webpki@0.102.8
 	rustls@0.20.9
 	rustls@0.21.12
+	rustls@0.23.13
 	rustversion@1.0.17
 	rustybuzz@0.14.1
 	ryu@1.0.18
@@ -723,7 +727,7 @@ CRATES="
 	serde_derive_internals@0.26.0
 	serde_derive_internals@0.29.1
 	serde_fmt@1.0.3
-	serde_json@1.0.127
+	serde_json@1.0.128
 	serde_json_lenient@0.2.1
 	serde_path_to_error@0.1.16
 	serde_qs@0.10.1
@@ -756,7 +760,6 @@ CRATES="
 	slab@0.4.9
 	slice-group-by@0.3.1
 	slotmap@1.0.7
-	sluice@0.5.5
 	smallvec@1.13.2
 	smart-default@0.6.0
 	smol@1.3.0
@@ -770,7 +773,7 @@ CRATES="
 	spki@0.6.0
 	spki@0.7.3
 	sptr@0.3.2
-	sqlformat@0.2.4
+	sqlformat@0.2.6
 	sqlx-core@0.8.0
 	sqlx-macros-core@0.8.0
 	sqlx-macros@0.8.0
@@ -804,11 +807,14 @@ CRATES="
 	syn@2.0.76
 	syn_derive@0.1.8
 	sync_wrapper@0.1.2
+	sync_wrapper@1.0.1
 	synchronoise@1.0.1
 	sys-locale@0.3.1
 	sysinfo@0.31.4
 	system-configuration-sys@0.5.0
+	system-configuration-sys@0.6.0
 	system-configuration@0.5.1
+	system-configuration@0.6.1
 	system-deps@6.2.2
 	system-interface@0.27.2
 	taffy@0.4.4
@@ -818,9 +824,9 @@ CRATES="
 	tempfile@3.12.0
 	tendril@0.4.3
 	termcolor@1.4.1
-	terminal_size@0.3.0
-	thiserror-impl@1.0.63
-	thiserror@1.0.63
+	terminal_size@0.4.0
+	thiserror-impl@1.0.64
+	thiserror@1.0.64
 	thread_local@1.1.8
 	tiff@0.9.1
 	tiktoken-rs@0.5.9
@@ -838,11 +844,12 @@ CRATES="
 	tokio-macros@2.4.0
 	tokio-native-tls@0.3.1
 	tokio-rustls@0.24.1
+	tokio-rustls@0.26.0
 	tokio-socks@0.5.2
 	tokio-stream@0.1.15
 	tokio-tungstenite@0.20.1
 	tokio-tungstenite@0.21.0
-	tokio-util@0.7.11
+	tokio-util@0.7.12
 	tokio@1.40.0
 	toml@0.5.11
 	toml@0.7.8
@@ -858,7 +865,6 @@ CRATES="
 	tower@0.4.13
 	tracing-attributes@0.1.27
 	tracing-core@0.1.32
-	tracing-futures@0.2.5
 	tracing-log@0.2.0
 	tracing-serde@0.1.3
 	tracing-subscriber@0.3.18
@@ -867,6 +873,7 @@ CRATES="
 	tree-sitter-c@0.23.0
 	tree-sitter-cpp@0.23.0
 	tree-sitter-css@0.23.0
+	tree-sitter-diff@0.1.0
 	tree-sitter-elixir@0.3.0
 	tree-sitter-embedded-template@0.23.0
 	tree-sitter-go@0.23.1
@@ -940,25 +947,26 @@ CRATES="
 	wasm-encoder@0.201.0
 	wasm-encoder@0.215.0
 	wasm-metadata@0.201.0
+	wasm-streams@0.4.1
 	wasmparser@0.201.0
 	wasmparser@0.215.0
 	wasmprinter@0.215.0
-	wasmtime-asm-macros@24.0.0
+	wasmtime-asm-macros@24.0.1
 	wasmtime-c-api-impl@24.0.0
 	wasmtime-c-api-macros@24.0.0
-	wasmtime-component-macro@24.0.0
-	wasmtime-component-util@24.0.0
-	wasmtime-cranelift@24.0.0
-	wasmtime-environ@24.0.0
-	wasmtime-fiber@24.0.0
-	wasmtime-jit-icache-coherence@24.0.0
-	wasmtime-slab@24.0.0
-	wasmtime-types@24.0.0
-	wasmtime-versioned-export-macros@24.0.0
+	wasmtime-component-macro@24.0.1
+	wasmtime-component-util@24.0.1
+	wasmtime-cranelift@24.0.1
+	wasmtime-environ@24.0.1
+	wasmtime-fiber@24.0.1
+	wasmtime-jit-icache-coherence@24.0.1
+	wasmtime-slab@24.0.1
+	wasmtime-types@24.0.1
+	wasmtime-versioned-export-macros@24.0.1
 	wasmtime-wasi@24.0.0
-	wasmtime-winch@24.0.0
-	wasmtime-wit-bindgen@24.0.0
-	wasmtime@24.0.0
+	wasmtime-winch@24.0.1
+	wasmtime-wit-bindgen@24.0.1
+	wasmtime@24.0.1
 	wast@35.0.2
 	wayland-backend@0.3.6
 	wayland-client@0.31.5
@@ -982,12 +990,13 @@ CRATES="
 	winapi-util@0.1.9
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	winapi@0.3.9
-	winch-codegen@0.22.0
+	winch-codegen@0.22.1
 	windows-core@0.52.0
 	windows-core@0.54.0
 	windows-core@0.58.0
 	windows-implement@0.58.0
 	windows-interface@0.58.0
+	windows-registry@0.2.0
 	windows-result@0.1.2
 	windows-result@0.2.0
 	windows-strings@0.1.0
@@ -998,7 +1007,6 @@ CRATES="
 	windows-targets@0.42.2
 	windows-targets@0.48.5
 	windows-targets@0.52.6
-	windows@0.48.0
 	windows@0.54.0
 	windows@0.58.0
 	windows_aarch64_gnullvm@0.42.2
@@ -1051,7 +1059,7 @@ CRATES="
 	xml5ever@0.18.1
 	xmlparser@0.13.6
 	xmlwriter@0.1.0
-	yansi@0.5.1
+	yansi@1.0.1
 	yazi@0.1.6
 	yeslogic-fontconfig-sys@6.0.0
 	zbus@4.4.0
@@ -1078,6 +1086,7 @@ CRATES="
 declare -A GIT_CRATES=(
 	[alacritty_terminal]="https://github.com/alacritty/alacritty;91d034ff8b53867143c005acfaa14609147c9a2c;alacritty-%commit%/alacritty_terminal"
 	[async-pipe]="https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%"
+	[async-stripe]="https://github.com/zed-industries/async-stripe;3672dd4efb7181aa597bf580bf5a2f5d23db6735;async-stripe-%commit%"
 	[blade-graphics]="https://github.com/kvark/blade;e142a3a5e678eb6a13e642ad8401b1f3aa38e969;blade-%commit%/blade-graphics"
 	[blade-macros]="https://github.com/kvark/blade;e142a3a5e678eb6a13e642ad8401b1f3aa38e969;blade-%commit%/blade-macros"
 	[blade-util]="https://github.com/kvark/blade;e142a3a5e678eb6a13e642ad8401b1f3aa38e969;blade-%commit%/blade-util"
@@ -1085,7 +1094,7 @@ declare -A GIT_CRATES=(
 	[font-kit]="https://github.com/zed-industries/font-kit;40391b7c0041d8a8572af2afa3de32ae088f0120;font-kit-%commit%"
 	[lsp-types]="https://github.com/zed-industries/lsp-types;72357d6f6d212bdffba3b5ef4b31d8ca856058e7;lsp-types-%commit%"
 	[nvim-rs]="https://github.com/KillTheMule/nvim-rs;69500bae73b8b3f02a05b7bee621a0d0e633da6c;nvim-rs-%commit%"
-	[protols-tree-sitter-proto]="https://github.com/zed-industries/tree-sitter-proto;0848bd30a64be48772e15fbb9d5ba8c0cc5772ad;tree-sitter-proto-%commit%"
+	[reqwest]="https://github.com/zed-industries/reqwest;fd110f6998da16bbca97b6dddda9be7827c50e29;reqwest-%commit%"
 	[tree-sitter-gomod]="https://github.com/zed-industries/tree-sitter-go-mod;a9aea5e358cde4d0f8ff20b7bc4fa311e359c7ca;tree-sitter-go-mod-%commit%"
 	[tree-sitter-gowork]="https://github.com/zed-industries/tree-sitter-go-work;acb0617bf7f4fda02c6217676cc64acb89536dc7;tree-sitter-go-work-%commit%"
 	[tree-sitter-heex]="https://github.com/zed-industries/tree-sitter-heex;1dd45142fbb05562e35b2040c6129c9bca346592;tree-sitter-heex-%commit%"
