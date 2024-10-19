@@ -72,8 +72,8 @@ DEPEND="
 		video_cards_nvidia? ( gui-libs/egl-wayland )
 	)
 	udev? (
-		>=virtual/libudev-232-r1:=
-		>=dev-libs/libgudev-232
+		>=virtual/libudev-238:=
+		>=dev-libs/libgudev-238
 	)
 	systemd? ( sys-apps/systemd )
 	x11-libs/libSM
