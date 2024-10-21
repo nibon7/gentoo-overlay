@@ -9,8 +9,9 @@ KERNEL_IUSE_CLANG=1
 
 inherit kernel-build unpacker
 
+SLOT=zen2
 MY_P=linux-${PV%.*}
-ZEN_VER=${PV%.0}
+ZEN_VER=${PV%.0}-${SLOT}
 
 DESCRIPTION="Zen patched kernel"
 HOMEPAGE="
@@ -20,8 +21,8 @@ HOMEPAGE="
 "
 SRC_URI="
 	https://cdn.kernel.org/pub/linux/kernel/v$(ver_cut 1).x/${MY_P}.tar.xz
-	https://github.com/zen-kernel/zen-kernel/releases/download/v${ZEN_VER}-zen1/linux-v${ZEN_VER}-zen1.patch.zst
-	https://gitlab.archlinux.org/archlinux/packaging/packages/linux-zen/-/raw/${ZEN_VER}.zen1-1/config -> kernel-archlinux.config.${ZEN_VER}
+	https://github.com/zen-kernel/zen-kernel/releases/download/v${ZEN_VER}/linux-v${ZEN_VER}.patch.zst
+	https://gitlab.archlinux.org/archlinux/packaging/packages/linux-zen/-/raw/${ZEN_VER/-/.}-1/config -> kernel-archlinux.config.${ZEN_VER}
 "
 
 if ver_test "$(ver_cut 3)" -gt 0; then
@@ -51,7 +52,7 @@ src_prepare() {
 		PATCHES+=( "${WORKDIR}"/patch-${PV} )
 	fi
 
-	PATCHES+=( "${WORKDIR}"/linux-v${ZEN_VER}-zen1.patch )
+	PATCHES+=( "${WORKDIR}"/linux-v${ZEN_VER}.patch )
 
 	if use savedconfig; then
 		> .config || die
