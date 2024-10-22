@@ -20,7 +20,7 @@ index 3b54ac1..8950a36 100644
  gnome_settings_dep = dependency('gnome-settings-daemon', version: '>= 41.0')
 -goa_dep = dependency('goa-1.0', version: goa_req_version, fallback: 'goa')
 +goa_dep = dependency('goa-1.0', version: goa_req_version, required: get_option('goa'))
- gsettings_desktop_dep = dependency('gsettings-desktop-schemas', version: '>= 47.alpha')
+ gsettings_desktop_dep = dependency('gsettings-desktop-schemas', version: '>= 47.0')
  libxml_dep = dependency('libxml-2.0')
  pulse_dep = dependency('libpulse', version: pulse_req_version)
 @@ -201,6 +201,10 @@ pwquality_dep = dependency('pwquality', version: '>= 1.2.2')
