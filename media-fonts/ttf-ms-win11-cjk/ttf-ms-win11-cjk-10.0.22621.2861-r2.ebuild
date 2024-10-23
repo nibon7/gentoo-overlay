@@ -17,7 +17,7 @@ S="${DISTDIR}"
 
 LICENSE="microsoft"
 SLOT="0"
-KEYWORDS="amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 arm64 ~loong ppc64 ~riscv x86"
 IUSE="l10n_ja l10n_ko +l10n_zh-CN l10n_zh-TW"
 REQUIRED_USE="|| ( l10n_ja l10n_ko l10n_zh-CN l10n_zh-TW )"
 RESTRICT="binchecks strip fetch"
