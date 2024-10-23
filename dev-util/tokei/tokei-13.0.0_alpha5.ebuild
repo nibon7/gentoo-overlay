@@ -229,6 +229,6 @@ LICENSE+="
 	|| ( Apache-2.0 Boost-1.0 )
 "
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv"
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
