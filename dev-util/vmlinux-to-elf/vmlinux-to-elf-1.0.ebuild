@@ -17,7 +17,7 @@ else
 	COMMIT="fa5c9305ae1c4bbcd2debabb810e7613def690a7"
 	SRC_URI="https://github.com/marin-m/vmlinux-to-elf/archive/${COMMIT}.tar.gz -> ${P}-g${COMMIT:0:7}.tar.gz"
 	S="${WORKDIR}"/${PN}-${COMMIT}
-	KEYWORDS="amd64"
+	KEYWORDS="amd64 arm64 ~loong ~riscv x86"
 fi
 
 LICENSE="GPL-3"
