@@ -9,7 +9,7 @@ KERNEL_IUSE_CLANG=1
 
 inherit kernel-build unpacker
 
-SLOT=zen2
+SLOT=zen1
 MY_P=linux-${PV%.*}
 ZEN_VER=${PV%.0}-${SLOT}
 
