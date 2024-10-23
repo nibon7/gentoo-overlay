@@ -19,7 +19,7 @@ S="${WORKDIR}/${PN}-core-${PV}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="amd64 arm64 ~loong ~riscv x86"
 
 BDEPEND="dev-lang/go"
 
