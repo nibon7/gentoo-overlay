@@ -1124,7 +1124,7 @@ LICENSE+="
 	LGPL-3 MIT MPL-2.0 Unicode-DFS-2016 ZLIB
 "
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv"
 IUSE+=" +fonts"
 
 DEPEND="
