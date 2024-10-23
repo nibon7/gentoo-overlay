@@ -16,7 +16,7 @@ S="${WORKDIR}/${PN}-${PN}${MY_PV}"
 
 LICENSE="BSD BSD-2 Boost-1.0 CC0-1.0 GPL-2 LGPL-2.1 MIT ZLIB"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="amd64 arm64 ppc64 ~riscv x86"
 
 IUSE="X alsa debug lto opengl openmp pcap pulseaudio qt6 +taptun tools wayland"
 IUSE_CPU_FLAGS=" sse2 sse3"
