@@ -5,8 +5,8 @@ EAPI=8
 
 inherit systemd go-module
 
-GEOSITE_VER="20240907043125"
-GEOIP_VER="202409050049"
+GEOSITE_VER="20241013063848"
+GEOIP_VER="202410240052"
 
 DESCRIPTION="A platform for building proxies to bypass network restrictions."
 HOMEPAGE="https://www.v2fly.org/"
