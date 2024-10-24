@@ -262,6 +262,7 @@ CRATES="
 	doxygen-rs@0.4.2
 	dwrote@0.11.1
 	dyn-clone@1.0.17
+	ec4rs@1.1.1
 	ecdsa@0.14.8
 	educe@0.5.11
 	either@1.13.0
@@ -870,11 +871,11 @@ CRATES="
 	tracing-subscriber@0.3.18
 	tracing@0.1.40
 	tree-sitter-bash@0.23.1
-	tree-sitter-c@0.23.0
-	tree-sitter-cpp@0.23.0
+	tree-sitter-c@0.23.1
+	tree-sitter-cpp@0.23.1
 	tree-sitter-css@0.23.0
 	tree-sitter-diff@0.1.0
-	tree-sitter-elixir@0.3.0
+	tree-sitter-elixir@0.3.1
 	tree-sitter-embedded-template@0.23.0
 	tree-sitter-go@0.23.1
 	tree-sitter-html@0.20.4
@@ -963,7 +964,7 @@ CRATES="
 	wasmtime-slab@24.0.1
 	wasmtime-types@24.0.1
 	wasmtime-versioned-export-macros@24.0.1
-	wasmtime-wasi@24.0.0
+	wasmtime-wasi@24.0.1
 	wasmtime-winch@24.0.1
 	wasmtime-wit-bindgen@24.0.1
 	wasmtime@24.0.1
@@ -983,9 +984,9 @@ CRATES="
 	which@4.4.2
 	which@6.0.3
 	whoami@1.5.1
-	wiggle-generate@24.0.0
-	wiggle-macro@24.0.0
-	wiggle@24.0.0
+	wiggle-generate@24.0.1
+	wiggle-macro@24.0.1
+	wiggle@24.0.1
 	winapi-i686-pc-windows-gnu@0.4.0
 	winapi-util@0.1.9
 	winapi-x86_64-pc-windows-gnu@0.4.0
@@ -1098,7 +1099,7 @@ declare -A GIT_CRATES=(
 	[tree-sitter-gomod]="https://github.com/zed-industries/tree-sitter-go-mod;a9aea5e358cde4d0f8ff20b7bc4fa311e359c7ca;tree-sitter-go-mod-%commit%"
 	[tree-sitter-gowork]="https://github.com/zed-industries/tree-sitter-go-work;acb0617bf7f4fda02c6217676cc64acb89536dc7;tree-sitter-go-work-%commit%"
 	[tree-sitter-heex]="https://github.com/zed-industries/tree-sitter-heex;1dd45142fbb05562e35b2040c6129c9bca346592;tree-sitter-heex-%commit%"
-	[tree-sitter-md]="https://github.com/zed-industries/tree-sitter-markdown;4cfa6aad6b75052a5077c80fd934757d9267d81b;tree-sitter-markdown-%commit%"
+	[tree-sitter-md]="https://github.com/tree-sitter-grammars/tree-sitter-markdown;9a23c1a96c0513d8fc6520972beedd419a973539;tree-sitter-markdown-%commit%"
 	[tree-sitter-yaml]="https://github.com/zed-industries/tree-sitter-yaml;baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a;tree-sitter-yaml-%commit%"
 	[xim-ctext]="https://github.com/XDeme1/xim-rs;d50d461764c2213655cd9cf65a0ea94c70d3c4fd;xim-rs-%commit%/xim-ctext"
 	[xim-parser]="https://github.com/XDeme1/xim-rs;d50d461764c2213655cd9cf65a0ea94c70d3c4fd;xim-rs-%commit%/xim-parser"
