@@ -10,7 +10,7 @@ SRC_URI="https://github.com/wangyu-/udp2raw/archive/refs/tags/${PV}.tar.gz -> ${
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 arm x86"
+KEYWORDS="amd64 arm arm64 x86"
 IUSE="cpu_flags_x86_aes"
 
 RDEPEND="net-firewall/iptables"
