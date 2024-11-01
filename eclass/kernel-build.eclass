@@ -42,7 +42,7 @@ if [[ ${KERNEL_IUSE_MODULES_SIGN} ]]; then
 fi
 
 if [[ ${KERNEL_IUSE_CLANG} ]]; then
-	LLVM_COMPAT=( 17 18 )
+	LLVM_COMPAT=( 17 18 19 )
 	inherit llvm-r1
 fi
 
