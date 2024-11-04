@@ -447,6 +447,7 @@ CRATES="
 	jpeg-decoder@0.3.1
 	js-sys@0.3.70
 	jsonwebtoken@9.3.0
+	jupyter-serde@0.2.0
 	khronos-egl@6.0.0
 	kqueue-sys@1.0.4
 	kqueue@1.0.8
@@ -511,6 +512,7 @@ CRATES="
 	nanoid@0.4.0
 	nanorand@0.7.0
 	native-tls@0.2.12
+	nbformat@0.3.1
 	ndk-context@0.1.1
 	ndk-sys@0.5.0+25.2.9519653
 	ndk@0.8.0
@@ -681,7 +683,7 @@ CRATES="
 	roxmltree@0.19.0
 	roxmltree@0.20.0
 	rsa@0.9.6
-	runtimelib@0.15.0
+	runtimelib@0.16.0
 	rust-embed-impl@8.5.0
 	rust-embed-utils@8.5.0
 	rust-embed@8.5.0
