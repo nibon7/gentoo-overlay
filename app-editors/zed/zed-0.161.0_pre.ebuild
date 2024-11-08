@@ -44,7 +44,7 @@ CRATES="
 	async-channel@1.9.0
 	async-channel@2.3.1
 	async-compat@0.2.4
-	async-compression@0.4.13
+	async-compression@0.4.17
 	async-dispatcher@0.1.2
 	async-executor@1.13.0
 	async-fs@1.6.0
@@ -312,7 +312,7 @@ CRATES="
 	flate2@1.0.33
 	float-cmp@0.9.0
 	float-ord@0.3.2
-	flume@0.11.0
+	flume@0.11.1
 	fnv@1.0.7
 	font-types@0.6.0
 	fontconfig-parser@0.5.7
@@ -406,7 +406,7 @@ CRATES="
 	hyper-rustls@0.27.3
 	hyper-tls@0.5.0
 	hyper-util@0.1.9
-	hyper@0.14.30
+	hyper@0.14.31
 	hyper@1.4.1
 	iana-time-zone-haiku@0.1.2
 	iana-time-zone@0.1.60
@@ -447,7 +447,7 @@ CRATES="
 	jpeg-decoder@0.3.1
 	js-sys@0.3.70
 	jsonwebtoken@9.3.0
-	jupyter-serde@0.2.0
+	jupyter-serde@0.2.1
 	khronos-egl@6.0.0
 	kqueue-sys@1.0.4
 	kqueue@1.0.8
@@ -457,7 +457,7 @@ CRATES="
 	lazycell@1.3.0
 	leb128@0.2.5
 	lebe@0.5.2
-	libc@0.2.159
+	libc@0.2.161
 	libdbus-sys@0.2.5
 	libfuzzer-sys@0.4.7
 	libgit2-sys@0.17.0+1.8.1
@@ -468,8 +468,8 @@ CRATES="
 	libsqlite3-sys@0.28.0
 	libz-sys@1.1.20
 	linkify@0.10.0
-	linkme-impl@0.3.28
-	linkme@0.3.28
+	linkme-impl@0.3.29
+	linkme@0.3.29
 	linux-raw-sys@0.3.8
 	linux-raw-sys@0.4.14
 	lmdb-master-sys@0.2.4
@@ -512,7 +512,7 @@ CRATES="
 	nanoid@0.4.0
 	nanorand@0.7.0
 	native-tls@0.2.12
-	nbformat@0.3.1
+	nbformat@0.3.2
 	ndk-context@0.1.1
 	ndk-sys@0.5.0+25.2.9519653
 	ndk@0.8.0
@@ -571,7 +571,7 @@ CRATES="
 	parking_lot_core@0.9.10
 	password-hash@0.5.0
 	paste@1.0.15
-	pathdiff@0.2.1
+	pathdiff@0.2.2
 	pathfinder_geometry@0.5.1
 	pathfinder_simd@0.5.4
 	pbkdf2@0.12.2
@@ -618,9 +618,9 @@ CRATES="
 	proc-macro-crate@3.2.0
 	proc-macro-error-attr@1.0.4
 	proc-macro-error@1.0.4
-	proc-macro2@1.0.87
-	profiling-procmacros@1.0.15
-	profiling@1.0.15
+	proc-macro2@1.0.89
+	profiling-procmacros@1.0.16
+	profiling@1.0.16
 	prometheus@0.13.4
 	prost-build@0.9.0
 	prost-derive@0.9.0
@@ -683,7 +683,7 @@ CRATES="
 	roxmltree@0.19.0
 	roxmltree@0.20.0
 	rsa@0.9.6
-	runtimelib@0.16.0
+	runtimelib@0.16.1
 	rust-embed-impl@8.5.0
 	rust-embed-utils@8.5.0
 	rust-embed@8.5.0
@@ -910,7 +910,7 @@ CRATES="
 	unicode-linebreak@0.1.5
 	unicode-normalization@0.1.23
 	unicode-properties@0.1.2
-	unicode-script@0.5.6
+	unicode-script@0.5.7
 	unicode-segmentation@1.11.0
 	unicode-width@0.1.13
 	unicode-xid@0.2.5
