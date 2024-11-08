@@ -10,12 +10,13 @@ HOMEPAGE="https://linux.weixin.qq.com"
 SRC_URI="
 	amd64? ( https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb -> WeChatLinux-${PV}-x86_64.deb )
 	arm64? ( https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_arm64.deb -> WeChatLinux-${PV}-arm64.deb )
+	loong? ( https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_LoongArch.deb -> WeChatLinux-${PV}-LoongArch.deb )
 "
 S="${WORKDIR}"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
-KEYWORDS="-* ~amd64 ~arm64"
+KEYWORDS="-* ~amd64 ~arm64 ~loong"
 RESTRICT="bindist mirror strip"
 
 BDEPEND="
