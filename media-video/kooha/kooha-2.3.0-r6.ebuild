@@ -44,7 +44,6 @@ BDEPEND="
 	dev-util/desktop-file-utils
 	sys-devel/gettext
 	virtual/pkgconfig
-	>=virtual/rust-1.73.0
 "
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"

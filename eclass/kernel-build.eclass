@@ -43,7 +43,8 @@ fi
 
 if [[ ${KERNEL_IUSE_CLANG} ]]; then
 	LLVM_COMPAT=( 17 18 19 )
-	inherit llvm-r1
+	RUST_MIN_VER="1.78.0"
+	inherit llvm-r1 rust
 fi
 
 inherit multiprocessing python-any-r1 savedconfig toolchain-funcs kernel-install
@@ -145,10 +146,7 @@ if [[ ${KERNEL_IUSE_CLANG} ]]; then
 			sys-devel/clang:${LLVM_SLOT}
 			sys-devel/llvm:${LLVM_SLOT}
 			sys-devel/lld:${LLVM_SLOT}
-			rust? (
-				>=dev-util/bindgen-0.65.1
-				virtual/rust:0/llvm-${LLVM_SLOT}
-			)
+			rust? ( >=dev-util/bindgen-0.65.1 )
 		')
 	"
 fi
@@ -193,6 +191,9 @@ kernel-build_pkg_setup() {
 
 	if [[ ${KERNEL_IUSE_CLANG} ]]; then
 		llvm-r1_pkg_setup
+		if use rust; then
+			rust_pkg_setup
+		fi
 	fi
 }
 

@@ -1174,7 +1174,6 @@ RDEPEND="${DEPEND}"
 BDEPEND="sys-devel/gettext
 	dev-util/vulkan-headers
 	>=dev-util/cargo-about-0.6.2
-	>=virtual/rust-1.80
 	sys-devel/mold
 	virtual/pkgconfig
 "

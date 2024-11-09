@@ -263,7 +263,6 @@ BDEPEND="
 	dev-util/itstool
 	>=sys-devel/gettext-0.19.8
 	virtual/pkgconfig
-	>=virtual/rust-1.70
 "
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"

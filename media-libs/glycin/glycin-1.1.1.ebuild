@@ -43,7 +43,6 @@ RDEPEND="
 "
 BDEPEND="
 	virtual/pkgconfig
-	>=virtual/rust-1.77
 	doc? ( dev-util/gi-docgen )
 	vala? ( $(vala_depend) )
 "

@@ -32,7 +32,6 @@ RDEPEND="${DEPEND}"
 BDEPEND="
 	dev-libs/appstream
 	virtual/pkgconfig
-	>=virtual/rust-1.75
 "
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
