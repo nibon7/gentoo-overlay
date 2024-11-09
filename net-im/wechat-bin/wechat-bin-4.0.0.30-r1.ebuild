@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit desktop unpacker xdg
+inherit desktop optfeature unpacker xdg
 
 DESCRIPTION="WeChat from Tencent"
 HOMEPAGE="https://linux.weixin.qq.com"
@@ -84,6 +84,22 @@ src_install() {
 		fperms 0755 /opt/wechat/${f} || die
 	done
 
-	dosym ../../opt/wechat/wechat /usr/bin/wechat
+	sed -e 's|^Icon=.*|Icon=wechat|' \
+		-e 's|^Exec=|Exec=env QT_AUTO_SCREEN_SCALE_FACTOR=1 QT_QPA_PLATFORM="wayland;xcb" |' \
+		-e 's|^Categories=.*|Categories=Network;InstantMessaging;Chat;|' \
+		-i usr/share/applications/wechat.desktop || die
+
 	domenu usr/share/applications/wechat.desktop
+	dosym ../../opt/wechat/wechat /usr/bin/wechat
+}
+
+pkg_postinst() {
+	xdg_pkg_postinst
+
+	optfeature "Chinese font support" "media-fonts/noto-cjk"
+	optfeature "Emoji support" "media-fonts/noto-emoji"
+}
+
+pkg_postrm() {
+	xdg_pkg_postrm
 }
