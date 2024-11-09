@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="avahi">DNS-SD support on HTTP endpoints via <pkg>net-dns/avahi</pkg></flag>
+		<flag name="localsearch">Install the <pkg>app-misc/localsearch</pkg> package for actual search indexing support for tracker</flag>
+		<flag name="stemmer">Enable stemming words while indexing via <pkg>dev-libs/snowball-stemmer</pkg></flag>
+	</use>
+	<upstream>
+		<remote-id type="gnome-gitlab">GNOME/tinysparql</remote-id>
+	</upstream>
+</pkgmetadata>
