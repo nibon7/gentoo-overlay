@@ -13,7 +13,7 @@ SLOT="0"
 IUSE="+cloudproviders gnome +gstreamer gtk-doc +introspection +previewer selinux sendto"
 REQUIRED_USE="gtk-doc? ( introspection )"
 
-KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86"
 
 DEPEND="
 	>=dev-libs/glib-2.79.0:2
@@ -29,12 +29,12 @@ DEPEND="
 	>=dev-libs/libportal-0.7:=[gtk]
 	>=x11-libs/pango-1.28.3
 	selinux? ( >=sys-libs/libselinux-2.0 )
-	>=app-misc/tracker-3.0:3
+	>=app-misc/tinysparql-3.8.0:3/0
 	cloudproviders? ( >=net-libs/libcloudproviders-0.3.1 )
 	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
 "
 RDEPEND="${DEPEND}
-	>=app-misc/tracker-miners-3.0:3=
+	>=app-misc/localsearch-3.8.0:3
 " # uses org.freedesktop.Tracker.Miner.Files gsettings schema from tracker-miners
 BDEPEND="
 	>=dev-util/gdbus-codegen-2.51.2
