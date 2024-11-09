@@ -24,7 +24,7 @@ DEPEND="
 	>=app-crypt/gcr-3.90.0:4=[introspection]
 	>=dev-libs/glib-2.79.2:2
 	>=dev-libs/gobject-introspection-1.49.1:=
-	>=dev-libs/gjs-1.73.1[cairo]
+	>=dev-libs/gjs-1.73.1[cairo(+)]
 	>=gui-libs/gtk-4:4[introspection]
 	>=x11-wm/mutter-47.0:0/15[introspection,test?]
 	>=sys-auth/polkit-0.120_p20220509[introspection]
