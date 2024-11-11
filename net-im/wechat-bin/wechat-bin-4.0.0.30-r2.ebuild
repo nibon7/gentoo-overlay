@@ -51,6 +51,7 @@ src_prepare() {
 		libilink_network.so
 		libvoipChannel.so
 		libvoipCodec.so
+		libwxtrans.so
 		RadiumWMPF/runtime/libilink2.so
 		RadiumWMPF/runtime/libilink_network.so
 	)
@@ -60,18 +61,17 @@ src_prepare() {
 	done
 
 	find opt/wechat/vlc_plugins -type f \
-		-exec patchelf --set-rpath '$ORIGIN:$ORIGIN/../..' '{}' \; || die
+		-exec patchelf --set-rpath '$ORIGIN:$ORIGIN/../..' '{}' \+ || die
 }
 
 src_install() {
 	insinto /usr/share
 	doins -r usr/share/icons
 
-	insinto /opt/wechat
-	doins -r opt/wechat/*
+	insinto /opt
+	doins -r opt/wechat
 
-	local files
-	files=(
+	local files=(
 		crashpad_handler
 		wechat
 		wxocr
@@ -81,7 +81,7 @@ src_install() {
 	)
 
 	for f in "${files[@]}"; do
-		fperms 0755 /opt/wechat/${f} || die
+		fperms 0755 /opt/wechat/${f}
 	done
 
 	sed -e 's|^Icon=.*|Icon=wechat|' \
