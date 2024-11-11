@@ -48,10 +48,8 @@ RDEPEND="
 
 QA_PREBUILT="*"
 
-src_install() {
-	insinto /usr/share
-	doins -r opt/wemeet/icons
-	doicon opt/wemeet/wemeet.svg
+src_prepare() {
+	default
 
 	local files=(
 		lib/libbugly.so
@@ -62,10 +60,18 @@ src_install() {
 	for f in "${files[@]}"; do
 		rm -fr opt/wemeet/${f} || die
 	done
+}
+
+src_install() {
+	insinto /usr/share
+	doins -r opt/wemeet/icons
+
+	doicon opt/wemeet/wemeet.svg
 
 	insinto /opt/wemeet
 	local dirs=(
 		bin
+		lib
 		plugins
 		resources
 		translations
@@ -75,14 +81,13 @@ src_install() {
 		doins -r opt/wemeet/${d}
 	done
 
-	exeinto /opt/wemeet/lib
-	doexe opt/wemeet/lib/*
-
 	exeinto /opt/wemeet
 	doexe "${FILESDIR}"/wemeetapp.sh
 
+	fperms -R +x /opt/wemeet/lib
+
 	for f in wemeetapp QtWebEngineProcess; do
-		fperms a+x /opt/wemeet/bin/${f}
+		fperms +x /opt/wemeet/bin/${f}
 	done
 
 	sed 's|^Icon=.*|Icon=wemeet|' \
