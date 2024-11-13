@@ -4,15 +4,16 @@
 EAPI=8
 inherit unpacker xdg
 
+MY_PN="${PN/-cn}"
 MY_PV="$(ver_cut 4)"
 
 DESCRIPTION="WPS Office is an office productivity suite"
 HOMEPAGE="https://linux.wps.cn"
-SRC_URI="amd64? ( https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2023/${MY_PV}/${PN}_${PV}_amd64.deb )"
+SRC_URI="amd64? ( https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2023/${MY_PV}/${MY_PN}_${PV}_amd64.deb )"
 S="${WORKDIR}"
 
 LICENSE="WPS-EULA"
-SLOT="1"
+SLOT="0"
 
 KEYWORDS="~amd64"
 IUSE="systemd"
@@ -63,11 +64,11 @@ RDEPEND="
 	x11-libs/libXrender
 	x11-libs/libXtst
 	systemd? ( sys-apps/systemd )
-	!${CATEGORY}/${PN}:0
+	!${CATEGORY}/${MY_PN}
 "
 
 pkg_nofetch() {
-	elog "Please visit https://linux.wps.cn and download ${PN}_${PV}_amd64.deb"
+	elog "Please visit https://linux.wps.cn and download ${MY_PN}_${PV}_amd64.deb"
 	elog "into your DISTDIR directory."
 }
 
