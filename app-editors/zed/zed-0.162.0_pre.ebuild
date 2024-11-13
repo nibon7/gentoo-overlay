@@ -27,7 +27,7 @@ CRATES="
 	anstyle-wincon@3.0.4
 	anstyle@1.0.8
 	any_vec@0.14.0
-	anyhow@1.0.91
+	anyhow@1.0.93
 	approx@0.5.1
 	arbitrary@1.3.2
 	arg_enum_proc_macro@0.3.4
@@ -67,9 +67,9 @@ CRATES="
 	async-stream@0.3.5
 	async-tar@0.5.0
 	async-task@4.7.1
-	async-tls@0.12.0
+	async-tls@0.13.0
 	async-trait@0.1.83
-	async-tungstenite@0.24.0
+	async-tungstenite@0.28.0
 	async-watch@0.3.1
 	async_zip@0.0.17
 	asynchronous-codec@0.7.0
@@ -115,8 +115,10 @@ CRATES="
 	bindgen@0.70.1
 	bit-set@0.5.3
 	bit-set@0.6.0
+	bit-set@0.8.0
 	bit-vec@0.6.3
 	bit-vec@0.7.0
+	bit-vec@0.8.0
 	bit_field@0.10.2
 	bitflags@1.3.2
 	bitflags@2.6.0
@@ -145,12 +147,12 @@ CRATES="
 	calloop-wayland-source@0.3.0
 	calloop@0.13.0
 	camino@1.1.9
-	cap-fs-ext@3.2.0
-	cap-net-ext@3.2.0
-	cap-primitives@3.2.0
-	cap-rand@3.2.0
-	cap-std@3.2.0
-	cap-time-ext@3.2.0
+	cap-fs-ext@3.4.1
+	cap-net-ext@3.4.1
+	cap-primitives@3.4.1
+	cap-rand@3.4.1
+	cap-std@3.4.1
+	cap-time-ext@3.4.1
 	cargo-platform@0.1.8
 	cargo_metadata@0.18.1
 	cargo_toml@0.20.5
@@ -210,17 +212,17 @@ CRATES="
 	cpal@0.15.3
 	cpp_demangle@0.4.4
 	cpufeatures@0.2.13
-	cranelift-bforest@0.111.1
-	cranelift-bitset@0.111.1
-	cranelift-codegen-meta@0.111.1
-	cranelift-codegen-shared@0.111.1
-	cranelift-codegen@0.111.1
-	cranelift-control@0.111.1
-	cranelift-entity@0.111.1
-	cranelift-frontend@0.111.1
-	cranelift-isle@0.111.1
-	cranelift-native@0.111.1
-	cranelift-wasm@0.111.1
+	cranelift-bforest@0.111.2
+	cranelift-bitset@0.111.2
+	cranelift-codegen-meta@0.111.2
+	cranelift-codegen-shared@0.111.2
+	cranelift-codegen@0.111.2
+	cranelift-control@0.111.2
+	cranelift-entity@0.111.2
+	cranelift-frontend@0.111.2
+	cranelift-isle@0.111.2
+	cranelift-native@0.111.2
+	cranelift-wasm@0.111.2
 	crc-catalog@2.4.0
 	crc32c@0.6.8
 	crc32fast@1.4.2
@@ -257,6 +259,7 @@ CRATES="
 	dirs-sys@0.4.1
 	dirs@4.0.0
 	dirs@5.0.1
+	displaydoc@0.2.5
 	dlib@0.5.2
 	dotenvy@0.15.7
 	downcast-rs@1.2.1
@@ -300,6 +303,7 @@ CRATES="
 	exr@1.72.0
 	fallible-iterator@0.3.0
 	fancy-regex@0.12.0
+	fancy-regex@0.14.0
 	fast-srgb8@1.0.0
 	fastrand@1.9.0
 	fastrand@2.1.1
@@ -367,7 +371,7 @@ CRATES="
 	h2@0.4.6
 	half@2.4.1
 	handlebars@4.5.0
-	handlebars@5.1.2
+	handlebars@6.2.0
 	hashbrown@0.12.3
 	hashbrown@0.13.2
 	hashbrown@0.14.5
@@ -410,12 +414,23 @@ CRATES="
 	hyper@1.4.1
 	iana-time-zone-haiku@0.1.2
 	iana-time-zone@0.1.60
+	icu_collections@1.5.0
+	icu_locid@1.5.0
+	icu_locid_transform@1.5.0
+	icu_locid_transform_data@1.5.0
+	icu_normalizer@1.5.0
+	icu_normalizer_data@1.5.0
+	icu_properties@1.5.1
+	icu_properties_data@1.5.0
+	icu_provider@1.5.0
+	icu_provider_macros@1.5.0
 	id-arena@2.2.1
-	idna@0.5.0
+	idna@1.0.3
+	idna_adapter@1.2.0
 	ignore@0.4.23
 	image-webp@0.1.3
 	image@0.25.2
-	imagesize@0.12.0
+	imagesize@0.13.0
 	imgref@1.10.1
 	indexmap@1.9.3
 	indexmap@2.4.0
@@ -427,7 +442,7 @@ CRATES="
 	inout@0.1.3
 	instant@0.1.13
 	interpolate_name@0.2.4
-	io-extras@0.18.2
+	io-extras@0.18.3
 	io-lifetimes@1.0.11
 	io-lifetimes@2.0.3
 	iovec@0.1.4
@@ -447,7 +462,7 @@ CRATES="
 	jpeg-decoder@0.3.1
 	js-sys@0.3.70
 	jsonwebtoken@9.3.0
-	jupyter-serde@0.2.1
+	jupyter-serde@0.4.0
 	khronos-egl@6.0.0
 	kqueue-sys@1.0.4
 	kqueue@1.0.8
@@ -472,6 +487,7 @@ CRATES="
 	linkme@0.3.29
 	linux-raw-sys@0.3.8
 	linux-raw-sys@0.4.14
+	litemap@0.7.3
 	lmdb-master-sys@0.2.4
 	lock_api@0.4.12
 	log@0.4.22
@@ -490,7 +506,7 @@ CRATES="
 	maybe-owned@0.3.4
 	maybe-rayon@0.1.1
 	md-5@0.10.6
-	mdbook@0.4.40
+	mdbook@0.4.41
 	memchr@2.7.4
 	memfd@0.6.4
 	memmap2@0.9.4
@@ -512,7 +528,7 @@ CRATES="
 	nanoid@0.4.0
 	nanorand@0.7.0
 	native-tls@0.2.12
-	nbformat@0.3.2
+	nbformat@0.5.0
 	ndk-context@0.1.1
 	ndk-sys@0.5.0+25.2.9519653
 	ndk@0.8.0
@@ -533,6 +549,8 @@ CRATES="
 	num-format@0.4.4
 	num-integer@0.1.46
 	num-iter@0.1.45
+	num-modular@0.6.1
+	num-order@1.2.0
 	num-rational@0.4.2
 	num-traits@0.2.19
 	num@0.4.3
@@ -632,7 +650,7 @@ CRATES="
 	ptr_meta_derive@0.1.4
 	pulldown-cmark-escape@0.10.1
 	pulldown-cmark@0.10.3
-	pulldown-cmark@0.12.1
+	pulldown-cmark@0.12.2
 	qoi@0.4.1
 	quick-error@2.0.1
 	quick-xml@0.32.0
@@ -670,20 +688,18 @@ CRATES="
 	regex@1.10.6
 	rend@0.4.2
 	reqwest@0.11.27
-	resvg@0.41.0
+	resvg@0.44.0
 	rfc6979@0.3.1
 	rgb@0.8.49
-	ring@0.16.20
 	ring@0.17.8
 	rkyv@0.7.45
 	rkyv_derive@0.7.45
 	rmp@0.8.14
 	rmpv@1.3.0
 	rodio@0.19.0
-	roxmltree@0.19.0
 	roxmltree@0.20.0
 	rsa@0.9.6
-	runtimelib@0.16.1
+	runtimelib@0.19.0
 	rust-embed-impl@8.5.0
 	rust-embed-utils@8.5.0
 	rust-embed@8.5.0
@@ -694,7 +710,7 @@ CRATES="
 	rustc_version@0.4.1
 	rustix-openpty@0.1.1
 	rustix@0.37.27
-	rustix@0.38.35
+	rustix@0.38.39
 	rustls-native-certs@0.6.3
 	rustls-native-certs@0.8.0
 	rustls-pemfile@1.0.4
@@ -702,7 +718,6 @@ CRATES="
 	rustls-pki-types@1.8.0
 	rustls-webpki@0.101.7
 	rustls-webpki@0.102.8
-	rustls@0.20.9
 	rustls@0.21.12
 	rustls@0.23.13
 	rustversion@1.0.17
@@ -734,7 +749,7 @@ CRATES="
 	serde_derive_internals@0.26.0
 	serde_derive_internals@0.29.1
 	serde_fmt@1.0.3
-	serde_json@1.0.128
+	serde_json@1.0.132
 	serde_json_lenient@0.2.1
 	serde_path_to_error@0.1.16
 	serde_qs@0.10.1
@@ -774,7 +789,6 @@ CRATES="
 	socket2@0.4.10
 	socket2@0.5.7
 	spdx@0.10.6
-	spin@0.5.2
 	spin@0.9.8
 	spirv@0.3.0+sdk-1.3.268.0
 	spki@0.6.0
@@ -811,12 +825,13 @@ CRATES="
 	svgtypes@0.15.2
 	swash@0.1.18
 	syn@1.0.109
-	syn@2.0.76
+	syn@2.0.87
 	syn_derive@0.1.8
 	sync_wrapper@0.1.2
 	sync_wrapper@1.0.1
 	synchronoise@1.0.1
-	sys-locale@0.3.1
+	synstructure@0.13.1
+	sys-locale@0.3.2
 	sysinfo@0.31.4
 	system-configuration-sys@0.5.0
 	system-configuration-sys@0.6.0
@@ -832,8 +847,8 @@ CRATES="
 	tendril@0.4.3
 	termcolor@1.4.1
 	terminal_size@0.4.0
-	thiserror-impl@1.0.64
-	thiserror@1.0.64
+	thiserror-impl@1.0.68
+	thiserror@1.0.68
 	thread_local@1.1.8
 	tiff@0.9.1
 	tiktoken-rs@0.5.9
@@ -844,6 +859,7 @@ CRATES="
 	tiny-skia-path@0.11.4
 	tiny-skia@0.11.4
 	tiny_http@0.8.2
+	tinystr@0.7.6
 	tinytemplate@1.2.1
 	tinyvec@1.8.0
 	tinyvec_macros@0.1.1
@@ -898,6 +914,7 @@ CRATES="
 	ttf-parser@0.21.1
 	tungstenite@0.20.1
 	tungstenite@0.21.0
+	tungstenite@0.24.0
 	typeid@1.0.2
 	typenum@1.17.0
 	ucd-trie@0.1.6
@@ -916,12 +933,13 @@ CRATES="
 	unicode-xid@0.2.5
 	unicode_categories@0.1.1
 	unindent@0.1.11
-	untrusted@0.7.1
 	untrusted@0.9.0
-	url@2.5.2
+	url@2.5.3
 	urlencoding@2.1.3
-	usvg@0.41.0
+	usvg@0.44.0
 	utf-8@0.7.6
+	utf16_iter@1.0.5
+	utf8_iter@1.0.4
 	utf8parse@0.2.2
 	uuid@1.10.0
 	v_frame@0.3.8
@@ -958,22 +976,22 @@ CRATES="
 	wasmparser@0.201.0
 	wasmparser@0.215.0
 	wasmprinter@0.215.0
-	wasmtime-asm-macros@24.0.1
+	wasmtime-asm-macros@24.0.2
 	wasmtime-c-api-impl@24.0.0
 	wasmtime-c-api-macros@24.0.0
-	wasmtime-component-macro@24.0.1
-	wasmtime-component-util@24.0.1
-	wasmtime-cranelift@24.0.1
-	wasmtime-environ@24.0.1
-	wasmtime-fiber@24.0.1
-	wasmtime-jit-icache-coherence@24.0.1
-	wasmtime-slab@24.0.1
-	wasmtime-types@24.0.1
-	wasmtime-versioned-export-macros@24.0.1
-	wasmtime-wasi@24.0.1
-	wasmtime-winch@24.0.1
-	wasmtime-wit-bindgen@24.0.1
-	wasmtime@24.0.1
+	wasmtime-component-macro@24.0.2
+	wasmtime-component-util@24.0.2
+	wasmtime-cranelift@24.0.2
+	wasmtime-environ@24.0.2
+	wasmtime-fiber@24.0.2
+	wasmtime-jit-icache-coherence@24.0.2
+	wasmtime-slab@24.0.2
+	wasmtime-types@24.0.2
+	wasmtime-versioned-export-macros@24.0.2
+	wasmtime-wasi@24.0.2
+	wasmtime-winch@24.0.2
+	wasmtime-wit-bindgen@24.0.2
+	wasmtime@24.0.2
 	wast@35.0.2
 	wayland-backend@0.3.6
 	wayland-client@0.31.5
@@ -990,14 +1008,14 @@ CRATES="
 	which@4.4.2
 	which@6.0.3
 	whoami@1.5.1
-	wiggle-generate@24.0.1
-	wiggle-macro@24.0.1
-	wiggle@24.0.1
+	wiggle-generate@24.0.2
+	wiggle-macro@24.0.2
+	wiggle@24.0.2
 	winapi-i686-pc-windows-gnu@0.4.0
 	winapi-util@0.1.9
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	winapi@0.3.9
-	winch-codegen@0.22.1
+	winch-codegen@0.22.2
 	windows-core@0.52.0
 	windows-core@0.54.0
 	windows-core@0.58.0
@@ -1055,6 +1073,8 @@ CRATES="
 	wit-parser@0.201.0
 	wit-parser@0.215.0
 	witx@0.9.1
+	write16@1.0.0
+	writeable@0.5.5
 	wyz@0.5.1
 	x11-clipboard@0.9.2
 	x11rb-protocol@0.13.1
@@ -1070,6 +1090,8 @@ CRATES="
 	yansi@1.0.1
 	yazi@0.1.6
 	yeslogic-fontconfig-sys@6.0.0
+	yoke-derive@0.7.4
+	yoke@0.7.4
 	zbus@4.4.0
 	zbus_macros@4.4.0
 	zbus_names@3.0.0
@@ -1077,9 +1099,13 @@ CRATES="
 	zeno@0.2.3
 	zerocopy-derive@0.7.35
 	zerocopy@0.7.35
+	zerofrom-derive@0.1.4
+	zerofrom@0.1.4
 	zeroize@1.8.1
 	zeroize_derive@1.4.2
 	zeromq@0.4.0
+	zerovec-derive@0.10.3
+	zerovec@0.10.4
 	zstd-safe@5.0.2+zstd.1.5.2
 	zstd-sys@2.0.13+zstd.1.5.6
 	zstd@0.11.2+zstd.1.5.2
@@ -1137,7 +1163,11 @@ declare -A GIT_CRATES=(
 	[xkbcommon]="https://github.com/ConradIrwin/xkbcommon-rs;fcbb4612185cc129ceeff51d22f7fb51810a03b2;xkbcommon-rs-%commit%"
 )
 
-inherit cargo desktop font xdg
+LLVM_COMPAT=( 18 )
+RUST_MIN_VER="1.80.1"
+RUST_NEEDS_LLVM=1
+
+inherit cargo desktop font llvm-r1 xdg
 
 MY_PV=${PV/_/-}
 
@@ -1163,12 +1193,14 @@ DEPEND="
 	>=dev-db/sqlite-3.14.0:3
 	>=dev-libs/libgit2-1.8.1
 	dev-libs/openssl
+	dev-libs/libgit2
+	dev-libs/mimalloc
 	dev-libs/wayland
 	media-libs/alsa-lib
 	media-libs/fontconfig
-	media-libs/vulkan-loader
+	media-libs/vulkan-loader[X]
 	x11-libs/libxcb
-	x11-libs/libxkbcommon
+	x11-libs/libxkbcommon[X]
 "
 RDEPEND="${DEPEND}"
 BDEPEND="sys-devel/gettext
@@ -1176,6 +1208,10 @@ BDEPEND="sys-devel/gettext
 	>=dev-util/cargo-about-0.6.2
 	sys-devel/mold
 	virtual/pkgconfig
+	$(llvm_gen_dep '
+		sys-devel/clang:${LLVM_SLOT}=
+		sys-devel/llvm:${LLVM_SLOT}=
+	')
 "
 
 QA_FLAGS_IGNORED="
@@ -1190,34 +1226,17 @@ PATCHES=(
 	"${FILESDIR}"/zed-add-ebuild-to-bash-path_suffixes.patch
 )
 
-src_configure() {
-	export PKG_CONFIG_ALLOW_CROSS=1
-	export LIBGIT2_NO_VENDOR=1
-	export ZSTD_SYS_USE_PKG_CONFIG=1
-
-	cargo_src_configure
-
-	./script/generate-licenses || die "Failed to generate licenses"
+pkg_setup() {
+	llvm-r1_pkg_setup
+	rust_pkg_setup
 }
 
-src_compile() {
-	# Set RELEASE_VERSION so it's compiled into GPUI and it knows about the version
-	export RELEASE_VERSION="${PV}"
-	export ZED_UPDATE_EXPLANATION="Updates are handled by portage"
-	cargo_src_compile --package cli --package zed
-}
+src_prepare() {
+	default
 
-src_install() {
-	newbin $(cargo_target_dir)/cli ${PN}
-
-	exeinto /usr/libexec
-	newexe $(cargo_target_dir)/${PN} ${PN}-editor
-
-	newicon -s 512 crates/${PN}/resources/app-icon.png ${PN}.png
-	newicon -s 1024 crates/${PN}/resources/app-icon@2x.png ${PN}.png
-
-	local suffix=""
+	local suffix
 	local channel=$(cat crates/zed/RELEASE_CHANNEL 2>/dev/null || echo "stable")
+
 	case "${channel}" in
 		stable)
 			suffix=""
@@ -1236,28 +1255,46 @@ src_install() {
 			;;
 	esac
 
-	local appid="dev.${PN}.${PN^}${suffix}"
+	export APPID="dev.${PN}.${PN^}${suffix}"
 
 	DO_STARTUP_NOTIFY="true" \
 		APP_CLI="${PN}" \
 		APP_ICON="${PN}" \
 		APP_NAME="${PN^}" \
 		envsubst < crates/${PN}/resources/${PN}.desktop.in \
-		> "${T}"/${appid}.desktop || die
+		> crates/${PN}/resources/${APPID}.desktop || die
+}
 
-	domenu "${T}"/${appid}.desktop
+src_configure() {
+	export PKG_CONFIG_ALLOW_CROSS=1
+	export LIBGIT2_NO_VENDOR=1
+	export ZSTD_SYS_USE_PKG_CONFIG=1
+
+	cargo_src_configure
+
+	./script/generate-licenses || die "Failed to generate licenses"
+}
+
+src_compile() {
+	# Set RELEASE_VERSION so it's compiled into GPUI and it knows about the version
+	export RELEASE_VERSION="${PV}"
+	export ZED_UPDATE_EXPLANATION="Updates are handled by portage"
+	cargo_src_compile --features=mimalloc --package cli --package zed
+}
+
+src_install() {
+	newbin $(cargo_target_dir)/cli ${PN}
+	exeinto /usr/libexec
+	newexe $(cargo_target_dir)/${PN} ${PN}-editor
+
+	newicon -s 512 crates/${PN}/resources/app-icon.png ${PN}.png
+	newicon -s 1024 crates/${PN}/resources/app-icon@2x.png ${PN}.png
+
+	domenu crates/${PN}/resources/${APPID}.desktop
 
 	if use fonts; then
 		for f in plex-mono plex-sans; do
 			FONT_SUFFIX="ttf" FONT_S="assets/fonts/${f}" font_src_install
 		done
 	fi
-}
-
-pkg_postinst() {
-	xdg_pkg_postinst
-}
-
-pkg_postrm() {
-	xdg_pkg_postrm
 }
