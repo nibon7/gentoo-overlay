@@ -205,6 +205,7 @@ multilib_src_configure() {
 		$(meson_native_use_feature elf libelf)
 		-Dmultiarch=false
 		$(meson_native_use_feature introspection)
+		-Dfile_monitor_backend=inotify
 	)
 
 	# Workaround for bug #938302
