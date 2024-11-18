@@ -42,7 +42,7 @@ BDEPEND="
 	)
 	test? (
 		$(python_gen_any_dep 'dev-python/pygobject[${PYTHON_USEDEP}]')
-		$(python_gen_any_dep 'dev-python/tappy[${PYTHON_USEDEP}]')
+		$(python_gen_any_dep 'dev-python/tap-py[${PYTHON_USEDEP}]')
 	)
 	${PYTHON_DEPS}
 "
@@ -51,7 +51,7 @@ PDEPEND="localsearch? ( >=app-misc/localsearch-3.8.0 )"
 python_check_deps() {
 	python_has_version -b \
 		"dev-python/pygobject[${PYTHON_USEDEP}]" \
-		"dev-python/tappy[${PYTHON_USEDEP}]"
+		"dev-python/tap-py[${PYTHON_USEDEP}]"
 }
 
 pkg_setup() {
