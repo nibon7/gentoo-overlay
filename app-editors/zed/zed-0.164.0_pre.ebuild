@@ -66,6 +66,7 @@ CRATES="
 	async-stream@0.3.6
 	async-tar@0.5.0
 	async-task@4.7.1
+	async-tls@0.12.0
 	async-tls@0.13.0
 	async-trait@0.1.83
 	async-tungstenite@0.22.2
@@ -154,7 +155,7 @@ CRATES="
 	cap-std@3.4.1
 	cap-time-ext@3.4.1
 	cargo-platform@0.1.8
-	cargo_metadata@0.18.1
+	cargo_metadata@0.19.0
 	cargo_toml@0.20.5
 	cast@0.3.0
 	cbc@0.1.2
@@ -238,7 +239,7 @@ CRATES="
 	crypto-bigint@0.4.9
 	crypto-bigint@0.5.5
 	crypto-common@0.1.6
-	ctor@0.2.8
+	ctor@0.2.9
 	ctrlc@3.4.5
 	cursor-icon@1.1.0
 	dashmap@5.5.3
@@ -461,9 +462,9 @@ CRATES="
 	jpeg-decoder@0.3.1
 	js-sys@0.3.72
 	jsonwebtoken@9.3.0
-	jupyter-protocol@0.2.0
-	jupyter-serde@0.5.0
-	jupyter-websocket-client@0.4.1
+	jupyter-protocol@0.3.0
+	jupyter-serde@0.6.0
+	jupyter-websocket-client@0.5.0
 	khronos-egl@6.0.0
 	kqueue-sys@1.0.4
 	kqueue@1.0.8
@@ -473,7 +474,7 @@ CRATES="
 	lazycell@1.3.0
 	leb128@0.2.5
 	lebe@0.5.2
-	libc@0.2.162
+	libc@0.2.164
 	libdbus-sys@0.2.5
 	libfuzzer-sys@0.4.8
 	libgit2-sys@0.17.0+1.8.1
@@ -528,7 +529,7 @@ CRATES="
 	nanoid@0.4.0
 	nanorand@0.7.0
 	native-tls@0.2.12
-	nbformat@0.6.0
+	nbformat@0.7.0
 	ndk-context@0.1.1
 	ndk-sys@0.5.0+25.2.9519653
 	ndk@0.8.0
@@ -692,6 +693,7 @@ CRATES="
 	resvg@0.44.0
 	rfc6979@0.3.1
 	rgb@0.8.50
+	ring@0.16.20
 	ring@0.17.8
 	rkyv@0.7.45
 	rkyv_derive@0.7.45
@@ -700,7 +702,7 @@ CRATES="
 	rodio@0.19.0
 	roxmltree@0.20.0
 	rsa@0.9.6
-	runtimelib@0.21.0
+	runtimelib@0.22.0
 	rust-embed-impl@8.5.0
 	rust-embed-utils@8.5.0
 	rust-embed@8.5.0
@@ -719,6 +721,7 @@ CRATES="
 	rustls-pki-types@1.10.0
 	rustls-webpki@0.101.7
 	rustls-webpki@0.102.8
+	rustls@0.20.9
 	rustls@0.21.12
 	rustls@0.23.16
 	rustversion@1.0.18
@@ -750,7 +753,7 @@ CRATES="
 	serde_derive_internals@0.26.0
 	serde_derive_internals@0.29.1
 	serde_fmt@1.0.3
-	serde_json@1.0.132
+	serde_json@1.0.133
 	serde_json_lenient@0.2.3
 	serde_path_to_error@0.1.16
 	serde_qs@0.10.1
@@ -790,6 +793,7 @@ CRATES="
 	socket2@0.4.10
 	socket2@0.5.7
 	spdx@0.10.7
+	spin@0.5.2
 	spin@0.9.8
 	spirv@0.3.0+sdk-1.3.268.0
 	spki@0.6.0
@@ -936,6 +940,7 @@ CRATES="
 	unicode-xid@0.2.6
 	unicode_categories@0.1.1
 	unindent@0.1.11
+	untrusted@0.7.1
 	untrusted@0.9.0
 	url@2.5.3
 	urlencoding@2.1.3
