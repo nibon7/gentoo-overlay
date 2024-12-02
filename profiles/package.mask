@@ -1,2 +1,0 @@
->=virtual/dist-kernel-6.12.0
->=sys-kernel/zen-kernel-6.12.0
