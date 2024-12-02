@@ -61,7 +61,7 @@ BDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}"/${P}-meson-Support-elogind.patch
+	"${FILESDIR}"/${PN}-47.0-meson-Support-elogind.patch
 )
 
 src_prepare() {
