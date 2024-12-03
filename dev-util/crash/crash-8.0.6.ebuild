@@ -94,10 +94,11 @@ src_compile() {
 		$(usev zstd)
 	)
 
+	local target
 	for target in ${IUSE_CRASH_TARGETS}; do
 		if use "crash_targets_${target}"; then
+			MAKECMDGOALS="${goals[@]}" \
 			emake \
-				MAKECMDGOALS="${goals[*]}" \
 				CC="$(tc-getCC)" \
 				AR="$(tc-getAR)" \
 				target="${target^^}"
