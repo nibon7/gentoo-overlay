@@ -1,4 +1,4 @@
-From 22e5f8fbafb81bf8f96497b1d3793dab8ba2e89e Mon Sep 17 00:00:00 2001
+From 4aa712b8ee873fd2e67ab0cde1da9db1e6117e48 Mon Sep 17 00:00:00 2001
 From: nibon7 <nibon7@163.com>
 Date: Mon, 2 Dec 2024 15:57:44 +0800
 Subject: [PATCH] drm/amd/display: Fix a flickering issue
@@ -9,7 +9,7 @@ Fixes: 58a261bfc967 ("drm/amd/display: use a more lax vblank enable policy for o
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f0a6816709ca7..8092cacc7a6fb 100644
+index f0a6816709ca7..83f1e0abc3e46 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 @@ -8413,11 +8413,11 @@ static void manage_dm_interrupts(struct amdgpu_device *adev,
@@ -21,11 +21,11 @@ index f0a6816709ca7..8092cacc7a6fb 100644
 -		    acrtc_state->stream->link->psr_settings.psr_version <
 -		    DC_PSR_VERSION_UNSUPPORTED ||
 -		    !(adev->flags & AMD_IS_APU)) {
-+		if (amdgpu_ip_version(adev, DCE_HWIP, 0) < IP_VERSION(3, 5, 0))
-+			;
-+		else if (acrtc_state->stream->link->psr_settings.psr_version <
-+			 DC_PSR_VERSION_UNSUPPORTED ||
-+			 !(adev->flags & AMD_IS_APU)) {
++		if (amdgpu_ip_version(adev, DCE_HWIP, 0) < IP_VERSION(3, 5, 0)) {
++			config.offdelay_ms = 0;
++		} else if (acrtc_state->stream->link->psr_settings.psr_version <
++			   DC_PSR_VERSION_UNSUPPORTED ||
++			   !(adev->flags & AMD_IS_APU)) {
  			timing = &acrtc_state->stream->timing;
  
  			/* at least 2 frames */
