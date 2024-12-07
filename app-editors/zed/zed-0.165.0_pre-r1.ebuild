@@ -1175,7 +1175,7 @@ declare -A GIT_CRATES=(
 	[xkbcommon]="https://github.com/ConradIrwin/xkbcommon-rs;fcbb4612185cc129ceeff51d22f7fb51810a03b2;xkbcommon-rs-%commit%"
 )
 
-LLVM_COMPAT=( 18 )
+LLVM_COMPAT=( {18..19} )
 RUST_MIN_VER="1.80.1"
 RUST_NEEDS_LLVM=1
 
