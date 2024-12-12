@@ -143,9 +143,9 @@ if [[ ${KERNEL_IUSE_CLANG} ]]; then
 	IUSE+=" lto rust"
 	BDEPEND+="
 		$(llvm_gen_dep '
-			sys-devel/clang:${LLVM_SLOT}
-			sys-devel/llvm:${LLVM_SLOT}
-			sys-devel/lld:${LLVM_SLOT}
+			llvm-core/clang:${LLVM_SLOT}
+			llvm-core/llvm:${LLVM_SLOT}
+			llvm-core/lld:${LLVM_SLOT}
 			rust? ( >=dev-util/bindgen-0.65.1 )
 		')
 	"
