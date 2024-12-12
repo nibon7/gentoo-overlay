@@ -26,7 +26,7 @@ CRATES="
 	anstyle-wincon@3.0.6
 	anstyle@1.0.10
 	any_vec@0.14.0
-	anyhow@1.0.93
+	anyhow@1.0.94
 	approx@0.5.1
 	arbitrary@1.4.1
 	arg_enum_proc_macro@0.3.4
@@ -68,6 +68,7 @@ CRATES="
 	async-task@4.7.1
 	async-tls@0.13.0
 	async-trait@0.1.83
+	async-tungstenite@0.25.1
 	async-tungstenite@0.28.0
 	async-watch@0.3.1
 	async_zip@0.0.17
@@ -123,7 +124,7 @@ CRATES="
 	bitflags@2.6.0
 	bitstream-io@2.6.0
 	bitvec@1.0.1
-	blake3@1.5.4
+	blake3@1.5.5
 	block-buffer@0.10.4
 	block-padding@0.3.3
 	block@0.1.6
@@ -143,6 +144,8 @@ CRATES="
 	bytes-utils@0.1.4
 	bytes@0.4.12
 	bytes@1.8.0
+	bzip2-sys@0.1.11+1.0.8
+	bzip2@0.4.4
 	calloop-wayland-source@0.3.0
 	calloop@0.13.0
 	camino@1.1.9
@@ -153,7 +156,7 @@ CRATES="
 	cap-std@3.4.1
 	cap-time-ext@3.4.1
 	cargo-platform@0.1.8
-	cargo_metadata@0.19.0
+	cargo_metadata@0.19.1
 	cargo_toml@0.20.5
 	cast@0.3.0
 	cbc@0.1.2
@@ -177,9 +180,6 @@ CRATES="
 	clap_complete@4.5.38
 	clap_derive@4.5.18
 	clap_lex@0.7.3
-	clickhouse-derive@0.1.1
-	clickhouse-rs-cityhash-sys@0.1.2
-	clickhouse@0.11.6
 	cobs@0.2.3
 	cocoa-foundation@0.1.2
 	cocoa-foundation@0.2.0
@@ -194,6 +194,7 @@ CRATES="
 	const-oid@0.9.6
 	const-random-macro@0.1.16
 	const-random@0.1.18
+	constant_time_eq@0.1.5
 	constant_time_eq@0.3.1
 	convert_case@0.4.0
 	convert_case@0.6.0
@@ -207,8 +208,8 @@ CRATES="
 	core-services@0.2.1
 	core-text@20.1.0
 	coreaudio-rs@0.11.3
+	coreaudio-rs@0.12.1
 	coreaudio-sys@0.2.16
-	cpal@0.15.3
 	cpp_demangle@0.4.4
 	cpufeatures@0.2.15
 	cranelift-bforest@0.111.2
@@ -237,9 +238,14 @@ CRATES="
 	crypto-bigint@0.4.9
 	crypto-bigint@0.5.5
 	crypto-common@0.1.6
-	ctor@0.2.8
+	ctor@0.2.9
 	ctrlc@3.4.5
 	cursor-icon@1.1.0
+	cxx-build@1.0.133
+	cxx@1.0.133
+	cxxbridge-cmd@1.0.133
+	cxxbridge-flags@1.0.133
+	cxxbridge-macro@1.0.133
 	dashmap@5.5.3
 	dashmap@6.1.0
 	dasp_sample@0.11.0
@@ -328,6 +334,7 @@ CRATES="
 	form_urlencoded@1.2.1
 	freetype-sys@0.20.1
 	fs-set-times@0.20.1
+	fs2@0.4.3
 	fsevent-sys@3.1.0
 	fsevent-sys@4.1.0
 	funty@2.0.0
@@ -452,6 +459,7 @@ CRATES="
 	is-wsl@0.4.0
 	is_terminal_polyfill@1.70.1
 	itertools@0.10.5
+	itertools@0.11.0
 	itertools@0.12.1
 	itertools@0.13.0
 	itoa@1.0.11
@@ -482,6 +490,7 @@ CRATES="
 	libredox@0.1.3
 	libsqlite3-sys@0.30.1
 	libz-sys@1.1.20
+	link-cplusplus@1.0.9
 	linkify@0.10.0
 	linkme-impl@0.3.31
 	linkme@0.3.31
@@ -493,8 +502,6 @@ CRATES="
 	log@0.4.22
 	loop9@0.1.5
 	lru@0.12.5
-	lz4-sys@1.11.1+lz4-1.10.0
-	lz4@1.28.0
 	mac@0.1.1
 	mach2@0.4.2
 	malloc_buf@0.0.6
@@ -586,11 +593,16 @@ CRATES="
 	parking@2.2.1
 	parking_lot@0.12.3
 	parking_lot_core@0.9.10
+	password-hash@0.4.2
 	password-hash@0.5.0
 	paste@1.0.15
-	pathdiff@0.2.2
+	pathdiff@0.2.3
 	pathfinder_geometry@0.5.1
 	pathfinder_simd@0.5.4
+	pbjson-build@0.6.2
+	pbjson-types@0.6.0
+	pbjson@0.6.0
+	pbkdf2@0.11.0
 	pbkdf2@0.12.2
 	pem-rfc7468@0.7.0
 	pem@3.0.4
@@ -641,9 +653,13 @@ CRATES="
 	profiling-procmacros@1.0.16
 	profiling@1.0.16
 	prometheus@0.13.4
+	prost-build@0.12.6
 	prost-build@0.9.0
+	prost-derive@0.12.6
 	prost-derive@0.9.0
+	prost-types@0.12.6
 	prost-types@0.9.0
+	prost@0.12.6
 	prost@0.9.0
 	protobuf@2.28.0
 	psm@0.1.24
@@ -698,7 +714,7 @@ CRATES="
 	rmpv@1.3.0
 	rodio@0.20.1
 	roxmltree@0.20.0
-	rsa@0.9.6
+	rsa@0.9.7
 	runtimelib@0.24.0
 	rust-embed-impl@8.5.0
 	rust-embed-utils@8.5.0
@@ -730,6 +746,7 @@ CRATES="
 	schemars_derive@0.8.21
 	scoped-tls@1.0.1
 	scopeguard@1.2.0
+	scratch@1.0.7
 	scrypt@0.11.0
 	sct@0.7.1
 	sea-bae@0.2.1
@@ -738,7 +755,6 @@ CRATES="
 	sea-query-binder@0.7.0
 	sea-query@0.32.0
 	seahash@4.1.0
-	sealed@0.4.0
 	sec1@0.3.0
 	security-framework-sys@2.12.1
 	security-framework@2.11.1
@@ -746,7 +762,6 @@ CRATES="
 	semver@1.0.23
 	serde@1.0.215
 	serde_derive@1.0.215
-	serde_derive_internals@0.26.0
 	serde_derive_internals@0.29.1
 	serde_fmt@1.0.3
 	serde_json@1.0.132
@@ -1115,6 +1130,7 @@ CRATES="
 	zeromq@0.4.1
 	zerovec-derive@0.10.3
 	zerovec@0.10.4
+	zip@0.6.6
 	zstd-safe@5.0.2+zstd.1.5.2
 	zstd-sys@2.0.13+zstd.1.5.6
 	zstd@0.11.2+zstd.1.5.2
@@ -1129,6 +1145,8 @@ CRATES="
 	zvariant_utils@3.0.2
 "
 
+CPAL_COMMIT="fd8bc2fd39f1f5fdee5a0690656caff9a26d9d50"
+
 declare -A GIT_CRATES=(
 	[alacritty_terminal]="https://github.com/alacritty/alacritty;91d034ff8b53867143c005acfaa14609147c9a2c;alacritty-%commit%/alacritty_terminal"
 	[async-pipe]="https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%"
@@ -1137,7 +1155,13 @@ declare -A GIT_CRATES=(
 	[blade-macros]="https://github.com/kvark/blade;e142a3a5e678eb6a13e642ad8401b1f3aa38e969;blade-%commit%/blade-macros"
 	[blade-util]="https://github.com/kvark/blade;e142a3a5e678eb6a13e642ad8401b1f3aa38e969;blade-%commit%/blade-util"
 	[cosmic-text]="https://github.com/pop-os/cosmic-text;542b20ca4376a3b5de5fa629db1a4ace44e18e0c;cosmic-text-%commit%"
+	[cpal]="https://github.com/zed-industries/cpal;${CPAL_COMMIT};cpal-%commit%"
 	[font-kit]="https://github.com/zed-industries/font-kit;40391b7c0041d8a8572af2afa3de32ae088f0120;font-kit-%commit%"
+	[libwebrtc]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/libwebrtc"
+	[livekit-api]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/livekit-api"
+	[livekit-protocol]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/livekit-protocol"
+	[livekit-runtime]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/livekit-runtime"
+	[livekit]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/livekit"
 	[lsp-types]="https://github.com/zed-industries/lsp-types;72357d6f6d212bdffba3b5ef4b31d8ca856058e7;lsp-types-%commit%"
 	[nvim-rs]="https://github.com/KillTheMule/nvim-rs;69500bae73b8b3f02a05b7bee621a0d0e633da6c;nvim-rs-%commit%"
 	[pet-conda]="https://github.com/microsoft/python-environment-tools;ffcbf3f28c46633abd5448a52b1f396c322e0d6c;python-environment-tools-%commit%/crates/pet-conda"
@@ -1169,6 +1193,8 @@ declare -A GIT_CRATES=(
 	[tree-sitter-heex]="https://github.com/zed-industries/tree-sitter-heex;1dd45142fbb05562e35b2040c6129c9bca346592;tree-sitter-heex-%commit%"
 	[tree-sitter-md]="https://github.com/tree-sitter-grammars/tree-sitter-markdown;9a23c1a96c0513d8fc6520972beedd419a973539;tree-sitter-markdown-%commit%"
 	[tree-sitter-yaml]="https://github.com/zed-industries/tree-sitter-yaml;baff0b51c64ef6a1fb1f8390f3ad6015b83ec13a;tree-sitter-yaml-%commit%"
+	[webrtc-sys-build]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/webrtc-sys/build"
+	[webrtc-sys]="https://github.com/zed-industries/rust-sdks;799f10133d93ba2a88642cd480d01ec4da53408c;rust-sdks-%commit%/webrtc-sys"
 	[xim-ctext]="https://github.com/XDeme1/xim-rs;d50d461764c2213655cd9cf65a0ea94c70d3c4fd;xim-rs-%commit%/xim-ctext"
 	[xim-parser]="https://github.com/XDeme1/xim-rs;d50d461764c2213655cd9cf65a0ea94c70d3c4fd;xim-rs-%commit%/xim-parser"
 	[xim]="https://github.com/XDeme1/xim-rs;d50d461764c2213655cd9cf65a0ea94c70d3c4fd;xim-rs-%commit%"
@@ -1187,6 +1213,7 @@ MY_P=${PN}-${MY_PV}
 DESCRIPTION="The fast, collaborative code editor."
 HOMEPAGE="https://zed.dev"
 SRC_URI="https://github.com/zed-industries/${PN}/archive/refs/tags/v${MY_PV}.tar.gz -> ${MY_P}.tar.gz
+	https://github.com/livekit/client-sdk-rust/releases/download/webrtc-dac8015-5/webrtc-linux-x64-release.zip -> webrtc-dac8015-5-linux-x64-release.zip
 	${CARGO_CRATE_URIS}
 "
 S="${WORKDIR}/${MY_P}"
@@ -1198,7 +1225,7 @@ LICENSE+="
 	LGPL-3 MIT MPL-2.0 Unicode-3.0 Unicode-DFS-2016 ZLIB
 "
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv"
+KEYWORDS="~amd64"
 IUSE+=" +fonts"
 
 DEPEND="
@@ -1222,8 +1249,8 @@ BDEPEND="sys-devel/gettext
 	sys-devel/mold
 	virtual/pkgconfig
 	$(llvm_gen_dep '
-		sys-devel/clang:${LLVM_SLOT}=
-		sys-devel/llvm:${LLVM_SLOT}=
+		llvm-core/clang:${LLVM_SLOT}=
+		llvm-core/llvm:${LLVM_SLOT}=
 	')
 "
 
@@ -1282,8 +1309,15 @@ src_configure() {
 	export PKG_CONFIG_ALLOW_CROSS=1
 	export LIBGIT2_NO_VENDOR=1
 	export ZSTD_SYS_USE_PKG_CONFIG=1
+	export LK_CUSTOM_WEBRTC="${WORKDIR}/linux-x64-release"
 
 	cargo_src_configure
+
+	# Cargo offline fetch workaround
+	local CPAL_GIT="git = \"https://github.com/zed-industries/cpal\", rev = \"${CPAL_COMMIT}\""
+	local CPAL_PATH="path = \"${WORKDIR}/cpal-${CPAL_COMMIT}\""
+	sed -e "s#${CPAL_GIT}#${CPAL_PATH}#" \
+		-i "${S}/Cargo.toml" || die "Cargo fetch workaround failed"
 
 	./script/generate-licenses || die "Failed to generate licenses"
 }
