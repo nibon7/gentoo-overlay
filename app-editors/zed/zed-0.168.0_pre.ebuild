@@ -1258,7 +1258,9 @@ DEPEND="
 	x11-libs/libxkbcommon[X]
 "
 RDEPEND="${DEPEND}"
-BDEPEND="sys-devel/gettext
+BDEPEND="
+	app-arch/unzip
+	sys-devel/gettext
 	dev-util/vulkan-headers
 	>=dev-util/cargo-about-0.6.2
 	sys-devel/mold
