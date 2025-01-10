@@ -55,6 +55,8 @@ src_prepare() {
 
 	PATCHES+=( "${WORKDIR}"/linux-v${ZEN_VER}.patch )
 
+	default
+
 	if use savedconfig; then
 		> .config || die
 	else
@@ -63,6 +65,4 @@ src_prepare() {
 	fi
 
 	kernel-build_merge_configs
-
-	default
 }
