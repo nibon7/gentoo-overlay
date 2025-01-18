@@ -13,7 +13,7 @@ LICENSE="LGPL-2.1+"
 SLOT="1"
 KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~x86"
 
-IUSE="+introspection test +vala"
+IUSE="doc +introspection test +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
@@ -28,6 +28,7 @@ DEPEND="${RDEPEND}
 BDEPEND="
 	${PYTHON_DEPS}
 	vala? ( $(vala_depend) )
+	doc? ( >=dev-util/gi-docgen-2021.1 )
 	dev-util/glib-utils
 	sys-devel/gettext
 	virtual/pkgconfig
@@ -36,6 +37,10 @@ BDEPEND="
 src_prepare() {
 	default
 	use vala && vala_setup
+	sed -i \
+		"s|^docs_dir = .*|docs_dir = '/usr/share/gtk-doc/html'|" \
+		doc/meson.build \
+		|| die
 }
 
 src_configure() {
@@ -46,7 +51,7 @@ src_configure() {
 		-Dprofiling=false
 		$(meson_feature introspection)
 		$(meson_use vala vapi)
-		-Dgtk_doc=false # we ship pregenerated docs
+		$(meson_use doc gtk_doc)
 		$(meson_use test tests)
 		-Dexamples=false
 	)
@@ -59,8 +64,4 @@ src_test() {
 
 src_install() {
 	meson_src_install
-
-	insinto /usr/share/gtk-doc/html
-	# This will install libadwaita API docs unconditionally, but this is intentional
-	doins -r "${S}"/doc/libadwaita-1
 }
