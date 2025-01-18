@@ -10,7 +10,7 @@ HOMEPAGE="https://www.gtk.org/ https://gitlab.gnome.org/GNOME/gtk/"
 
 LICENSE="LGPL-2+"
 SLOT="4"
-IUSE="aqua broadway cloudproviders colord cups examples gstreamer +introspection sysprof test vulkan wayland +X cpu_flags_x86_f16c"
+IUSE="aqua broadway cloudproviders colord cups doc examples gstreamer +introspection sysprof test vulkan wayland +X cpu_flags_x86_f16c"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	test? ( introspection )
@@ -91,6 +91,7 @@ BDEPEND="
 			dev-python/pygobject:3[${PYTHON_USEDEP}]
 		')
 	)
+	doc? ( >=dev-util/gi-docgen-2023.1 )
 	dev-python/docutils
 	dev-libs/glib
 	>=dev-util/gdbus-codegen-2.48
@@ -125,6 +126,11 @@ src_prepare() {
 		-e '/gtk4-update-icon-cache/d' \
 		docs/reference/gtk/meson.build \
 		tools/meson.build \
+		|| die
+
+	sed -i \
+		"s|^docs_dir = .*|docs_dir = '/usr/share/gtk-doc/html'|" \
+		docs/reference/meson.build \
 		|| die
 
 	# The border-image-excess-size.ui test is known to fail on big-endian platforms
@@ -167,7 +173,7 @@ src_configure() {
 		$(meson_feature introspection)
 
 		# Documentation
-		-Ddocumentation=false # we ship pregenerated API docs from tarball
+		$(meson_use doc documentation)
 		-Dscreenshots=false
 		-Dman-pages=true
 
@@ -219,10 +225,6 @@ src_test() {
 
 src_install() {
 	meson_src_install
-
-	insinto /usr/share/gtk-doc/html
-	# This will install API docs specific to X11 and wayland regardless of USE flags, but this is intentional
-	doins -r "${S}"/docs/reference/{gtk/gtk4,gsk/gsk4,gdk/gdk4{,-wayland,-x11}}
 }
 
 pkg_preinst() {
