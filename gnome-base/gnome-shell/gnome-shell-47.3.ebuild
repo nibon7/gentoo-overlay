@@ -11,7 +11,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeShell https://gitlab.gnome.org/GN
 
 LICENSE="GPL-2+ LGPL-2+"
 SLOT="0"
-IUSE="elogind gtk-doc +ibus +networkmanager pipewire systemd test"
+IUSE="elogind gtk-doc +networkmanager pipewire systemd test"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	?? ( elogind systemd )"
 RESTRICT="!test? ( test )"
@@ -29,7 +29,6 @@ DEPEND="
 	>=x11-wm/mutter-47.0:0/15[introspection,test?]
 	>=sys-auth/polkit-0.120_p20220509[introspection]
 	>=gnome-base/gsettings-desktop-schemas-47_alpha[introspection]
-	>=app-i18n/ibus-1.5.19
 	>=gnome-base/gnome-desktop-40.0:4=
 	networkmanager? (
 		>=net-misc/networkmanager-1.10.4[introspection]
@@ -103,7 +102,7 @@ RDEPEND="${DEPEND}
 		net-misc/mobile-broadband-provider-info
 		sys-libs/timezone-data
 	)
-	ibus? ( >=app-i18n/ibus-1.5.26[gtk3,gtk4,introspection] )
+	>=app-i18n/ibus-1.5.26[gtk3,gtk4,introspection]
 	|| (
 		media-fonts/cantarell
 		media-fonts/dejavu
