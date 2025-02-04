@@ -46,8 +46,6 @@ QA_FLAGS_IGNORED="
 	usr/src/linux-.*/vmlinux
 "
 
-PATCHES=( "${FILESDIR}"/0001-drm-amd-display-Fix-a-flickering-issue.patch )
-
 src_prepare() {
 	if ver_test "$(ver_cut 3)" -gt 0; then
 		PATCHES+=( "${WORKDIR}"/patch-${PV} )
