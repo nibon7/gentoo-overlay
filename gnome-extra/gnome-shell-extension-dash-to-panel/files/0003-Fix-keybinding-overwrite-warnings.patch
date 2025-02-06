@@ -1,0 +1,82 @@
+From b4a76ffb9ffbbf78821376b3b294d0cadf955488 Mon Sep 17 00:00:00 2001
+From: Charles Gagnon <charlesg99@outlook.com>
+Date: Sat, 1 Feb 2025 18:47:37 -0500
+Subject: [PATCH 3/4] Fix keybinding overwrite warnings
+
+---
+ overview.js | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
+
+diff --git a/overview.js b/overview.js
+index 7df5d6f..fc7c747 100644
+--- a/overview.js
++++ b/overview.js
+@@ -33,7 +33,8 @@ import {WindowPreview} from 'resource:///org/gnome/shell/ui/windowPreview.js';
+ import {InjectionManager} from 'resource:///org/gnome/shell/extensions/extension.js';
+ import {SETTINGS} from './extension.js';
+ 
+-const GS_HOTKEYS_KEY = 'switch-to-application-';
++const GS_SWITCH_HOTKEYS_KEY = 'switch-to-application-';
++const GS_OPEN_HOTKEYS_KEY = 'open-new-window-application-';
+ 
+ // When the dash is shown, workspace window preview bottom labels go over it (default
+ // gnome-shell behavior), but when the extension hides the dash, leave some space
+@@ -296,23 +297,27 @@ export const Overview = class {
+         if (this._hotKeysEnabled)
+             return;
+ 
+-        //3.32 introduced app hotkeys, disable them to prevent conflicts
+-        if (Main.wm._switchToApplication) {
+-            for (let i = 1; i < 10; ++i) {
+-                Utils.removeKeybinding(GS_HOTKEYS_KEY + i);
+-            }
+-        }
+-
+         // Setup keyboard bindings for taskbar elements
+         let shortcutNumKeys = SETTINGS.get_string('shortcut-num-keys');
+         let bothNumKeys = shortcutNumKeys == 'BOTH';
++        let numRowKeys = shortcutNumKeys == 'NUM_ROW';
+         let keys = [];
+         let prefixModifiers = Clutter.ModifierType.SUPER_MASK
+ 
++        //3.32 introduced app hotkeys, disable them to prevent conflicts
++        if (Main.wm._switchToApplication) {
++          for (let i = 1; i < 10; ++i) {
++            Utils.removeKeybinding(GS_SWITCH_HOTKEYS_KEY + i);
++
++            if (bothNumKeys || numRowKeys)
++              Utils.removeKeybinding(GS_OPEN_HOTKEYS_KEY + i);
++          }
++        }
++
+         if (SETTINGS.get_string('hotkey-prefix-text') == 'SuperAlt')
+             prefixModifiers |= Clutter.ModifierType.MOD1_MASK
+         
+-        if (bothNumKeys || shortcutNumKeys == 'NUM_ROW') {
++        if (bothNumKeys || numRowKeys) {
+             keys.push('app-hotkey-', 'app-shift-hotkey-', 'app-ctrl-hotkey-'); // Regular numbers
+         }
+         
+@@ -345,6 +350,7 @@ export const Overview = class {
+         if (!this._hotKeysEnabled)
+             return;
+ 
++        let shortcutNumKeys = SETTINGS.get_string('shortcut-num-keys');
+         let keys = ['app-hotkey-', 'app-shift-hotkey-', 'app-ctrl-hotkey-',  // Regular numbers
+                     'app-hotkey-kp-', 'app-shift-hotkey-kp-', 'app-ctrl-hotkey-kp-']; // Key-pad numbers
+         keys.forEach( function(key) {
+@@ -357,7 +363,10 @@ export const Overview = class {
+             let gsSettings = new Gio.Settings({ schema_id: WindowManager.SHELL_KEYBINDINGS_SCHEMA });
+ 
+             for (let i = 1; i < 10; ++i) {
+-                Utils.addKeybinding(GS_HOTKEYS_KEY + i, gsSettings, Main.wm._switchToApplication.bind(Main.wm));
++                Utils.addKeybinding(GS_SWITCH_HOTKEYS_KEY + i, gsSettings, Main.wm._switchToApplication.bind(Main.wm));
++
++                if (shortcutNumKeys == 'BOTH' || shortcutNumKeys == 'NUM_ROW')
++                  Utils.addKeybinding(GS_OPEN_HOTKEYS_KEY + i, gsSettings, Main.wm._openNewApplicationWindow.bind(Main.wm));
+             }
+         }
+ 
+-- 
+2.45.3
+
