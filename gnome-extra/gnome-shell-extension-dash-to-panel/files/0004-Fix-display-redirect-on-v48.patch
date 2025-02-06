@@ -1,0 +1,31 @@
+From d497da9130bcb973c577d0fa4b6f0f6c8a877663 Mon Sep 17 00:00:00 2001
+From: Charles Gagnon <charlesg99@outlook.com>
+Date: Sun, 2 Feb 2025 08:43:43 -0500
+Subject: [PATCH 4/4] Fix display redirect on v48
+
+---
+ utils.js | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/utils.js b/utils.js
+index dbb1b8c..1589e25 100644
+--- a/utils.js
++++ b/utils.js
+@@ -228,10 +228,12 @@ export const DisplayWrapper = {
+ 
+ let unredirectEnabled = true
+ export const setDisplayUnredirect = (enable) => {
++    let v48 = Config.PACKAGE_VERSION >= '48';
++
+     if (enable && !unredirectEnabled)
+-        Meta.enable_unredirect_for_display(global.display);
++        v48 ? global.compositor.enable_unredirect() : Meta.enable_unredirect_for_display(global.display);
+     else if (!enable && unredirectEnabled)
+-        Meta.disable_unredirect_for_display(global.display);
++        v48 ? global.compositor.disable_unredirect() : Meta.disable_unredirect_for_display(global.display);
+ 
+     unredirectEnabled = enable;
+ };
+-- 
+2.45.3
+

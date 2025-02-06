@@ -1,0 +1,129 @@
+From 9b434d170bf007c70f91fd52796e594d2340867d Mon Sep 17 00:00:00 2001
+From: Charles Gagnon <charlesg99@outlook.com>
+Date: Sat, 1 Feb 2025 17:32:09 -0500
+Subject: [PATCH 1/4] Add gnome-shell 48 support
+
+---
+ appIcons.js      |  2 +-
+ metadata.json    |  2 +-
+ panel.js         |  6 +++---
+ panelManager.js  |  2 +-
+ taskbar.js       |  2 +-
+ utils.js         | 11 +++++++++++
+ windowPreview.js |  2 +-
+ 7 files changed, 19 insertions(+), 8 deletions(-)
+
+diff --git a/appIcons.js b/appIcons.js
+index 27dbd50..d077b65 100644
+--- a/appIcons.js
++++ b/appIcons.js
+@@ -156,7 +156,7 @@ export const TaskbarAppIcon = GObject.registerClass({
+         this._dtpIconContainer.add_child(this._iconContainer);
+ 
+         if (appInfo.window) {
+-            let box = new St.BoxLayout();
++            let box = Utils.createBoxLayout();
+ 
+             this._windowTitle = new St.Label({ 
+                 y_align: Clutter.ActorAlign.CENTER, 
+diff --git a/metadata.json b/metadata.json
+index e2c7056..f2ce574 100644
+--- a/metadata.json
++++ b/metadata.json
+@@ -3,7 +3,7 @@
+   "uuid": "dash-to-panel@jderose9.github.com",
+   "name": "Dash to Panel",
+   "description": "An icon taskbar for the Gnome Shell. This extension moves the dash into the gnome main panel so that the application launchers and system tray are combined into a single panel, similar to that found in KDE Plasma and Windows 7+. A separate dock is no longer needed for easy access to running and favorited applications.\n\nFor a more traditional experience, you may also want to use Tweak Tool to enable Windows > Titlebar Buttons > Minimize & Maximize.\n\nFor the best support, please report any issues on Github. Dash-to-panel is developed and maintained by @jderose9 and @charlesg99.",
+-  "shell-version": [ "46", "47" ],
++  "shell-version": [ "46", "47", "48" ],
+   "url": "https://github.com/home-sweet-gnome/dash-to-panel",
+   "gettext-domain": "dash-to-panel",
+   "version": 9999,
+diff --git a/panel.js b/panel.js
+index d025b9b..d27085f 100644
+--- a/panel.js
++++ b/panel.js
+@@ -111,9 +111,9 @@ export const Panel = GObject.registerClass({
+                 Main.panel._onMenuSet.call(this, indicator);
+             };
+ 
+-            this._leftBox = this.panel._leftBox = new St.BoxLayout({ name: 'panelLeft' });
+-            this._centerBox = this.panel._centerBox = new St.BoxLayout({ name: 'panelCenter' });
+-            this._rightBox = this.panel._rightBox = new St.BoxLayout({ name: 'panelRight' });
++            this._leftBox = this.panel._leftBox = Utils.createBoxLayout({ name: 'panelLeft' });
++            this._centerBox = this.panel._centerBox = Utils.createBoxLayout({ name: 'panelCenter' });
++            this._rightBox = this.panel._rightBox = Utils.createBoxLayout({ name: 'panelRight' });
+ 
+             this.menuManager = this.panel.menuManager = new PopupMenu.PopupMenuManager(this.panel);
+ 
+diff --git a/panelManager.js b/panelManager.js
+index 51c0774..947d249 100755
+--- a/panelManager.js
++++ b/panelManager.js
+@@ -414,7 +414,7 @@ export const PanelManager = class {
+         let clipContainer = new Clutter.Actor();
+         
+         if (isStandalone) {
+-            panelBox = new St.BoxLayout({ name: 'panelBox' });
++            panelBox = new Utils.createBoxLayout({ name: 'panelBox' });
+         } else {
+             panelBox = Main.layoutManager.panelBox;
+             Main.layoutManager._untrackActor(panelBox);
+diff --git a/taskbar.js b/taskbar.js
+index 7cd4486..82ce4db 100644
+--- a/taskbar.js
++++ b/taskbar.js
+@@ -213,7 +213,7 @@ export const Taskbar = class extends EventEmitter {
+ 
+         let isVertical = panel.checkIfVertical();
+ 
+-        this._box = new St.BoxLayout({ vertical: isVertical,
++        this._box = Utils.createBoxLayout({ vertical: isVertical,
+                                        clip_to_allocation: false,
+                                        x_align: Clutter.ActorAlign.START,
+                                        y_align: Clutter.ActorAlign.START });
+diff --git a/utils.js b/utils.js
+index df67ad9..7eae70e 100644
+--- a/utils.js
++++ b/utils.js
+@@ -30,6 +30,7 @@ import Graphene from 'gi://Graphene';
+ import Meta from 'gi://Meta';
+ import Shell from 'gi://Shell';
+ import St from 'gi://St';
++import * as Config from 'resource:///org/gnome/shell/misc/config.js';
+ import * as Util from 'resource:///org/gnome/shell/misc/util.js';
+ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+ import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
+@@ -191,6 +192,16 @@ export const TimeoutsHandler = class extends BasicHandler {
+     }
+ };
+ 
++export function createBoxLayout(options) {
++  if (options && Config.PACKAGE_VERSION >= '48') {
++    // https://mutter.gnome.org/clutter/enum.Orientation.html
++    options.orientation = options.vertical ? 1 : 0;
++    delete options.vertical;
++  }
++
++  return new St.BoxLayout(options);
++}
++
+ // This is wrapper to maintain compatibility with GNOME-Shell 3.30+ as well as
+ // previous versions.
+ export const DisplayWrapper = {
+diff --git a/windowPreview.js b/windowPreview.js
+index f0a2741..bb6cc59 100644
+--- a/windowPreview.js
++++ b/windowPreview.js
+@@ -86,7 +86,7 @@ export const PreviewMenu = GObject.registerClass({
+             x_align: Clutter.ActorAlign[geom.position != St.Side.RIGHT ? 'START' : 'END'],
+             y_align: Clutter.ActorAlign[geom.position != St.Side.BOTTOM ? 'START' : 'END']
+         });
+-        this._box = new St.BoxLayout({ vertical: this.isVertical });
++        this._box = Utils.createBoxLayout({ vertical: this.isVertical });
+         this._scrollView = new St.ScrollView({
+             name: 'dashtopanelPreviewScrollview',
+             hscrollbar_policy: St.PolicyType.NEVER,
+-- 
+2.45.3
+

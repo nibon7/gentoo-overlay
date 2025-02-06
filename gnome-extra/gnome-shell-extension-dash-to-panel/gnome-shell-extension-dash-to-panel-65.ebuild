@@ -1,28 +1,30 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 inherit gnome2-utils
 
 MY_PN="${PN/gnome-shell-extension-/}"
-MY_PV="62"
-MY_P="${MY_PN}-${MY_PV}"
+MY_P="${MY_PN}-${PV}"
 DESCRIPTION="An icon taskbar for the Gnome Shell"
 HOMEPAGE="https://github.com/home-sweet-gnome/dash-to-panel"
 SRC_URI="
-	https://github.com/home-sweet-gnome/${MY_PN}/archive/v${MY_PV}.tar.gz -> ${PN}-${MY_PV}.tar.gz
+	https://github.com/home-sweet-gnome/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 	branding? ( https://www.mail-archive.com/tango-artists@lists.freedesktop.org/msg00043/tango-gentoo-v1.1.tar.gz )
 "
+S="${WORKDIR}/${MY_P}"
+extension_uuid="dash-to-panel@jderose9.github.com"
 
 LICENSE="GPL-2+"
-SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~x86"
+SLOT="48"
+KEYWORDS="~amd64 ~ppc64 ~x86"
 IUSE="branding"
 
 COMMON_DEPEND="dev-libs/glib:2"
 RDEPEND="${COMMON_DEPEND}
 	app-eselect/eselect-gnome-shell-extensions
-	>=gnome-base/gnome-shell-47_alpha
+	>=gnome-base/gnome-shell-46
+	!${CATEGORY}/${PN}:0
 "
 DEPEND="${COMMON_DEPEND}"
 BDEPEND="
@@ -30,16 +32,18 @@ BDEPEND="
 	sys-devel/gettext
 "
 
-S="${WORKDIR}/${MY_P}"
-extension_uuid="dash-to-panel@jderose9.github.com"
-
-PATCHES=( "${FILESDIR}"/gnome-shell-extension-dash-to-panel-47.patch )
+PATCHES=(
+	"${FILESDIR}"/0001-Add-gnome-shell-48-support.patch
+	"${FILESDIR}"/0002-Fix-vertical-assignments-for-gnome-48.patch
+	"${FILESDIR}"/0003-Fix-keybinding-overwrite-warnings.patch
+	"${FILESDIR}"/0004-Fix-display-redirect-on-v48.patch
+)
 
 src_prepare() {
 	default
 
 	# Set correct version
-	export VERSION="${MY_PV}"
+	export VERSION="${PV}"
 
 	# Don't install README and COPYING in unwanted locations
 	sed -i -e 's/COPYING//g' -e 's/README.md//g' Makefile || die
