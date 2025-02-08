@@ -1,4 +1,4 @@
-# Copyright 2020-2024 Gentoo Authors
+# Copyright 2020-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -9,7 +9,7 @@ KERNEL_IUSE_CLANG=1
 
 inherit kernel-build unpacker
 
-SLOT=zen1
+SLOT=zen3
 MY_P=linux-${PV%.*}
 ZEN_VER=${PV%.0}-${SLOT}
 
