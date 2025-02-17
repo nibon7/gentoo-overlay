@@ -1,0 +1,91 @@
+From 980658ed58f2d0a450c37515044662cc03ea020f Mon Sep 17 00:00:00 2001
+From: Daniel van Vugt <daniel.van.vugt@canonical.com>
+Date: Fri, 14 Feb 2025 18:20:43 +0800
+Subject: [PATCH 05/23] backends/native: Add set/steal_sync_fd functions to
+ MetaFrameNative
+
+Part-of: <https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441>
+---
+ src/backends/native/meta-frame-native.c | 25 ++++++++++++++++++++++++-
+ src/backends/native/meta-frame-native.h |  7 +++++++
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+
+diff --git a/src/backends/native/meta-frame-native.c b/src/backends/native/meta-frame-native.c
+index 527c4a175..98cd917c7 100644
+--- a/src/backends/native/meta-frame-native.c
++++ b/src/backends/native/meta-frame-native.c
+@@ -23,6 +23,8 @@
+ #include "clutter/clutter-mutter.h"
+ #include "core/util-private.h"
+ 
++#include <glib/gstdio.h>
++
+ struct _MetaFrameNative
+ {
+   ClutterFrame base;
+@@ -33,6 +35,7 @@ struct _MetaFrameNative
+   MetaKmsUpdate *kms_update;
+ 
+   MtkRegion *damage;
++  int sync_fd;
+ };
+ 
+ static void
+@@ -40,6 +43,7 @@ meta_frame_native_release (ClutterFrame *frame)
+ {
+   MetaFrameNative *frame_native = meta_frame_native_from_frame (frame);
+ 
++  g_clear_fd (&frame_native->sync_fd, NULL);
+   g_clear_pointer (&frame_native->damage, mtk_region_unref);
+   g_clear_object (&frame_native->buffer);
+   g_clear_object (&frame_native->scanout);
+@@ -50,7 +54,12 @@ meta_frame_native_release (ClutterFrame *frame)
+ MetaFrameNative *
+ meta_frame_native_new (void)
+ {
+-  return clutter_frame_new (MetaFrameNative, meta_frame_native_release);
++  MetaFrameNative *frame_native =
++    clutter_frame_new (MetaFrameNative, meta_frame_native_release);
++
++  frame_native->sync_fd = -1;
++
++  return frame_native;
+ }
+ 
+ MetaFrameNative *
+@@ -125,3 +134,17 @@ meta_frame_native_get_damage (MetaFrameNative *frame_native)
+ {
+   return frame_native->damage;
+ }
++
++void
++meta_frame_native_set_sync_fd (MetaFrameNative *frame_native,
++                               int              sync_fd)
++{
++  g_clear_fd (&frame_native->sync_fd, NULL);
++  frame_native->sync_fd = sync_fd;
++}
++
++int
++meta_frame_native_steal_sync_fd (MetaFrameNative *frame_native)
++{
++  return g_steal_fd (&frame_native->sync_fd);
++}
+diff --git a/src/backends/native/meta-frame-native.h b/src/backends/native/meta-frame-native.h
+index 32349d3c3..38547ebc1 100644
+--- a/src/backends/native/meta-frame-native.h
++++ b/src/backends/native/meta-frame-native.h
+@@ -54,3 +54,10 @@ meta_frame_native_set_damage (MetaFrameNative *frame_native,
+ 
+ MtkRegion *
+ meta_frame_native_get_damage (MetaFrameNative *frame_native);
++
++void
++meta_frame_native_set_sync_fd (MetaFrameNative *frame_native,
++                               int              sync_fd);
++
++int
++meta_frame_native_steal_sync_fd (MetaFrameNative *frame_native);
+-- 
+2.45.3
+

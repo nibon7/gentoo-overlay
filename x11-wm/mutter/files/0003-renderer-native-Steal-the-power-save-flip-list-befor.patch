@@ -1,0 +1,64 @@
+From be7fc75878f0b9accb4680c35d75bcf35d32fb05 Mon Sep 17 00:00:00 2001
+From: Daniel van Vugt <daniel.van.vugt@canonical.com>
+Date: Mon, 1 Nov 2021 19:35:34 +0800
+Subject: [PATCH 03/23] renderer/native: Steal the power save flip list before
+ iterating over it
+
+Because a single iteration might also grow the list again.
+
+This is now a partial revert of a5be92e03d3b8f74222c5d53ba1332cdeae69bcc.
+
+Part-of: <https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441>
+---
+ src/backends/native/meta-renderer-native.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
+
+diff --git a/src/backends/native/meta-renderer-native.c b/src/backends/native/meta-renderer-native.c
+index 12f77bf36..069059294 100644
+--- a/src/backends/native/meta-renderer-native.c
++++ b/src/backends/native/meta-renderer-native.c
+@@ -740,17 +740,24 @@ configure_disabled_crtcs (MetaKmsDevice      *kms_device,
+     }
+ }
+ 
+-static void
++static gboolean
+ dummy_power_save_page_flip_cb (gpointer user_data)
+ {
+   MetaRendererNative *renderer_native = user_data;
++  g_autolist (GObject) old_list = NULL;
+ 
+-  g_list_foreach (renderer_native->power_save_page_flip_onscreens,
++  old_list = g_steal_pointer (&renderer_native->power_save_page_flip_onscreens);
++
++  g_list_foreach (old_list,
+                   (GFunc) meta_onscreen_native_dummy_power_save_page_flip,
+                   NULL);
+-  g_clear_list (&renderer_native->power_save_page_flip_onscreens,
+-                g_object_unref);
++
++  if (renderer_native->power_save_page_flip_onscreens != NULL)
++    return G_SOURCE_CONTINUE;
++
+   renderer_native->power_save_page_flip_source_id = 0;
++
++  return G_SOURCE_REMOVE;
+ }
+ 
+ void
+@@ -765,9 +772,9 @@ meta_renderer_native_queue_power_save_page_flip (MetaRendererNative *renderer_na
+   if (!renderer_native->power_save_page_flip_source_id)
+     {
+       renderer_native->power_save_page_flip_source_id =
+-        g_timeout_add_once (timeout_ms,
+-                            dummy_power_save_page_flip_cb,
+-                            renderer_native);
++        g_timeout_add (timeout_ms,
++                       dummy_power_save_page_flip_cb,
++                       renderer_native);
+     }
+ 
+   renderer_native->power_save_page_flip_onscreens =
+-- 
+2.45.3
+

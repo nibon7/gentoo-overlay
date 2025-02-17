@@ -1,0 +1,78 @@
+From 5426935adbd6469579f741fcdf69040cec4ad6df Mon Sep 17 00:00:00 2001
+From: Daniel van Vugt <daniel.van.vugt@canonical.com>
+Date: Fri, 31 Jan 2025 14:26:48 +0800
+Subject: [PATCH 12/23] onscreen/native: Pass frame as a parameter to flip_crtc
+
+Minor style change requested by jadahl. This makes it clear earlier on
+in post_next_frame that next_frame has been consumed.
+
+Part-of: <https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441>
+---
+ src/backends/native/meta-onscreen-native.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+
+diff --git a/src/backends/native/meta-onscreen-native.c b/src/backends/native/meta-onscreen-native.c
+index 7d581350e..c1db6b075 100644
+--- a/src/backends/native/meta-onscreen-native.c
++++ b/src/backends/native/meta-onscreen-native.c
+@@ -537,6 +537,7 @@ assign_primary_plane (MetaCrtcKms            *crtc_kms,
+ 
+ static void
+ meta_onscreen_native_flip_crtc (CoglOnscreen           *onscreen,
++                                ClutterFrame           *frame,
+                                 MetaRendererView       *view,
+                                 MetaCrtc               *crtc,
+                                 MetaKmsUpdate          *kms_update,
+@@ -545,7 +546,6 @@ meta_onscreen_native_flip_crtc (CoglOnscreen           *onscreen,
+ {
+   MetaOnscreenNative *onscreen_native = META_ONSCREEN_NATIVE (onscreen);
+   MetaRendererNative *renderer_native = onscreen_native->renderer_native;
+-  g_autoptr (ClutterFrame) frame = NULL;
+   MetaFrameNative *frame_native;
+   MetaGpuKms *render_gpu = onscreen_native->render_gpu;
+   MetaCrtcKms *crtc_kms = META_CRTC_KMS (crtc);
+@@ -561,9 +561,6 @@ meta_onscreen_native_flip_crtc (CoglOnscreen           *onscreen,
+   COGL_TRACE_BEGIN_SCOPED (MetaOnscreenNativeFlipCrtcs,
+                            "Meta::OnscreenNative::flip_crtc()");
+ 
+-  frame = g_steal_pointer (&onscreen_native->next_frame);
+-  g_return_if_fail (frame);
+-
+   gpu_kms = META_GPU_KMS (meta_crtc_get_gpu (crtc));
+ 
+   g_assert (meta_gpu_kms_is_crtc_active (gpu_kms, crtc));
+@@ -621,10 +618,6 @@ meta_onscreen_native_flip_crtc (CoglOnscreen           *onscreen,
+ #endif
+     }
+ 
+-  g_warn_if_fail (!onscreen_native->posted_frame);
+-  g_clear_pointer (&onscreen_native->posted_frame, clutter_frame_unref);
+-  onscreen_native->posted_frame = g_steal_pointer (&frame);
+-
+   meta_kms_update_add_page_flip_listener (kms_update,
+                                           kms_crtc,
+                                           &page_flip_listener_vtable,
+@@ -1568,7 +1561,11 @@ post_next_frame (CoglOnscreen *onscreen)
+       return;
+     }
+ 
+-  frame = clutter_frame_ref (onscreen_native->next_frame);
++  frame = g_steal_pointer (&onscreen_native->next_frame);
++  g_warn_if_fail (!onscreen_native->posted_frame);
++  g_clear_pointer (&onscreen_native->posted_frame, clutter_frame_unref);
++  onscreen_native->posted_frame = clutter_frame_ref (frame);
++
+   frame_native = meta_frame_native_from_frame (frame);
+   region = meta_frame_native_get_damage (frame_native);
+ 
+@@ -1597,6 +1594,7 @@ post_next_frame (CoglOnscreen *onscreen)
+ 
+   ensure_crtc_modes (onscreen, kms_update);
+   meta_onscreen_native_flip_crtc (onscreen,
++                                  frame,
+                                   onscreen_native->view,
+                                   onscreen_native->crtc,
+                                   kms_update,
+-- 
+2.45.3
+

@@ -1,0 +1,35 @@
+From fccfaca9fc24b91651040150c9cae00a96cc487d Mon Sep 17 00:00:00 2001
+From: Daniel van Vugt <daniel.van.vugt@canonical.com>
+Date: Tue, 26 Oct 2021 18:50:50 +0800
+Subject: [PATCH 02/23] renderer/native: Avoid requeuing the same onscreen for
+ a power save flip
+
+This is a case that triple buffering will encounter. We don't want it
+to queue the same onscreen multiple times because that would represent
+multiple flips occurring simultaneously.
+
+It's a linear search but the list length is typically only 1 or 2 so
+no need for anything fancier yet.
+
+Part-of: <https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441>
+---
+ src/backends/native/meta-renderer-native.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/backends/native/meta-renderer-native.c b/src/backends/native/meta-renderer-native.c
+index 6a421b01f..12f77bf36 100644
+--- a/src/backends/native/meta-renderer-native.c
++++ b/src/backends/native/meta-renderer-native.c
+@@ -759,6 +759,9 @@ meta_renderer_native_queue_power_save_page_flip (MetaRendererNative *renderer_na
+ {
+   const unsigned int timeout_ms = 100;
+ 
++  if (g_list_find (renderer_native->power_save_page_flip_onscreens, onscreen))
++    return;
++
+   if (!renderer_native->power_save_page_flip_source_id)
+     {
+       renderer_native->power_save_page_flip_source_id =
+-- 
+2.45.3
+
