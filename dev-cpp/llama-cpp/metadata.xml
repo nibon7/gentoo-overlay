@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+		<flag name="server">Build LLAMA server example</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">ggml-org/llama.cpp</remote-id>
+	</upstream>
+</pkgmetadata>
