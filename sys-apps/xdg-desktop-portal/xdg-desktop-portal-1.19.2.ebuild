@@ -44,7 +44,7 @@ BDEPEND="
 	virtual/pkgconfig
 	test? (
 		${PYTHON_DEPS}
-		>=dev-libs/libportal-0.9.0
+		dev-libs/libportal
 		dev-util/umockdev
 		$(python_gen_any_dep '
 			dev-python/pytest[${PYTHON_USEDEP}]
