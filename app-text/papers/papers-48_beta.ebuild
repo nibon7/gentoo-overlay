@@ -209,7 +209,7 @@ CRATES="
 	zvariant_utils@2.1.0
 "
 
-inherit cargo gnome.org gnome2-utils meson xdg
+inherit cargo gnome.org gnome2 meson xdg
 
 DESCRIPTION="A document viewer for GNOME"
 HOMEPAGE="https://apps.gnome.org/Papers"
@@ -222,7 +222,7 @@ LICENSE+="
 	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD MIT Unicode-3.0 ZLIB
 "
 SLOT="0/ppsd4.5-ppsv4.4"
-KEYWORDS="~amd64 ~arm64 ~loong ~riscv ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~loong ~riscv ~amd64-linux ~x86-linux"
 IUSE+=" cups djvu gnome keyring gtk-doc +introspection nautilus test spell tiff"
 REQUIRED_USE="gtk-doc? ( introspection )"
 RESTRICT="!test? ( test )"
@@ -305,14 +305,4 @@ src_install() {
 	   mkdir -p "${ED}"/usr/share/gtk-doc/html/ || die
 	   mv "${ED}"/usr/share/doc/{libppsdocument,libppsview} "${ED}"/usr/share/gtk-doc/html/ || die
 	fi
-}
-
-pkg_postinst() {
-	xdg_pkg_postinst
-	gnome2_schemas_update
-}
-
-pkg_postrm() {
-	xdg_pkg_postrm
-	gnome2_schemas_update
 }
