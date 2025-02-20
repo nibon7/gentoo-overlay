@@ -3,6 +3,7 @@
 <pkgmetadata>
 	<use>
 		<flag name="server">Build LLAMA server example</flag>
+		<flag name="blis">Build blis backend through <pkg>sci-libs/blis</pkg></flag>
 	</use>
 	<upstream>
 		<remote-id type="github">ggml-org/llama.cpp</remote-id>

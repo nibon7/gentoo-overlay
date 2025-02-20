@@ -17,8 +17,8 @@ S="${WORKDIR}/${MY_P}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
-IUSE="blas curl lto opencl openmp server test vulkan"
+KEYWORDS="~amd64 ~arm64 ~loong ~riscv"
+IUSE="blas blis curl lto opencl openmp server test vulkan"
 CPU_FLAGS_X86=(
 	avx
 	avx2
@@ -39,7 +39,10 @@ IUSE+=" $(printf "cpu_flags_x86_%s\n" ${CPU_FLAGS_X86[@]})"
 
 RESTRICT="!test? ( test )"
 
-DEPEND="blas? ( sci-libs/openblas )
+DEPEND="blas? (
+		!blis? ( sci-libs/openblas )
+		blis? ( sci-libs/blis )
+	)
 	curl? ( net-misc/curl )
 	opencl? ( virtual/opencl )
 	openmp? ( sys-devel/gcc:=[openmp] )
@@ -51,6 +54,8 @@ DEPEND="blas? ( sci-libs/openblas )
 RDEPEND="${DEPEND}"
 BDEPEND="${DEPEND}"
 
+REQUIRED_USE="blis? ( blas )"
+
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_SHARED_LIBS=ON
@@ -60,28 +65,46 @@ src_configure() {
 		-DLLAMA_BUILD_TESTS="$(usex test ON OFF)"
 		-DLLAMA_BUILD_NUMBER="${MY_PV}"
 		-DLLAMA_CURL="$(usex curl ON OFF)"
+		-DLLAMA_LLGUIDANCE=OFF
+		-DLLAMA_SANITIZE_ADDRESS=OFF
+		-DLLAMA_SANITIZE_THREAD=OFF
+		-DLLAMA_SANITIZE_UNDEFINED=OFF
+		-DLLAMA_STANDALONE=OFF
 		-DGGML_BLAS="$(usex blas ON OFF)"
-		$(usev blas -DGGML_BLAS_VENDOR=OpenBLAS)
+		-DGGML_BLAS_VENDOR="$(usex blis FLAME OpenBLAS)"
+		-DGGML_CANN=OFF
+		-DGGML_CCACHE=OFF
+		-DGGML_CPU=ON
+		-DGGML_CPU_AARCH64="$(usex arm64 ON OFF)"
 		-DGGML_CUDE=OFF
+		-DGGML_GPROF=OFF
 		-DGGML_HIP=OFF
+		-DGGML_KOMPUTE=OFF
+		-DGGML_LASX="$(usex loong ON OFF)"
+		-DGGML_LSX="$(usex loong ON OFF)"
 		-DGGML_LTO="$(usex lto ON OFF)"
+		-DGGML_METAL=OFF
+		-DGGML_MUSA=OFF
+		-DGGML_NATIVE=OFF
+		-DGGML_RVV="$(usex riscv ON OFF)"
 		-DGGML_SYCL=OFF
 		-DGGML_OPENCL="$(usex opencl ON OFF)"
 		-DGGML_OPENMP="$(usex openmp ON OFF)"
+		-DGGML_RPC=OFF
 		-DGGML_VULKAN="$(usex vulkan ON OFF)"
-		$(usev cpu_flags_x86_avx -DGGML_AVX=ON)
-		$(usev cpu_flags_x86_avx2 -DGGML_AVX2=ON)
+		-DGGML_AVX="$(usex cpu_flags_x86_avx ON OFF)"
+		-DGGML_AVX2="$(usex cpu_flags_x86_avx2 ON OFF)"
 		$(usev cpu_flags_x86_avx512bw -DGGML_AVX512=ON)
 		$(usev cpu_flags_x86_avx512cd -DGGML_AVX512=ON)
 		$(usev cpu_flags_x86_avx512dq -DGGML_AVX512=ON)
 		$(usev cpu_flags_x86_avx512f -DGGML_AVX512=ON)
 		$(usev cpu_flags_x86_avx512vl -DGGML_AVX512=ON)
-		$(usev cpu_flags_x86_avx512_bf16 -DGGML_AVX512_BF16=ON)
-		$(usev cpu_flags_x86_avx512vbmi -DGGML_AVX512_VBMI=ON)
-		$(usev cpu_flags_x86_avx512_vnni -DGGML_AVX512_VNNI=ON)
-		$(usev cpu_flags_x86_f16c -DGGML_F16C=ON)
-		$(usev cpu_flags_x86_fma3 -DGGML_FMA=ON)
-		$(usev cpu_flags_x86_sse4_2 -DGGML_SSE42=ON)
+		-DGGML_AVX512_BF16="$(usex cpu_flags_x86_avx512_bf16 ON OFF)"
+		-DGGML_AVX512_VBMI="$(usex cpu_flags_x86_avx512vbmi ON OFF)"
+		-DGGML_AVX512_VNNI="$(usex cpu_flags_x86_avx512_vnni ON OFF)"
+		-DGGML_F16C="$(usex cpu_flags_x86_f16c ON OFF)"
+		-DGGML_FMA="$(usex cpu_flags_x86_fma3 ON OFF)"
+		-DGGML_SSE42="$(usex cpu_flags_x86_sse4_2 ON OFF)"
 	)
 
 	cmake_src_configure
