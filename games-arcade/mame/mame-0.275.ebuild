@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -68,30 +68,30 @@ BDEPEND="${PYTHON_DEPS}
 mame_use() {
 	case $1 in
 		X)
-			use !${1} && echo 'NO_X11=1'
+			usev !${1} NO_X11=1
 			;;
 		amd64)
-			use ${1} && echo 'PTR64=1'
+			usev ${1} PTR64=1
 			;;
 		cpu_flags_x86_*)
 			local feature=${1/cpu_flags_x86_/}
-			use ${1} && echo "${feature^^}=1"
+			usev ${1} ${feature^^}=1
 			;;
 		debug | lto | tools)
-			use ${1} && echo "${1^^}=1"
+			usev ${1} ${1^^}=1
 			;;
 		opengl)
-			use !${1} && echo "NO_${1^^}=1"
+			usev !${1} NO_${1^^}=1
 			;;
 		pulseaudio)
-			use !${1} && echo "NO_USE_${1^^}=1"
+			usev ${1} NO_USE_${1^^}=1
 			;;
 		system-*)
 			local feature=${1/system-/}
-			use ${1} && echo "USE_SYSTEM_LIB_${feature^^}=1"
+			usev ${1} USE_SYSTEM_LIB_${feature^^}=1
 			;;
 		*)
-			use ${1} && echo "USE_${1^^}=1"
+			usev ${1} USE_${1^^}=1
 			;;
 	esac
 }
