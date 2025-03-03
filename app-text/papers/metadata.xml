@@ -3,6 +3,7 @@
 <pkgmetadata>
 	<use>
 		<flag name="nautilus">Enable property page extension in <pkg>gnome-base/nautilus</pkg></flag>
+		<flag name="sysprof">Enable profiling data capture support using <pkg>dev-util/sysprof-capture</pkg></flag>
 	</use>
 	<upstream>
 		<remote-id type="gnome-gitlab">GNOME/Incubator/papers</remote-id>
