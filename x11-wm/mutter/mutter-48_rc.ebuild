@@ -4,9 +4,6 @@
 EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
 
-GNOME_ORG_PV="$(ver_rs 1- .)"
-GNOME_ORG_PV="${GNOME_ORG_PV/\.p.*/}"
-
 inherit gnome.org gnome2-utils meson python-any-r1 udev xdg
 
 DESCRIPTION="GNOME compositing window manager based on Clutter"
@@ -68,11 +65,11 @@ DEPEND="
 
 	>=dev-libs/wayland-1.23.0
 	wayland? (
-		>=dev-libs/wayland-protocols-1.38
+		>=dev-libs/wayland-protocols-1.41
 
 		>=x11-libs/libdrm-2.4.118
 		media-libs/mesa[gbm(+)]
-		>=dev-libs/libinput-1.26.0:=
+		>=dev-libs/libinput-1.27.0:=
 
 		!logind? ( sys-auth/elogind )
 		>=x11-base/xwayland-23.2.1[libei(+)]
@@ -139,33 +136,6 @@ BDEPEND="
 		x11-libs/libxcvt
 	)
 "
-
-PATCHES=(
-	"${FILESDIR}"/${PN}-43.0-Disable-anonymous-file-test.patch
-	"${FILESDIR}"/0001-kms-Keep-a-shutting_down-flag.patch
-	"${FILESDIR}"/0002-renderer-native-Avoid-requeuing-the-same-onscreen-fo.patch
-	"${FILESDIR}"/0003-renderer-native-Steal-the-power-save-flip-list-befor.patch
-	"${FILESDIR}"/0004-backends-native-Add-set-get_damage-functions-to-Meta.patch
-	"${FILESDIR}"/0005-backends-native-Add-set-steal_sync_fd-functions-to-M.patch
-	"${FILESDIR}"/0006-onscreen-native-Replace-an-assertion-that-double-buf.patch
-	"${FILESDIR}"/0007-onscreen-native-Invert-the-early-exit-from-swap_buff.patch
-	"${FILESDIR}"/0008-onscreen-native-Deduplicate-calls-to-clutter_frame_s.patch
-	"${FILESDIR}"/0009-onscreen-native-Split-swap_buffers_with_damage-into-.patch
-	"${FILESDIR}"/0010-onscreen-native-Insert-a-posted-frame-between-next-a.patch
-	"${FILESDIR}"/0011-onscreen-native-Merge-composite-and-direct-scanout-p.patch
-	"${FILESDIR}"/0012-onscreen-native-Pass-frame-as-a-parameter-to-flip_cr.patch
-	"${FILESDIR}"/0013-onscreen-native-Defer-posting-if-there-s-already-a-p.patch
-	"${FILESDIR}"/0014-onscreen-native-Increase-secondary-GPU-dumb_fbs-from.patch
-	"${FILESDIR}"/0015-renderer-native-Discard-pending-swaps-when-rebuildin.patch
-	"${FILESDIR}"/0016-doc-Update-the-frame-scheduling-diagram-to-include-S.patch
-	"${FILESDIR}"/0017-clutter-frame-clock-Lower-the-threshold-for-disablin.patch
-	"${FILESDIR}"/0018-clutter-frame-clock-Merge-states-DISPATCHING-and-PEN.patch
-	"${FILESDIR}"/0019-clutter-frame-clock-Add-triple-buffering-support.patch
-	"${FILESDIR}"/0020-clutter-Enable-triple-buffering-and-adapt-the-KMS-re.patch
-	"${FILESDIR}"/0021-clutter-frame-clock-Record-measurements-of-zero-for-.patch
-	"${FILESDIR}"/0022-clutter-frame-clock-Optimize-latency-for-platforms-m.patch
-	"${FILESDIR}"/0023-clutter-Add-a-CLUTTER_DEBUG_DISABLE_TRIPLE_BUFFERING.patch
-)
 
 python_check_deps() {
 	if use test; then
