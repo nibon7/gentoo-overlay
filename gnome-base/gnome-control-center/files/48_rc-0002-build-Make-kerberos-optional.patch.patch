@@ -1,4 +1,4 @@
-From 3f93051777e306fae196b066eb98b1a43c66b2b6 Mon Sep 17 00:00:00 2001
+From be28d4b3a0781b4e7d0360e3a77af9b9fdf76343 Mon Sep 17 00:00:00 2001
 From: Guillermo Joandet <gjoandet@gmail.com>
 Date: Sat, 12 Aug 2023 18:09:20 -0300
 Subject: [PATCH 2/5] 0002-build-Make-kerberos-optional.patch
@@ -11,10 +11,10 @@ Subject: [PATCH 2/5] 0002-build-Make-kerberos-optional.patch
  4 files changed, 15 insertions(+), 4 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 43994b3..756015c 100644
+index fcfac57bcbee..8d0261bef528 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -334,6 +334,11 @@ config_h.set('HAVE_WACOM', enable_wacom,
+@@ -344,6 +344,11 @@ config_h.set('HAVE_WACOM', enable_wacom,
  config_h.set('BUILD_THUNDERBOLT', host_is_linux_not_s390,
               description: 'Define to 1 to build the Thunderbolt panel')
  
@@ -27,7 +27,7 @@ index 43994b3..756015c 100644
  i18n = import('i18n')
  pkg = import('pkgconfig')
 diff --git a/meson_options.txt b/meson_options.txt
-index 742c5bf..ad227f2 100644
+index 742c5bfc3d62..ad227f2a2414 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
 @@ -3,6 +3,7 @@ option('deprecated-declarations', type: 'feature', value: 'disabled', descriptio
@@ -39,7 +39,7 @@ index 742c5bf..ad227f2 100644
  option('privileged_group', type: 'string', value: 'wheel', description: 'name of group that has elevated permissions')
  option('snap', type: 'boolean', value: true, description: 'build with Snap support')
 diff --git a/panels/system/users/cc-realm-manager.c b/panels/system/users/cc-realm-manager.c
-index ae05244..78fa0b6 100644
+index ae0524401932..78fa0b673a06 100644
 --- a/panels/system/users/cc-realm-manager.c
 +++ b/panels/system/users/cc-realm-manager.c
 @@ -22,7 +22,9 @@
@@ -88,7 +88,7 @@ index ae05244..78fa0b6 100644
  
  void
 diff --git a/panels/system/users/meson.build b/panels/system/users/meson.build
-index 5fda2ed..fa0ea07 100644
+index 5fda2edda1ed..fa0ea071f549 100644
 --- a/panels/system/users/meson.build
 +++ b/panels/system/users/meson.build
 @@ -69,10 +69,6 @@ sources += gnome.gdbus_codegen(

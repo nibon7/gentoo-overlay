@@ -1,4 +1,4 @@
-From fe650ada8b88614e8e6e5e7ba8827e7859ce95f8 Mon Sep 17 00:00:00 2001
+From 37248f92cb9cdde5a43b60b2e65f4a71ff42910a Mon Sep 17 00:00:00 2001
 From: Guillermo Joandet <gjoandet@gmail.com>
 Date: Sat, 12 Aug 2023 18:12:28 -0300
 Subject: [PATCH 5/5] 0005-Fix-absolute-paths-to-be-dependent-on-build-configur
@@ -15,7 +15,7 @@ Subject: [PATCH 5/5] 0005-Fix-absolute-paths-to-be-dependent-on-build-configur
  8 files changed, 15 insertions(+), 8 deletions(-)
 
 diff --git a/panels/printers/meson.build b/panels/printers/meson.build
-index 3e521c2..488f85b 100644
+index 3e521c2e47ce..488f85bd57ca 100644
 --- a/panels/printers/meson.build
 +++ b/panels/printers/meson.build
 @@ -46,6 +46,11 @@ deps = common_deps + [
@@ -31,7 +31,7 @@ index 3e521c2..488f85b 100644
    cappletname,
    sources: sources,
 diff --git a/panels/printers/pp-host.c b/panels/printers/pp-host.c
-index a31a606..049fb92 100644
+index a31a606e3179..049fb92491a3 100644
 --- a/panels/printers/pp-host.c
 +++ b/panels/printers/pp-host.c
 @@ -256,7 +256,7 @@ _pp_host_get_snmp_devices_thread (GTask        *task,
@@ -44,7 +44,7 @@ index a31a606..049fb92 100644
  
    /* Use SNMP to get printer's informations */
 diff --git a/panels/printers/pp-options-dialog.c b/panels/printers/pp-options-dialog.c
-index e7416f3..4f73843 100644
+index e7416f33fb2e..4f7384312e70 100644
 --- a/panels/printers/pp-options-dialog.c
 +++ b/panels/printers/pp-options-dialog.c
 @@ -805,7 +805,7 @@ test_page_cb (PpOptionsDialog *self)
@@ -57,7 +57,7 @@ index e7416f3..4f73843 100644
                                           NULL };
        const gchar      *datadir = NULL;
 diff --git a/panels/system/datetime/tz.h b/panels/system/datetime/tz.h
-index feef165..f9ed6ea 100644
+index feef165808ed..f9ed6eab0e47 100644
 --- a/panels/system/datetime/tz.h
 +++ b/panels/system/datetime/tz.h
 @@ -28,9 +28,9 @@
@@ -73,7 +73,7 @@ index feef165..f9ed6ea 100644
  
  typedef struct _TzDB TzDB;
 diff --git a/panels/system/users/meson.build b/panels/system/users/meson.build
-index fa0ea07..0246548 100644
+index fa0ea071f549..02465487442b 100644
 --- a/panels/system/users/meson.build
 +++ b/panels/system/users/meson.build
 @@ -71,6 +71,7 @@ sources += gnome.gdbus_codegen(
@@ -85,7 +85,7 @@ index fa0ea07..0246548 100644
    '-DUM_PIXMAP_DIR="@0@"'.format(join_paths(control_center_pkgdatadir, 'pixmaps'))
  ]
 diff --git a/panels/system/users/run-passwd.c b/panels/system/users/run-passwd.c
-index 742e68e..f79dd72 100644
+index 742e68e53ec2..f79dd7280bc9 100644
 --- a/panels/system/users/run-passwd.c
 +++ b/panels/system/users/run-passwd.c
 @@ -152,7 +152,7 @@ spawn_passwd (PasswdHandler *passwd_handler, GError **error)
@@ -98,7 +98,7 @@ index 742e68e..f79dd72 100644
  
          envp = g_get_environ ();
 diff --git a/tests/datetime/meson.build b/tests/datetime/meson.build
-index 0210368..fd0799b 100644
+index 021036881d68..fd0799b165a7 100644
 --- a/tests/datetime/meson.build
 +++ b/tests/datetime/meson.build
 @@ -14,7 +14,8 @@ env = [
@@ -112,7 +112,7 @@ index 0210368..fd0799b 100644
  
  foreach unit: test_units
 diff --git a/tests/datetime/test-endianess.c b/tests/datetime/test-endianess.c
-index 9cb9200..864681e 100644
+index 9cb92007a631..864681e75af9 100644
 --- a/tests/datetime/test-endianess.c
 +++ b/tests/datetime/test-endianess.c
 @@ -26,11 +26,11 @@ test_endianess (void)

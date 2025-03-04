@@ -1,4 +1,4 @@
-From 2a3993874b1d8049c4a77f4ce3c7c3bc8fd52c10 Mon Sep 17 00:00:00 2001
+From 20f7c59c28e5d7ef090bf083c283b5fc46c04a76 Mon Sep 17 00:00:00 2001
 From: Guillermo Joandet <gjoandet@gmail.com>
 Date: Sat, 12 Aug 2023 18:11:11 -0300
 Subject: [PATCH 4/5] 0004-build-Make-printers-panel-cups-optional.patch
@@ -12,11 +12,11 @@ Subject: [PATCH 4/5] 0004-build-Make-printers-panel-cups-optional.patch
  5 files changed, 22 insertions(+), 5 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 53f1734..64c6c6c 100644
+index d3a628c4852f..095eee7ed2bf 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -226,9 +226,11 @@ foreach polkit_file: polkit_files
- endforeach
+@@ -236,9 +236,11 @@ if cc.has_header_symbol('langinfo.h', '_NL_TIME_FIRST_WEEKDAY')
+ endif
  
  # Check for CUPS 1.4 or newer
 -cups_dep = dependency('cups', version : '>= 1.4', required: false)
@@ -29,7 +29,7 @@ index 53f1734..64c6c6c 100644
  # https://bugzilla.gnome.org/show_bug.cgi?id=696766
  cups_cflags = []
  if cups_dep.version().version_compare('>= 1.6')
-@@ -245,8 +247,13 @@ foreach header: check_headers
+@@ -255,8 +257,13 @@ foreach header: check_headers
    assert(cc.has_header(header[1], args: cups_cflags), 'CUPS headers not found: ' + header[1])
  endforeach
  
@@ -45,7 +45,7 @@ index 53f1734..64c6c6c 100644
  
  # IBus support
 diff --git a/meson_options.txt b/meson_options.txt
-index 775c099..fff86f3 100644
+index 775c099c17a5..fff86f3ce5f2 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
 @@ -1,4 +1,5 @@
@@ -55,10 +55,10 @@ index 775c099..fff86f3 100644
  option('documentation', type: 'boolean', value: false, description: 'build documentation')
  option('location-services', type: 'feature', value: 'enabled', description: 'build with location services')
 diff --git a/panels/meson.build b/panels/meson.build
-index 32ce53f..a56e369 100644
+index dfd5f6a345e9..c7f351a80486 100644
 --- a/panels/meson.build
 +++ b/panels/meson.build
-@@ -10,7 +10,6 @@ panels = [
+@@ -13,7 +13,6 @@ panels = [
    'multitasking',
    'notifications',
    'power',
@@ -66,7 +66,7 @@ index 32ce53f..a56e369 100644
    'privacy',
    'search',
    'sharing',
-@@ -20,6 +19,10 @@ panels = [
+@@ -23,6 +22,10 @@ panels = [
    'wellbeing',
  ]
  
@@ -78,7 +78,7 @@ index 32ce53f..a56e369 100644
    panels += ['online-accounts']
  endif
 diff --git a/shell/cc-panel-loader.c b/shell/cc-panel-loader.c
-index bf7273a..98cd1ad 100644
+index bf7273aa2bda..98cd1ad361d5 100644
 --- a/shell/cc-panel-loader.c
 +++ b/shell/cc-panel-loader.c
 @@ -51,7 +51,9 @@ extern GType cc_notifications_panel_get_type (void);
@@ -102,7 +102,7 @@ index bf7273a..98cd1ad 100644
    PANEL_TYPE("search",           cc_search_panel_get_type,               NULL),
    PANEL_TYPE("sharing",          cc_sharing_panel_get_type,              cc_sharing_panel_static_init_func),
 diff --git a/tests/meson.build b/tests/meson.build
-index 7482217..5885bb6 100644
+index 748221737e35..5885bb6df592 100644
 --- a/tests/meson.build
 +++ b/tests/meson.build
 @@ -12,5 +12,7 @@ if not libadwaita_is_subproject

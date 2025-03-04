@@ -6,10 +6,13 @@ PYTHON_COMPAT=( python3_{10..13} )
 
 inherit flag-o-matic gnome.org gnome2-utils meson python-any-r1 virtualx xdg
 
+LIBGXDP_COMMIT="e68375c7aced97705953b8e3b30af9f17991153b"
+
 DESCRIPTION="GNOME's main interface to configure various aspects of the desktop"
 HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-control-center"
 SRC_URI+=" https://dev.gentoo.org/~mattst88/distfiles/${PN}-gentoo-logo.svg"
 SRC_URI+=" https://dev.gentoo.org/~mattst88/distfiles/${PN}-gentoo-logo-dark.svg"
+SRC_URI+=" https://gitlab.gnome.org/GNOME/libgxdp/-/archive/${LIBGXDP_COMMIT}.tar.gz -> libgxdp-g${LIBGXDP_COMMIT:0:7}.tar.gz"
 # Logo is CC-BY-SA-2.5
 LICENSE="GPL-2+ CC-BY-SA-2.5"
 SLOT="2"
@@ -162,6 +165,8 @@ src_prepare() {
 	# Mark python tests with shebang executable, so that meson will launch them directly, instead
 	# of via its own python-single-r1 version, which might not match what we get from python_check_deps
 	chmod a+x tests/network/test-network-panel.py tests/datetime/test-datetime.py || die
+
+	ln -sf ${WORKDIR}/libgxdp-${LIBGXDP_COMMIT} subprojects/libgxdp || die
 }
 
 src_configure() {

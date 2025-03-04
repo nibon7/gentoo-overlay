@@ -1,4 +1,4 @@
-From 4b207a9beacbc3dcd2951d8a602c8750320029ee Mon Sep 17 00:00:00 2001
+From 37c279188a6967538f34eeb899da9d1963ab6f57 Mon Sep 17 00:00:00 2001
 From: Guillermo Joandet <gjoandet@gmail.com>
 Date: Sat, 12 Aug 2023 18:09:52 -0300
 Subject: [PATCH 3/5] 0003-build-Make-gnome-online-accounts-optional
@@ -11,19 +11,19 @@ Subject: [PATCH 3/5] 0003-build-Make-gnome-online-accounts-optional
  4 files changed, 14 insertions(+), 2 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 756015c..53f1734 100644
+index 8d0261bef528..d3a628c4852f 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -187,7 +187,7 @@ gnome_desktop_dep = dependency('gnome-desktop-4')
+@@ -191,7 +191,7 @@ gnome_desktop_dep = dependency('gnome-desktop-4')
  gnome_bg_dep = dependency('gnome-bg-4')
  gnome_rr_dep = dependency('gnome-rr-4')
- gnome_settings_dep = dependency('gnome-settings-daemon', version: '>= 48.alpha.1')
+ gnome_settings_dep = dependency('gnome-settings-daemon', version: '>= 48.alpha.1', fallback: 'gsd')
 -goa_dep = dependency('goa-1.0', version: goa_req_version, fallback: 'goa')
 +goa_dep = dependency('goa-1.0', version: goa_req_version, required: get_option('goa'))
  gsettings_desktop_dep = dependency('gsettings-desktop-schemas', version: '>= 48.alpha')  # actually requires commit 9d55553, just after alpha
  libxml_dep = dependency('libxml-2.0')
  pulse_dep = dependency('libpulse', version: pulse_req_version)
-@@ -202,6 +202,10 @@ pwquality_dep = dependency('pwquality', version: '>= 1.2.2')
+@@ -206,6 +206,10 @@ pwquality_dep = dependency('pwquality', version: '>= 1.2.2')
  
  m_dep = cc.find_library('m')
  
@@ -35,7 +35,7 @@ index 756015c..53f1734 100644
    gio_dep,
    glib_dep,
 diff --git a/meson_options.txt b/meson_options.txt
-index ad227f2..775c099 100644
+index ad227f2a2414..775c099c17a5 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
 @@ -2,6 +2,7 @@ option('bluetooth', type: 'boolean', value: true, description: 'build with Bluet
@@ -47,10 +47,10 @@ index ad227f2..775c099 100644
  option('kerberos', type: 'feature', value: 'auto', description: 'build with kerberos support')
  option('network_manager', type: 'boolean', value: true, description: 'build with NetworkManager support')
 diff --git a/panels/meson.build b/panels/meson.build
-index d90c4c9..32ce53f 100644
+index ebc522df0c35..dfd5f6a345e9 100644
 --- a/panels/meson.build
 +++ b/panels/meson.build
-@@ -9,7 +9,6 @@ panels = [
+@@ -12,7 +12,6 @@ panels = [
    'mouse',
    'multitasking',
    'notifications',
@@ -58,7 +58,7 @@ index d90c4c9..32ce53f 100644
    'power',
    'printers',
    'privacy',
-@@ -21,6 +20,10 @@ panels = [
+@@ -24,6 +23,10 @@ panels = [
    'wellbeing',
  ]
  
@@ -70,7 +70,7 @@ index d90c4c9..32ce53f 100644
    panels += [ 'network', 'wwan' ]
  endif
 diff --git a/shell/cc-panel-loader.c b/shell/cc-panel-loader.c
-index 28a1671..bf7273a 100644
+index 28a1671d92c2..bf7273aa2bda 100644
 --- a/shell/cc-panel-loader.c
 +++ b/shell/cc-panel-loader.c
 @@ -47,7 +47,9 @@ extern GType cc_network_panel_get_type (void);
