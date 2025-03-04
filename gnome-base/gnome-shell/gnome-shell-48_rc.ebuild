@@ -27,7 +27,7 @@ DEPEND="
 	>=dev-libs/gjs-1.73.1[cairo(+)]
 	>=gui-libs/gtk-4:4[introspection]
 	>=x11-libs/pango-1.46.0
-	>=x11-wm/mutter-48_beta:0/16[fonts,introspection,test?]
+	>=x11-wm/mutter-48_rc:0/16[fonts,introspection,test?]
 	>=sys-auth/polkit-0.120_p20220509[introspection]
 	>=gnome-base/gsettings-desktop-schemas-48_beta[introspection]
 	>=app-i18n/ibus-1.5.19
@@ -135,7 +135,7 @@ BDEPEND="
 
 PATCHES=(
 	# Change favorites defaults, bug #479918
-	"${FILESDIR}"/46.4-defaults.patch
+	"${FILESDIR}"/48_rc-defaults.patch
 )
 
 src_prepare() {
