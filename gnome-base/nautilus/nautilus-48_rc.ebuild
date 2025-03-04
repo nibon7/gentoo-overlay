@@ -24,7 +24,7 @@ DEPEND="
 	>=app-arch/gnome-autoar-0.4.4
 	>=gnome-base/gnome-desktop-43:4=
 	>=gnome-base/gsettings-desktop-schemas-42
-	>=gui-libs/gtk-4.17.0:4[introspection?]
+	>=gui-libs/gtk-4.17.5:4[introspection?]
 	>=gui-libs/libadwaita-1.6_beta:1
 	>=dev-libs/libportal-0.7:=[gtk]
 	>=x11-libs/pango-1.28.3
