@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,8 +14,8 @@ if [[ ${PV} == *9999* ]]; then
 	EGIT_REPO_URI="https://github.com/marin-m/vmlinux-to-elf.git"
 	inherit git-r3
 else
-	COMMIT="fa5c9305ae1c4bbcd2debabb810e7613def690a7"
-	SRC_URI="https://github.com/marin-m/vmlinux-to-elf/archive/${COMMIT}.tar.gz -> ${P}-g${COMMIT:0:7}.tar.gz"
+	COMMIT="611bb0c5417d44e177f665955793d015570b5f80"
+	SRC_URI="https://github.com/marin-m/vmlinux-to-elf/archive/${COMMIT}.tar.gz -> ${PN}-g${COMMIT:0:7}.tar.gz"
 	S="${WORKDIR}"/${PN}-${COMMIT}
 	KEYWORDS="amd64 arm64 ~loong ~riscv x86"
 fi
