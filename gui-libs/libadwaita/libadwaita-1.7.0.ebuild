@@ -13,7 +13,7 @@ LICENSE="LGPL-2.1+"
 SLOT="1"
 KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~x86"
 
-IUSE="doc +introspection test +vala"
+IUSE="gtk-doc +introspection test +vala"
 REQUIRED_USE="vala? ( introspection )"
 
 RDEPEND="
@@ -21,14 +21,14 @@ RDEPEND="
 	>=gui-libs/gtk-4.15.2:4[introspection?]
 	dev-libs/appstream:=
 	dev-libs/fribidi
-	introspection? ( >=dev-libs/gobject-introspection-1.54:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.83.2:= )
 "
 DEPEND="${RDEPEND}
 	x11-base/xorg-proto"
 BDEPEND="
 	${PYTHON_DEPS}
 	vala? ( $(vala_depend) )
-	doc? ( >=dev-util/gi-docgen-2021.1 )
+	gtk-doc? ( >=dev-util/gi-docgen-2021.1 )
 	dev-util/glib-utils
 	sys-devel/gettext
 	virtual/pkgconfig
@@ -37,10 +37,6 @@ BDEPEND="
 src_prepare() {
 	default
 	use vala && vala_setup
-	sed -i \
-		"s|^docs_dir = .*|docs_dir = '/usr/share/gtk-doc/html'|" \
-		doc/meson.build \
-		|| die
 }
 
 src_configure() {
@@ -51,7 +47,7 @@ src_configure() {
 		-Dprofiling=false
 		$(meson_feature introspection)
 		$(meson_use vala vapi)
-		$(meson_use doc documentation)
+		$(meson_use gtk-doc documentation)
 		$(meson_use test tests)
 		-Dexamples=false
 	)
@@ -64,4 +60,9 @@ src_test() {
 
 src_install() {
 	meson_src_install
+
+	if use gtk-doc; then
+		mkdir -p "${ED}"/usr/share/gtk-doc/html || die
+		mv "${ED}"/usr/share/doc/libadwaita-1 "${ED}"/usr/share/gtk-doc/html || die
+	fi
 }
