@@ -13,7 +13,7 @@ LICENSE="LGPL-2+"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~loong ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
 
-IUSE="debug doc examples +introspection sysprof test X"
+IUSE="debug examples gtk-doc +introspection sysprof test X"
 RESTRICT="!test? ( test )"
 
 RDEPEND="
@@ -38,7 +38,7 @@ BDEPEND="
 	dev-util/glib-utils
 	sys-apps/help2man
 	virtual/pkgconfig
-	doc? ( >=dev-util/gi-docgen-2021.1 )
+	gtk-doc? ( >=dev-util/gi-docgen-2021.1 )
 	test? ( media-fonts/cantarell )
 "
 
@@ -49,11 +49,6 @@ src_prepare() {
 
 	# get rid of a win32 example
 	rm examples/pangowin32tobmp.c || die
-
-	sed -i \
-		"s|^docs_dir = .*|docs_dir = '/usr/share/gtk-doc/html'|" \
-		docs/meson.build \
-		|| die
 }
 
 multilib_src_configure() {
@@ -67,7 +62,7 @@ multilib_src_configure() {
 		# Never use gi-docgen subproject
 		--wrap-mode nofallback
 
-		$(meson_use doc documentation)
+		$(meson_use gtk-doc documentation)
 		$(meson_native_use_feature introspection)
 		$(meson_use test build-testsuite)
 		-Dbuild-examples=false
@@ -84,6 +79,11 @@ multilib_src_configure() {
 multilib_src_install_all() {
 	if use examples; then
 		dodoc -r examples
+	fi
+
+	if use gtk-doc; then
+		mkdir -p "${ED}"/usr/share/gtk-doc/html || die
+		mv "${ED}"/usr/share/doc/Pango{,Cairo,Fc,FT2,OT,Xft} "${ED}"/usr/share/gtk-doc/html || die
 	fi
 }
 
