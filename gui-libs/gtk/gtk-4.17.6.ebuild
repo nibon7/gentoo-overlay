@@ -10,7 +10,7 @@ HOMEPAGE="https://www.gtk.org/ https://gitlab.gnome.org/GNOME/gtk/"
 
 LICENSE="LGPL-2+"
 SLOT="4"
-IUSE="aqua broadway cloudproviders colord cups doc examples gstreamer +introspection sysprof test vulkan wayland +X cpu_flags_x86_f16c"
+IUSE="aqua broadway cloudproviders colord cups examples gstreamer gtk-doc +introspection sysprof test vulkan wayland +X cpu_flags_x86_f16c"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	test? ( introspection )
@@ -85,7 +85,7 @@ PDEPEND="
 "
 BDEPEND="
 	dev-libs/gobject-introspection-common
-	doc? ( >=dev-util/gi-docgen-2021.1 )
+	gtk-doc? ( >=dev-util/gi-docgen-2021.1 )
 	introspection? (
 		${PYTHON_DEPS}
 		$(python_gen_any_dep '
@@ -136,11 +136,6 @@ src_prepare() {
 			-e "/^xfails =/a 'border-image-excess-size.ui'," \
 			testsuite/reftests/meson.build || die
 	fi
-
-	sed -i \
-		"s|^docs_dir = .*|docs_dir = '/usr/share/gtk-doc/html'|" \
-		docs/reference/meson.build \
-		|| die
 }
 
 src_configure() {
@@ -173,7 +168,7 @@ src_configure() {
 		$(meson_feature introspection)
 
 		# Documentation
-		$(meson_use doc documentation)
+		$(meson_use gtk-doc documentation)
 		-Dscreenshots=false
 		-Dman-pages=true
 
@@ -233,6 +228,11 @@ src_test() {
 
 src_install() {
 	meson_src_install
+
+	if use gtk-doc; then
+		mkdir -p "${ED}"/usr/share/gtk-doc/html || die
+		mv "${ED}"/usr/share/doc/{gdk4{,-wayland,-x11},gsk4,gtk4} "${ED}"/usr/share/gtk-doc/html || die
+	fi
 }
 
 pkg_preinst() {
