@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -10,10 +10,11 @@ HOMEPAGE="https://apps.gnome.org/Nautilus/"
 
 LICENSE="GPL-3+ LGPL-2.1+"
 SLOT="0"
-IUSE="+cloudproviders gnome +gstreamer gtk-doc +introspection +previewer selinux sendto"
-REQUIRED_USE="gtk-doc? ( introspection )"
 
-KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~x86"
+
+IUSE="+cloudproviders doc gnome +gstreamer +introspection +previewer selinux"
+REQUIRED_USE="doc? ( introspection )"
 
 DEPEND="
 	>=dev-libs/glib-2.79.0:2
@@ -39,7 +40,7 @@ RDEPEND="${DEPEND}
 BDEPEND="
 	>=dev-util/gdbus-codegen-2.51.2
 	dev-util/glib-utils
-	gtk-doc? (
+	doc? (
 		app-text/docbook-xml-dtd:4.1.2
 		dev-util/gi-docgen
 	)
@@ -50,7 +51,6 @@ BDEPEND="
 PDEPEND="
 	gnome? ( x11-themes/adwaita-icon-theme )
 	previewer? ( >=gnome-extra/sushi-0.1.9 )
-	sendto? ( >=gnome-extra/nautilus-sendto-3.0.1 )
 	>=gnome-base/gvfs-1.14[gtk(+)]
 " # Need gvfs[gtk] for recent:/// support; always built (without USE=gtk) since gvfs-1.34
 
@@ -77,8 +77,8 @@ src_prepare() {
 
 src_configure() {
 	local emesonargs=(
-		$(meson_use gtk-doc docs)
-		-Dextensions=true # image file properties, sendto support; also required for -Dgstreamer=true
+		$(meson_use doc docs)
+		-Dextensions=true # image file properties, also required for -Dgstreamer=true
 		$(meson_use introspection)
 		-Dpackagekit=false
 		$(meson_use selinux)
@@ -93,6 +93,11 @@ src_configure() {
 src_install() {
 	use previewer && readme.gentoo_create_doc
 	meson_src_install
+
+	if use doc; then
+		mkdir -p "${ED}"/usr/share/gtk-doc/html || die
+		mv "${ED}"/usr/share/doc/nautilus "${ED}"/usr/share/gtk-doc/html || die
+	fi
 }
 
 src_test() {
