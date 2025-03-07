@@ -6,13 +6,10 @@ PYTHON_COMPAT=( python3_{10..13} )
 
 inherit flag-o-matic gnome.org gnome2-utils meson python-any-r1 virtualx xdg
 
-LIBGXDP_COMMIT="e68375c7aced97705953b8e3b30af9f17991153b"
-
 DESCRIPTION="GNOME's main interface to configure various aspects of the desktop"
 HOMEPAGE="https://gitlab.gnome.org/GNOME/gnome-control-center"
 SRC_URI+=" https://dev.gentoo.org/~mattst88/distfiles/${PN}-gentoo-logo.svg"
 SRC_URI+=" https://dev.gentoo.org/~mattst88/distfiles/${PN}-gentoo-logo-dark.svg"
-SRC_URI+=" https://gitlab.gnome.org/GNOME/libgxdp/-/archive/${LIBGXDP_COMMIT}.tar.gz -> libgxdp-g${LIBGXDP_COMMIT:0:7}.tar.gz"
 # Logo is CC-BY-SA-2.5
 LICENSE="GPL-2+ CC-BY-SA-2.5"
 SLOT="2"
@@ -143,11 +140,11 @@ PATCHES=(
 	# Makes some panels and dependencies optional
 	# https://bugzilla.gnome.org/686840, 697478, 700145
 	# Fix some absolute paths to be appropriate for Gentoo
-	"${FILESDIR}"/${PV}-0001-build-Restore-options-for-bluetooth-NetworkMana.patch
-	"${FILESDIR}"/${PV}-0002-build-Make-kerberos-optional.patch.patch
-	"${FILESDIR}"/${PV}-0003-build-Make-gnome-online-accounts-optional.patch
-	"${FILESDIR}"/${PV}-0004-build-Make-printers-panel-cups-optional.patch.patch
-	"${FILESDIR}"/${PV}-0005-Fix-absolute-paths-to-be-dependent-on-build-con.patch
+	"${FILESDIR}"/48_rc-0001-build-Restore-options-for-bluetooth-NetworkMana.patch
+	"${FILESDIR}"/48_rc-0002-build-Make-kerberos-optional.patch.patch
+	"${FILESDIR}"/48_rc-0003-build-Make-gnome-online-accounts-optional.patch
+	"${FILESDIR}"/48_rc-0004-build-Make-printers-panel-cups-optional.patch.patch
+	"${FILESDIR}"/48_rc-0005-Fix-absolute-paths-to-be-dependent-on-build-con.patch
 )
 
 python_check_deps() {
@@ -165,8 +162,6 @@ src_prepare() {
 	# Mark python tests with shebang executable, so that meson will launch them directly, instead
 	# of via its own python-single-r1 version, which might not match what we get from python_check_deps
 	chmod a+x tests/network/test-network-panel.py tests/datetime/test-datetime.py || die
-
-	ln -sf ${WORKDIR}/libgxdp-${LIBGXDP_COMMIT} subprojects/libgxdp || die
 }
 
 src_configure() {
