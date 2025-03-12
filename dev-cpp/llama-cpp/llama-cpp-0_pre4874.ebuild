@@ -26,6 +26,7 @@ CPU_FLAGS_X86=(
 #	amx_bf16
 #	amx_int8
 #	amx_tile
+#	bmi2
 	avx
 	avx2
 	avx512bw
@@ -131,6 +132,7 @@ src_configure() {
 		-DGGML_AMX_BF16=OFF
 		-DGGML_AMX_INT8=OFF
 		-DGGML_AMX_TILE=OFF
+		-DGGML_BMI2=OFF
 
 		-DGGML_AVX="$(usex cpu_flags_x86_avx)"
 		-DGGML_AVX2="$(usex cpu_flags_x86_avx2)"
