@@ -4,9 +4,6 @@
 EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
 
-GNOME_ORG_PV="$(ver_rs 1- .)"
-GNOME_ORG_PV="${GNOME_ORG_PV/\.p.*/}"
-
 inherit gnome.org gnome2-utils meson python-any-r1 udev xdg
 
 DESCRIPTION="GNOME compositing window manager based on Clutter"
@@ -142,17 +139,6 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-43.0-Disable-anonymous-file-test.patch
-	"${FILESDIR}"/0001-clutter-color-state-params-Handle-on-gamma-EOTFs-neg.patch
-	"${FILESDIR}"/0002-clutter-color-state-params-Ignore-explicit-max_lum-o.patch
-	"${FILESDIR}"/0003-wayland-color-management-Ensure-ref-lum-can-t-be-big.patch
-	"${FILESDIR}"/0004-wayland-drm-lease-Put-clients-in-a-queue-on-drm_fd-e.patch
-	"${FILESDIR}"/0005-wayland-drm-lease-Move-on-device-bind-events-to-a-fu.patch
-	"${FILESDIR}"/0006-wayland-drm-lease-Send-drm_fd-to-pending-clients.patch
-	"${FILESDIR}"/0007-clutter-frame-clock-Verify-and-change-state-earlier-.patch
-	"${FILESDIR}"/0008-kms-impl-device-Refactor-meta_kms_impl_device_do_pro.patch
-	"${FILESDIR}"/0009-kms-impl-device-Don-t-set_needs_flush-if-there-s-a-p.patch
-	"${FILESDIR}"/0010-kms-impl-device-Process-pending-update-from-_schedul.patch
-	"${FILESDIR}"/0011-kms-impl-device-Don-t-disable-deadline-timer-on-G_IO.patch
 )
 
 python_check_deps() {
