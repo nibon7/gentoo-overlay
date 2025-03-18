@@ -42,7 +42,7 @@ DEPEND="
 	>=x11-libs/gdk-pixbuf-2.23.0:2
 	>=dev-libs/glib-2.76.6:2
 	gnome-base/gnome-desktop:4=
-	>=gnome-base/gnome-settings-daemon-48_alpha1[colord,input_devices_wacom?]
+	>=gnome-base/gnome-settings-daemon-48_rc[colord,input_devices_wacom?]
 	>=gnome-base/gsettings-desktop-schemas-48_alpha
 	dev-libs/json-glib
 	dev-libs/libxml2:2
@@ -140,11 +140,11 @@ PATCHES=(
 	# Makes some panels and dependencies optional
 	# https://bugzilla.gnome.org/686840, 697478, 700145
 	# Fix some absolute paths to be appropriate for Gentoo
-	"${FILESDIR}"/48_rc-0001-build-Restore-options-for-bluetooth-NetworkMana.patch
-	"${FILESDIR}"/48_rc-0002-build-Make-kerberos-optional.patch.patch
-	"${FILESDIR}"/48_rc-0003-build-Make-gnome-online-accounts-optional.patch
-	"${FILESDIR}"/48_rc-0004-build-Make-printers-panel-cups-optional.patch.patch
-	"${FILESDIR}"/48_rc-0005-Fix-absolute-paths-to-be-dependent-on-build-con.patch
+	"${FILESDIR}"/48.0-0001-build-Restore-options-for-bluetooth-NetworkMana.patch
+	"${FILESDIR}"/48.0-0002-build-Make-kerberos-optional.patch.patch
+	"${FILESDIR}"/48.0-0003-build-Make-gnome-online-accounts-optional.patch
+	"${FILESDIR}"/48.0-0004-build-Make-printers-panel-cups-optional.patch.patch
+	"${FILESDIR}"/48.0-0005-Fix-absolute-paths-to-be-dependent-on-build-con.patch
 )
 
 python_check_deps() {
