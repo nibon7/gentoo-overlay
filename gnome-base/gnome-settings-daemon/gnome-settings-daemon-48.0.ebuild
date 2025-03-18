@@ -85,7 +85,7 @@ BDEPEND="
 "
 
 PATCHES=(
-	"${FILESDIR}"/42.1-build-Make-wacom-optional-and-controllable-via-meson.patch
+	"${FILESDIR}"/48.0-build-Make-wacom-optional-and-controllable-via-meson.patch
 	"${FILESDIR}"/${PN}-3.38.1-build-Allow-NM-optional-on-Linux.patch
 )
 

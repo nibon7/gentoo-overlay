@@ -1,4 +1,4 @@
-From 1e07481d4fd989828a7237c365e5420f50196ddd Mon Sep 17 00:00:00 2001
+From 0e294921efe7c4e61a332ece5a6e728008fd36a9 Mon Sep 17 00:00:00 2001
 From: Mart Raudsepp <leio@gentoo.org>
 Date: Thu, 14 Mar 2019 09:43:00 +0200
 Subject: [PATCH] build: Make wacom optional and controllable via meson_options
@@ -9,10 +9,10 @@ Subject: [PATCH] build: Make wacom optional and controllable via meson_options
  2 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index a8955a49..0ac4f3ba 100644
+index db8bd64c4c61..24ecab1ad27b 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -154,8 +154,8 @@ if enable_wayland
+@@ -169,8 +169,8 @@ if enable_wayland
  endif
  config_h.set10('HAVE_WAYLAND', enable_wayland)
  
@@ -24,17 +24,17 @@ index a8955a49..0ac4f3ba 100644
    assert(enable_gudev, 'GUDev support is required for wacom support.')
    libwacom_dep = dependency('libwacom', version: '>= 0.7')
 diff --git a/meson_options.txt b/meson_options.txt
-index 3e04cf64..010053e2 100644
+index 5e2cccab651e..44697718ff41 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
-@@ -9,6 +9,7 @@ option('network_manager', type: 'boolean', value: true, description: 'build with
+@@ -8,6 +8,7 @@ option('network_manager', type: 'boolean', value: true, description: 'build with
  option('rfkill', type: 'boolean', value: true, description: 'build with rfkill support (not optional on Linux platforms)')
  option('smartcard', type: 'boolean', value: true, description: 'build with smartcard support')
  option('usb-protection', type: 'boolean', value: true, description: 'build with usb-protection support')
 +option('wacom', type: 'boolean', value: true, description: 'build with Wacom devices support')
  option('wayland', type: 'boolean', value: true, description: 'build with Wayland support')
  option('wwan', type: 'boolean', value: true, description: 'build with WWAN support')
- option('colord', type: 'boolean', value: true, description: 'build with colord support')
+ option('gcr3', type: 'boolean', value: false, description: 'build with gcr3, otherwise gcr4 is used')
 -- 
-2.34.1
+2.48.1
 
