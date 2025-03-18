@@ -13,7 +13,7 @@ LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~riscv ~x86"
 
-IUSE="cue exif +ffmpeg gif gsf iptc +iso +jpeg networkmanager +pdf +playlist raw +rss seccomp test +tiff upower +xml xmp xps"
+IUSE="cue exif +ffmpeg gif gsf iptc +iso +jpeg +pdf +playlist raw seccomp test +tiff upower +xml xmp xps"
 
 RESTRICT="!test? ( test )"
 
@@ -45,9 +45,6 @@ RDEPEND="
 
 	gif? ( media-libs/giflib:= )
 
-	networkmanager? ( net-misc/networkmanager )
-
-	rss? ( >=net-libs/libgrss-0.7:0 )
 	app-arch/gzip
 
 	upower? ( >=sys-power/upower-0.9.0:= )
@@ -97,7 +94,6 @@ src_configure() {
 		$(meson_use test functional_tests)
 		$(meson_use test tests_tap_protocol)
 		-Dminer_fs=true
-		$(meson_use rss miner_rss)
 		-Dwriteback=true
 		-Dabiword=true
 		-Dicon=true
@@ -106,7 +102,6 @@ src_configure() {
 		-Dtext=true
 		-Dunzip_ps_gz_files=true # spawns gunzip
 
-		$(meson_feature networkmanager network_manager)
 		$(meson_feature cue)
 		$(meson_feature exif)
 		$(meson_feature gif)
