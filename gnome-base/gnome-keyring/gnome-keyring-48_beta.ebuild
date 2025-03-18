@@ -22,7 +22,7 @@ RDEPEND="
 	>=app-eselect/eselect-pinentry-0.5
 	app-crypt/p11-kit
 	app-misc/ca-certificates
-	>=dev-libs/glib-2.44:2
+	>=dev-libs/glib-2.80:2
 	>=dev-libs/libgcrypt-1.2.2:0=
 	pam? ( sys-libs/pam )
 	selinux? ( sec-policy/selinux-gnome )
