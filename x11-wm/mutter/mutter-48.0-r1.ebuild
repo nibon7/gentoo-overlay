@@ -139,6 +139,9 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-43.0-Disable-anonymous-file-test.patch
+	"${FILESDIR}"/0001-cursor-Unify-prepare_func-for-shape-cursors.patch
+	"${FILESDIR}"/0002-kms-impl-device-Always-catch-pending-KMS-update-in-_.patch
+	"${FILESDIR}"/0003-Revert-onscreen-native-Account-for-all-posted-frames.patch
 )
 
 python_check_deps() {
