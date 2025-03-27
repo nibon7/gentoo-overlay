@@ -1,0 +1,51 @@
+From c4b0e2e93307baa6d53ddeb142f78256a49f33ea Mon Sep 17 00:00:00 2001
+From: Sebastian Wick <sebastian.wick@redhat.com>
+Date: Tue, 25 Mar 2025 13:27:19 +0100
+Subject: [PATCH] wayland: Allow changing from a cursor shape to a NULL surface
+
+Changing to a cursor shape would set the cursor surface to NULL, so
+trying to disable the cursor by setting the cursor surface to NULL was
+detected as no-change. This commit fixes the check by taking into
+account if the cursor shape is currently set.
+
+Also adds a ref-test for it.
+
+Fixes: 005b969227 ("wayland: Implement the cursor_shape_v1 protocol")
+Closes: https://gitlab.gnome.org/GNOME/mutter/-/issues/3997
+Part-of: <https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4358>
+---
+ src/tests/wayland-test-clients/cursor-shape.c    |   3 +++
+ src/wayland/meta-wayland-pointer.c               |   3 ++-
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/src/tests/wayland-test-clients/cursor-shape.c b/src/tests/wayland-test-clients/cursor-shape.c
+index c17d91e5ed4b..827f201833bf 100644
+--- a/src/tests/wayland-test-clients/cursor-shape.c
++++ b/src/tests/wayland-test-clients/cursor-shape.c
+@@ -128,6 +128,9 @@ main (int    argc,
+                                            WP_CURSOR_SHAPE_DEVICE_V1_SHAPE_DEFAULT);
+       wp_cursor_shape_device_v1_destroy (cursor_shape_device);
+       wait_for_view_verified (display, 1);
++      /* make sure disabling the cursor works */
++      wl_pointer_set_cursor (pointer, serial, NULL, 0, 0);
++      wait_for_view_verified (display, 3);
+ 
+       return EXIT_SUCCESS;
+     }
+diff --git a/src/wayland/meta-wayland-pointer.c b/src/wayland/meta-wayland-pointer.c
+index 0baa53006d15..b7819fdf1806 100644
+--- a/src/wayland/meta-wayland-pointer.c
++++ b/src/wayland/meta-wayland-pointer.c
+@@ -1199,7 +1199,8 @@ meta_wayland_pointer_set_cursor_surface (MetaWaylandPointer *pointer,
+ 
+   prev_cursor_surface = pointer->cursor_surface;
+ 
+-  if (prev_cursor_surface == cursor_surface)
++  if (prev_cursor_surface == cursor_surface &&
++      pointer->cursor_shape == META_CURSOR_INVALID)
+     return;
+ 
+   pointer->cursor_surface = cursor_surface;
+-- 
+2.48.1
+

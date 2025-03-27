@@ -1,0 +1,30 @@
+From 90fb3d53a3b10513a860710364784544f0705cc6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <mdaenzer@redhat.com>
+Date: Tue, 25 Mar 2025 16:15:03 +0100
+Subject: [PATCH] wayland: Bail early if cursor shape doesn't change
+
+No need to call meta_wayland_pointer_update_cursor_surface in that case.
+
+Part-of: <https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4361>
+---
+ src/wayland/meta-wayland-pointer.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/wayland/meta-wayland-pointer.c b/src/wayland/meta-wayland-pointer.c
+index b7819fdf1806..f8218669de7b 100644
+--- a/src/wayland/meta-wayland-pointer.c
++++ b/src/wayland/meta-wayland-pointer.c
+@@ -1234,6 +1234,10 @@ meta_wayland_pointer_set_cursor_shape (MetaWaylandPointer *pointer,
+       g_clear_signal_handler (&pointer->cursor_surface_destroy_id,
+                               pointer->cursor_surface);
+     }
++  else if (pointer->cursor_shape == shape)
++    {
++      return;
++    }
+ 
+   pointer->cursor_surface = NULL;
+   pointer->cursor_shape = shape;
+-- 
+2.48.1
+
