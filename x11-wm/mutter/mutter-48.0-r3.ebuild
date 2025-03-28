@@ -145,6 +145,12 @@ PATCHES=(
 	"${FILESDIR}"/0004-wayland-Allow-changing-from-a-cursor-shape-to-a-NULL.patch
 	"${FILESDIR}"/0005-Fix-mutter-crash-from-should_constraint_be_enabled.patch
 	"${FILESDIR}"/0006-wayland-Bail-early-if-cursor-shape-doesn-t-change.patch
+	"${FILESDIR}"/0007-clutter-frame-clock-Set-frame-clock-state-via-helper.patch
+	"${FILESDIR}"/0008-clutter-frame-clock-Add-more-debug-logging.patch
+	"${FILESDIR}"/0009-onscreen-native-Include-connector-in-some-debug-logs.patch
+	"${FILESDIR}"/0010-onscreen-native-Account-for-all-posted-frames.patch
+	"${FILESDIR}"/0011-Revert-kms-impl-device-Always-catch-pending-KMS-upda.patch
+	"${FILESDIR}"/0012-clutter-frame-clock-Don-t-accidentally-reschedule-no.patch
 )
 
 python_check_deps() {
