@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake cuda
 
 MY_PN="${PN/-/.}"
 MY_PV="b${PV#0_pre}"
@@ -18,7 +18,7 @@ S="${WORKDIR}/${MY_P}"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~arm64"
-IUSE="blas blis curl examples hbm lto opencl openmp rpc server test vulkan"
+IUSE="blas blis cuda curl examples hbm lto opencl openmp rpc server test vulkan"
 
 #CPU_FLAGS_RISCV=( rvv )
 #CPU_FLAGS_LOONG=( lasx lsx )
@@ -51,6 +51,7 @@ DEPEND="blas? (
 		blis? ( sci-libs/blis )
 	)
 	curl? ( net-misc/curl )
+	cuda? ( dev-util/nvidia-cuda-toolkit:= )
 	opencl? ( virtual/opencl )
 	openmp? ( sys-devel/gcc:=[openmp] )
 	vulkan? (
@@ -85,6 +86,14 @@ usex_avx512() {
 	echo OFF
 }
 
+src_prepare() {
+	use cuda && cuda_src_prepare
+
+	cmake_src_prepare
+
+	default
+}
+
 src_configure() {
 	local mycmakeargs=(
 		-DLLAMA_BUILD_COMMON=ON
@@ -114,7 +123,7 @@ src_configure() {
 		-DGGML_BLAS="$(usex blas)"
 		-DGGML_BLAS_VENDOR="$(usex blis FLAME OpenBLAS)"
 		-DGGML_CANN=OFF
-		-DGGML_CUDA=OFF
+		-DGGML_CUDA="$(usex cuda)"
 		-DGGML_HIP=OFF
 		-DGGML_KOMPUTE=OFF
 		-DGGML_MUSA=OFF
