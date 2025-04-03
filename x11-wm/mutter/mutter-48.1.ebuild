@@ -3,7 +3,6 @@
 
 EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
-
 inherit gnome.org gnome2-utils meson python-any-r1 udev xdg
 
 DESCRIPTION="GNOME compositing window manager based on Clutter"
@@ -20,11 +19,11 @@ else
 	SLOT="0/$(($(ver_cut 1) - 32))" # 0/libmutter_api_version - ONLY gnome-shell (or anything using mutter-clutter-<api_version>.pc) should use the subslot
 fi
 
-IUSE="debug +fonts gnome gtk-doc input_devices_wacom +introspection +logind screencast sysprof test udev wayland X video_cards_nvidia"
+IUSE="debug elogind +fonts gnome gtk-doc input_devices_wacom +introspection screencast systemd sysprof test udev wayland X video_cards_nvidia"
 # native backend requires gles3 for hybrid graphics blitting support, udev and a logind provider
 REQUIRED_USE="
 	gtk-doc? ( introspection )
-	wayland? ( ^^ ( logind !logind ) udev )
+	wayland? ( ^^ ( elogind systemd ) udev )
 	test? ( wayland )"
 RESTRICT="!test? ( test )"
 
@@ -71,7 +70,7 @@ DEPEND="
 		media-libs/mesa[gbm(+)]
 		>=dev-libs/libinput-1.27.0:=
 
-		!logind? ( sys-auth/elogind )
+		elogind? ( sys-auth/elogind )
 		>=x11-base/xwayland-23.2.1[libei(+)]
 		video_cards_nvidia? ( gui-libs/egl-wayland )
 	)
@@ -79,7 +78,7 @@ DEPEND="
 		>=virtual/libudev-238:=
 		>=dev-libs/libgudev-238
 	)
-	logind? ( sys-apps/systemd )
+	systemd? ( sys-apps/systemd )
 	x11-libs/libSM
 	input_devices_wacom? ( >=dev-libs/libwacom-0.13:= )
 	>=x11-libs/startup-notification-0.7
@@ -88,6 +87,7 @@ DEPEND="
 	>=media-libs/libdisplay-info-0.2
 	test? (
 		>=x11-libs/gtk+-3.19.8:3[X,introspection?]
+		dev-libs/libevdev
 		gnome-extra/zenity
 	)
 	sysprof? ( >=dev-util/sysprof-capture-3.40.1:4 >=dev-util/sysprof-3.46.0 )
@@ -139,18 +139,6 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-43.0-Disable-anonymous-file-test.patch
-	"${FILESDIR}"/0001-cursor-Move-sprite-preparation-into-sprite-classes.patch
-	"${FILESDIR}"/0002-kms-impl-device-Always-catch-pending-KMS-update-in-_.patch
-	"${FILESDIR}"/0003-Revert-onscreen-native-Account-for-all-posted-frames.patch
-	"${FILESDIR}"/0004-wayland-Allow-changing-from-a-cursor-shape-to-a-NULL.patch
-	"${FILESDIR}"/0005-Fix-mutter-crash-from-should_constraint_be_enabled.patch
-	"${FILESDIR}"/0006-wayland-Bail-early-if-cursor-shape-doesn-t-change.patch
-	"${FILESDIR}"/0007-clutter-frame-clock-Set-frame-clock-state-via-helper.patch
-	"${FILESDIR}"/0008-clutter-frame-clock-Add-more-debug-logging.patch
-	"${FILESDIR}"/0009-onscreen-native-Include-connector-in-some-debug-logs.patch
-	"${FILESDIR}"/0010-onscreen-native-Account-for-all-posted-frames.patch
-	"${FILESDIR}"/0011-Revert-kms-impl-device-Always-catch-pending-KMS-upda.patch
-	"${FILESDIR}"/0012-clutter-frame-clock-Don-t-accidentally-reschedule-no.patch
 )
 
 python_check_deps() {
@@ -182,7 +170,7 @@ src_configure() {
 		-Dglx=true
 		$(meson_use wayland)
 		$(meson_use wayland xwayland)
-		$(meson_use logind)
+		$(meson_use systemd logind)
 		$(meson_use wayland native_backend)
 		$(meson_use screencast remote_desktop)
 		$(meson_use gnome libgnome_desktop)
