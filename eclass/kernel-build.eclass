@@ -239,6 +239,7 @@ kernel-build_src_configure() {
 	if [[ ${KERNEL_IUSE_CLANG} ]]; then
 		MAKEARGS=(
 			V=1
+			WERROR=0
 
 			HOSTCC="clang"
 			HOSTCXX="clang++"
@@ -264,6 +265,7 @@ kernel-build_src_configure() {
 	else
 		MAKEARGS=(
 			V=1
+			WERROR=0
 
 			HOSTCC="$(tc-getBUILD_CC)"
 			HOSTCXX="$(tc-getBUILD_CXX)"
