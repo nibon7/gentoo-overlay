@@ -83,8 +83,8 @@ CRATES="
 	glib-macros@0.20.7
 	glib-sys@0.20.9
 	glib@0.20.9
-	glycin-utils@3.0.0
-	glycin@2.1.0
+	glycin-utils@3.0.1
+	glycin@2.1.1
 	gobject-sys@0.20.9
 	graphene-rs@0.20.9
 	graphene-sys@0.20.7
