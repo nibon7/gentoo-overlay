@@ -5,9 +5,9 @@ EAPI=8
 
 inherit flag-o-matic toolchain-funcs
 
-GDB_VERSION=10.2
+GDB_VERSION=16.2
 UPSTREAM_VER=
-EXTRA_VER=0
+EXTRA_VER=
 
 if [[ ${PV} == "9999" ]] ; then
 	EGIT_REPO_URI="https://github.com/crash-utility/crash.git"
@@ -24,7 +24,7 @@ else
 	SRC_URI="https://github.com/crash-utility/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz
 		${UPSTREAM_PATCHSET_URI} ${EXTRA_PATCHSET_URI}
 		mirror://gnu/gdb/gdb-${GDB_VERSION}.tar.gz"
-	KEYWORDS="~amd64"
+	KEYWORDS="~amd64 ~arm64"
 fi
 
 DESCRIPTION="Red Hat crash utility; used for analyzing kernel core dumps"
