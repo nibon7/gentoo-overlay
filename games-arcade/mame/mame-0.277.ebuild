@@ -18,11 +18,13 @@ LICENSE="BSD BSD-2 Boost-1.0 CC0-1.0 GPL-2 LGPL-2.1 MIT ZLIB"
 SLOT="0"
 KEYWORDS="amd64 arm64 ppc64 ~riscv x86"
 
-IUSE="X alsa debug lto opengl openmp pcap pulseaudio qt6 +taptun tools wayland"
+IUSE="X alsa clang debug lto opengl openmp pcap pulseaudio qt6 +taptun tools wayland"
 IUSE_CPU_FLAGS=" sse2 sse3"
 IUSE+=" ${IUSE_CPU_FLAGS// / cpu_flags_x86_}"
 IUSE+=" +system-asio +system-expat +system-flac +system-glm +system-jpeg +system-portaudio +system-portmidi"
 IUSE+=" +system-pugixml +system-rapidjson +system-sqlite3 +system-utf8proc +system-zlib +system-zstd"
+
+REQUIRED_USE="lto? ( !clang )" # clang lto doesn't work
 
 RDEPEND="
 	media-libs/fontconfig
@@ -130,10 +132,11 @@ src_compile() {
 		IGNORE_GIT=1 \
 		NOWERROR=1 \
 		OPTIMIZE=3 \
-		OVERRIDE_AR=$(tc-getAR) \
-		OVERRIDE_CC=$(tc-getCC) \
-		OVERRIDE_CXX=$(tc-getCXX) \
-		OVERRIDE_LD=$(tc-getLD) \
+		OVERRIDE_AR=$(usex clang "llvm-ar" $(tc-getAR)) \
+		OVERRIDE_CC=$(usex clang "clang" $(tc-getCC)) \
+		OVERRIDE_CXX=$(usex clang "clang++" $(tc-getCXX)) \
+		OVERRIDE_LD=$(usex clang "ld.lld" $(tc-getLD)) \
+		PRECOMPILE=0 \
 		PYTHON_EXECUTABLE=${PYTHON} \
 		QT_HOME="/usr/$(get_libdir)/qt$(usex qt6 "6" "5")" \
 		REGENIE=1 \
