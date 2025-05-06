@@ -38,7 +38,7 @@ RDEPEND="
 	dev-libs/libpcre:3
 	media-libs/fontconfig:1.0
 	media-libs/freetype:2
-	media-libs/flac:0/10-12
+	media-libs/flac:=
 	media-libs/libogg
 	media-libs/libpulse
 	media-libs/libsndfile
