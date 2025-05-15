@@ -1,0 +1,26 @@
+From eb208041202c7769ea6beb543792cf812db22bde Mon Sep 17 00:00:00 2001
+From: nibon7 <nibon7@gmail.com>
+Date: Fri, 9 May 2025 15:24:15 +0800
+Subject: [PATCH] shell: disable dual-odd-left action when dual mode is
+ disabled
+
+---
+ shell/src/document_view/actions.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/shell/src/document_view/actions.rs b/shell/src/document_view/actions.rs
+index aed764923437..fde5dcc6cd10 100644
+--- a/shell/src/document_view/actions.rs
++++ b/shell/src/document_view/actions.rs
+@@ -222,7 +222,7 @@ impl imp::PpsDocumentView {
+ 
+                         let has_pages = obj.document().map(|d| d.n_pages() > 0).unwrap_or_default();
+ 
+-                        obj.set_action_enabled("dual-odd-left", has_pages);
++                        obj.set_action_enabled("dual-odd-left", dual_page && has_pages);
+ 
+                         action.set_state(state);
+                     }
+-- 
+2.49.0
+

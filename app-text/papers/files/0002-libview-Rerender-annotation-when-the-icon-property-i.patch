@@ -1,0 +1,32 @@
+From 0fff55d2634bb863982aa67c540293c803bb0296 Mon Sep 17 00:00:00 2001
+From: nibon7 <nibon7@gmail.com>
+Date: Wed, 14 May 2025 10:55:45 +0800
+Subject: [PATCH] libview: Rerender annotation when the icon property is
+ updated
+
+---
+ libview/pps-view.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/libview/pps-view.c b/libview/pps-view.c
+index 208d3e3e4e1e..a94ff2c7fee1 100644
+--- a/libview/pps-view.c
++++ b/libview/pps-view.c
+@@ -3464,6 +3464,14 @@ pps_view_connect_annot_signals (PpsView *view,
+ 		                         view,
+ 		                         G_CONNECT_DEFAULT);
+ 	}
++
++	if (PPS_IS_ANNOTATION_TEXT (annot)) {
++		g_signal_connect_object (annot,
++		                         "notify::icon",
++		                         G_CALLBACK (pps_view_annot_changed_cb),
++		                         view,
++		                         G_CONNECT_DEFAULT);
++	}
+ }
+ 
+ static void
+-- 
+2.49.0
+
