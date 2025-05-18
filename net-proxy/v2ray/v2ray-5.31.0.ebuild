@@ -5,8 +5,8 @@ EAPI=8
 
 inherit systemd go-module
 
-GEOSITE_VER="20250219031756"
-GEOIP_VER="202502050123"
+GEOSITE_VER="20250508005311"
+GEOIP_VER="202505050146"
 
 DESCRIPTION="A platform for building proxies to bypass network restrictions."
 HOMEPAGE="https://www.v2fly.org/"
@@ -20,8 +20,6 @@ S="${WORKDIR}/${PN}-core-${PV}"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 arm64 ~loong ~riscv x86"
-
-BDEPEND="dev-lang/go"
 
 src_prepare() {
 	sed -i 's|/usr/local/bin|/usr/bin|;s|/usr/local/etc|/etc|' release/config/systemd/system/*.service || die
