@@ -10,17 +10,16 @@ HOMEPAGE="https://www.gtk.org/ https://gitlab.gnome.org/GNOME/gtk/"
 
 LICENSE="LGPL-2+"
 SLOT="4"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~sparc ~x86"
 IUSE="aqua broadway cloudproviders colord cups examples gstreamer gtk-doc +introspection sysprof test vulkan wayland +X cpu_flags_x86_f16c"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	test? ( introspection )
 "
 
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~sparc ~x86"
-
 # TODO: Optional gst build dep on >=gst-plugins-base-1.24.0, so depend on it once we can
 COMMON_DEPEND="
-	>=dev-libs/glib-2.80:2
+	>=dev-libs/glib-2.82:2
 	>=x11-libs/cairo-1.18.2[aqua?,glib,svg(+),X?]
 	>=x11-libs/pango-1.56[introspection?]
 	>=dev-libs/fribidi-1.0.6
@@ -46,11 +45,11 @@ COMMON_DEPEND="
 			>=media-libs/gst-plugins-base-1.24.0:1.0[opengl]
 		)
 	)
-	introspection? ( >=dev-libs/gobject-introspection-1.76:= )
+	introspection? ( >=dev-libs/gobject-introspection-1.84:= )
 	vulkan? ( >=media-libs/vulkan-loader-1.3:= )
 	wayland? (
 		>=dev-libs/wayland-1.23.0
-		>=dev-libs/wayland-protocols-1.41
+		>=dev-libs/wayland-protocols-1.43
 		media-libs/mesa[wayland]
 		>=x11-libs/libxkbcommon-0.2
 	)
