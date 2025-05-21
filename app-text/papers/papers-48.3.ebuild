@@ -270,11 +270,6 @@ BDEPEND="
 
 QA_FLAGS_IGNORED="usr/bin/${PN}"
 
-PATCHES=(
-	"${FILESDIR}"/0001-shell-disable-dual-odd-left-action-when-dual-mode-is.patch
-	"${FILESDIR}"/0002-libview-Rerender-annotation-when-the-icon-property-i.patch
-)
-
 src_prepare() {
 	default
 	xdg_environment_reset
