@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -218,44 +218,37 @@ DESCRIPTION="A document viewer for GNOME"
 HOMEPAGE="https://apps.gnome.org/Papers"
 
 SRC_URI+=" ${CARGO_CRATE_URIS}"
-# subslot = ppsd4.(suffix of libppsdocument-4.0)-ppsv4.(suffix of libppsview-4.0)
 LICENSE="GPL-2+"
 # Dependent crate licenses
 LICENSE+="
 	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD MIT Unicode-3.0 ZLIB
 "
-SLOT="0/ppsd4.5-ppsv4.4"
+# subslot = ppsd4.(suffix of libppsdocument-4.0)-ppsv4.(suffix of libppsview-4.0)
+SLOT="0/ppsd5.0-ppsv4.0"
 KEYWORDS="~amd64 ~loong ~riscv ~amd64-linux ~x86-linux"
-IUSE+=" cups djvu gnome keyring gtk-doc +introspection nautilus sysprof test spell tiff"
+IUSE+=" comics cups djvu doc gtk-doc +introspection keyring nautilus +pdf +previewer spell sysprof test +thumbnailer tiff +viewer"
 REQUIRED_USE="gtk-doc? ( introspection )"
 RESTRICT="!test? ( test )"
 
-# atk used in libview
-# bundles unarr
 DEPEND="
-	>=app-accessibility/at-spi2-core-2.46.0:2
 	>=dev-libs/glib-2.75.0:2
-	>=gui-libs/libhandy-1.5.0:1
 	>=media-libs/exempi-2.0
 	sys-libs/zlib:=
 	>=x11-libs/gdk-pixbuf-2.40:2
 	>=gui-libs/gtk-4.17.1:4[cups?,introspection?]
 	>=gui-libs/libadwaita-1.6
 	>=x11-libs/cairo-1.14.0
-	>=app-text/poppler-25.01.0:=[cairo]
-	>=app-arch/libarchive-3.6.0:=
+	comics? ( >=app-arch/libarchive-3.6.0:= )
 	djvu? ( >=app-text/djvu-3.5.22:= )
-	gnome? ( gnome-base/gnome-desktop:3= )
+	doc? ( gnome-extra/yelp )
 	introspection? ( >=dev-libs/gobject-introspection-1:= )
 	nautilus? ( >=gnome-base/nautilus-43.0 )
+	pdf? ( >=app-text/poppler-25.01.0:=[cairo] )
 	spell? ( >=app-text/libspelling-0.2 )
 	sysprof? ( dev-util/sysprof-capture:4 )
 	tiff? ( >=media-libs/tiff-4.0:= )
 "
-RDEPEND="${DEPEND}
-	gnome-base/gvfs
-	gnome-base/librsvg
-"
+
 BDEPEND="
 	gtk-doc? (
 		>=dev-util/gi-docgen-2023.1-r1
@@ -268,7 +261,15 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
-QA_FLAGS_IGNORED="usr/bin/${PN}"
+QA_FLAGS_IGNORED="usr/bin/${PN}.*"
+
+PATCHES=(
+	"${FILESDIR}"/0001-libview-Add-spell-checking-support-for-multiline-for.patch
+	"${FILESDIR}"/0002-shell-Make-sure-that-all-child-widgets-of-PpsView-ar.patch
+	"${FILESDIR}"/0003-shell-Reset-label-of-signature-details-button-when-i.patch
+	"${FILESDIR}"/0004-libdocument-Don-t-ignore-PpsSignatureStatus-when-all.patch
+	"${FILESDIR}"/0005-shell-Enable-digital-signing-action-when-document-su.patch
+)
 
 src_prepare() {
 	default
@@ -281,24 +282,23 @@ src_configure() {
 	local emesonargs=(
 		-Dprofile=default
 
-		-Dviewer=true
-		-Dpreviewer=true
-		-Dthumbnailer=true
+		$(meson_use doc user_doc)
+		$(meson_use gtk-doc documentation)
 		$(meson_use nautilus)
+		$(meson_use previewer)
+		$(meson_use thumbnailer)
+		$(meson_use viewer)
+		$(meson_use test tests)
 
-		-Dcomics=enabled
+		$(meson_feature cups gtk_unix_print)
+		$(meson_feature comics)
 		$(meson_feature djvu)
-		-Dpdf=enabled
+		$(meson_feature introspection)
+		$(meson_feature keyring)
+		$(meson_feature pdf)
 		$(meson_feature spell spell_check)
 		$(meson_feature sysprof)
 		$(meson_feature tiff)
-
-		$(meson_use gtk-doc documentation)
-		-Duser_doc=true
-		$(meson_feature introspection)
-		$(meson_feature keyring)
-		$(meson_feature cups gtk_unix_print)
-		$(meson_use test tests)
 	)
 	meson_src_configure
 }

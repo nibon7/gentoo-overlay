@@ -2,8 +2,13 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<use>
+		<flag name="comics">Enable comics support via <pkg>app-arch/libarchive</pkg></flag>
+		<flag name="doc">Enable user documentation</flag>
 		<flag name="nautilus">Enable property page extension in <pkg>gnome-base/nautilus</pkg></flag>
+		<flag name="previewer">Enable previewer support</flag>
 		<flag name="sysprof">Enable profiling data capture support using <pkg>dev-util/sysprof-capture</pkg></flag>
+		<flag name="thumbnailer">Enable thumbnailer support</flag>
+		<flag name="viewer">Enable viewer support</flag>
 	</use>
 	<upstream>
 		<remote-id type="gnome-gitlab">GNOME/Incubator/papers</remote-id>

@@ -1,0 +1,37 @@
+From 57c9015fd1dea07a35465899d22037c137372a99 Mon Sep 17 00:00:00 2001
+From: nibon7 <nibon7@gmail.com>
+Date: Tue, 27 May 2025 09:55:09 +0800
+Subject: [PATCH] shell: Reset label of signature details button when it
+ toggles
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Reset label to "Hide Details…" if the signature information is
+expanded.
+
+Closes: https://gitlab.gnome.org/GNOME/Incubator/papers/-/issues/313
+---
+ shell/src/properties_signatures.rs | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/shell/src/properties_signatures.rs b/shell/src/properties_signatures.rs
+index 964b9796b2d2..af89c0faa753 100644
+--- a/shell/src/properties_signatures.rs
++++ b/shell/src/properties_signatures.rs
+@@ -398,6 +398,12 @@ mod imp {
+         fn details_button_toggled(&self) {
+             self.listbox.invalidate_filter();
+             self.status_listbox.invalidate_filter();
++
++            if self.details_button.is_active() {
++                self.details_button.set_label(&gettext("Hide Details…"));
++            } else {
++                self.details_button.set_label(&gettext("View Details…"));
++            }
+         }
+ 
+         #[template_callback]
+-- 
+2.49.0
+
