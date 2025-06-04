@@ -42,7 +42,7 @@ if [[ ${KERNEL_IUSE_MODULES_SIGN} ]]; then
 fi
 
 if [[ ${KERNEL_IUSE_CLANG} ]]; then
-	LLVM_COMPAT=( 17 18 19 )
+	LLVM_COMPAT=( 18 19 20 )
 	RUST_MIN_VER="1.78.0"
 	inherit llvm-r1 rust
 fi
