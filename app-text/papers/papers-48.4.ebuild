@@ -212,6 +212,8 @@ CRATES="
 	zvariant_utils@2.1.0
 "
 
+RUST_MIN_VER="1.75"
+
 inherit cargo gnome.org gnome2 meson xdg
 
 DESCRIPTION="A document viewer for GNOME"
@@ -262,14 +264,6 @@ BDEPEND="
 "
 
 QA_FLAGS_IGNORED="usr/bin/${PN}.*"
-
-PATCHES=(
-	"${FILESDIR}"/0001-libview-Add-spell-checking-support-for-multiline-for.patch
-	"${FILESDIR}"/0002-shell-Make-sure-that-all-child-widgets-of-PpsView-ar.patch
-	"${FILESDIR}"/0003-shell-Reset-label-of-signature-details-button-when-i.patch
-	"${FILESDIR}"/0004-libdocument-Don-t-ignore-PpsSignatureStatus-when-all.patch
-	"${FILESDIR}"/0005-shell-Enable-digital-signing-action-when-document-su.patch
-)
 
 src_prepare() {
 	default
